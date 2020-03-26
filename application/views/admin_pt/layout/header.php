@@ -87,6 +87,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link <?php if($this->uri->segment(1) == "division"){echo "active";} ?>" href="<?= site_url('division') ?>">
+                <i class="fas fa-user-friends text-blue"></i>
+                <span class="nav-link-text">Division</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link <?php if($this->uri->segment(1) == "user"){echo "active";} ?>" href="<?= site_url('user') ?>">
                 <i class="ni ni-single-02 text-blue"></i>
                 <span class="nav-link-text">User</span>

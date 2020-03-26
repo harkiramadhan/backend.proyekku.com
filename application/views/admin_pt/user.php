@@ -106,6 +106,10 @@
                                 <label for="">Password <small class="text-warning"><strong>*</strong></small></label>
                                 <input type="password" name="password" class="form-control form-control-sm form-control-alternative" placeholder="Password " required>
                             </div>
+                            <div class="form-group">
+                                <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
+                                <select name="" id="" class="from-control"></select>
+                            </div>
                         </div>
                     </div>                
                 </div>
