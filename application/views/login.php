@@ -132,7 +132,7 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt--9 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
@@ -150,7 +150,7 @@
               </div>
             </div> -->
             <div class="card-body px-lg-5 py-lg-5">
-              
+              <h5 class="text-danger text-center"> <b><?= $this->session->flashdata('msg'); ?></b> </h5>
               <form action="<?= site_url('login/auth') ?>" method="post">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">

@@ -24,15 +24,14 @@ class Login extends CI_Controller{
         $this->session->set_userdata('role', $data->idrole);
         $this->session->set_userdata('username', $data->username);
 
-        
         redirect('dashboard','refresh');
       }else{
-        $this->session->set_flashdata('error', "User Yang Anda Masukkan Tidak/Belum Aktif");
+        $this->session->set_flashdata('msg', "User Yang Anda Masukkan Tidak/Belum Aktif");
         redirect('login');
       }
       
     }else{
-      $this->session->set_flashdata('error', "Email atau Password Salah");
+      $this->session->set_flashdata('msg', "Email atau Password Salah");
       redirect('login');
     }
   }
