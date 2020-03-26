@@ -36,6 +36,10 @@ class Login extends CI_Controller{
     }
   }
 
+  function register(){
+    $this->load->view('register_form');
+  }
+
   function logout(){
     $this->session->sess_destroy();
     $url = base_url();

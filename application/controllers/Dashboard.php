@@ -18,6 +18,7 @@ class Dashboard extends CI_Controller{
         $role = $this->session->userdata('role');
 
         $var['title'] = "Dashboard";
+        $var['username'] = $this->session('username');
         
         if($role == 1){
 

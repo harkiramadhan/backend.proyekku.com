@@ -20,6 +20,7 @@ class User extends CI_Controller{
         $role = $this->session->userdata('role');
 
         $var['title'] = "User";
+        $var['username'] = $this->session('username');
         
         if($role == 1){
             $var['user'] = $this->M_User->get_allUser();
