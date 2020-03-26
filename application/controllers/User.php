@@ -126,6 +126,39 @@ class User extends CI_Controller{
                     $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
                     redirect('user');
                 }
+            }elseif($type == "active"){
+                $data = [
+                    'status' => "active"
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Aktifkan");
+                    redirect('user');
+                }
+            }elseif($type == "non"){
+                $data = [
+                    'status' => ""
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Non Aktifkan");
+                    redirect('user');
+                }
+            }elseif($type == "del"){
+                $data = [
+                    'status' => "soft_delete"
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Hapus");
+                    redirect('user');
+                }
             }
 
         }elseif($role == 3){

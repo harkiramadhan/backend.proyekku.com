@@ -19,6 +19,7 @@ class M_User extends CI_Model{
         $this->db->join('role', 'userpt.idrole = role.id');
         $this->db->join('division', 'userpt.iddiv = division.id');
         $this->db->where([
+            'userpt.status !=' => 'soft_delete',
             'userpt.idpt' => $idpt
         ]);
         $this->db->order_by('userpt.name', "ASC");
