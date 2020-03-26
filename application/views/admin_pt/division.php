@@ -33,11 +33,37 @@
                         <th><?= $row->division ?></th>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button class="btn btn-sm btn-info ml-3 mr-1 rounded"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger rounded"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm btn-info mr-1" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>
+                    <div class="modal fade" id="edit_<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Division</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="<?= site_url('division/action') ?>" method="post">
+                                <input type="hidden" name="type" value="edit">
+                                <input type="hidden" name="id" value="<?= $row->id ?>">
+                                <div class="modal-body bg-secondary">
+                                    <div class="form-group">
+                                        <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
+                                        <input type="text" name="division" class="form-control-alternative form-control form-control-sm" value="<?= $row->division ?>" required>
+                                    </div>                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <?php } ?>
                 </tbody>
                 </table>

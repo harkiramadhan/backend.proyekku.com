@@ -37,4 +37,46 @@ class Division extends CI_Controller{
 
         }
     }
+
+    function action(){
+        $iduser = $this->session('iduser');
+        $type = $this->input->post('type', TRUE);
+        $division = $this->input->post('division', TRUE);
+        $id = $this->input->post('id', TRUE);
+
+        if($type == "add"){
+            $data = [
+                'idpt' => $iduser,
+                'division' => $division
+            ];
+
+            $this->db->insert('division', $data);
+            if($this->db->affected_rows() > 0){
+                $this->session->set_flashdata('sukses', "Divisi ".$division." Berhasil Di Tambahkan");
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+        }elseif($type == "edit"){
+            $data = [
+                'division' => $division
+            ];
+
+            $this->db->where('id', $id);
+            $this->db->update('division', $data);
+            if($this->db->affected_rows() > 0){
+                $this->session->set_flashdata('sukses', "Divisi ".$division." Berhasil Di Simpan");
+                redirect($_SERVER['HTTP_REFERER']);
+            }            
+        }elseif($type == "delete"){
+            $data = [
+                'status' => 'soft_delete'
+            ];
+
+            $this->db->where('id', $id);
+            $this->db->update('division', $data);
+            if($this->db->affected_rows() > 0){
+                $this->session->set_flashdata('sukses', "Divisi ".$division." Berhasil Di Hapus");
+                redirect($_SERVER['HTTP_REFERER']);
+            }   
+        }
+    }
 }
