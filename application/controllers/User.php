@@ -30,7 +30,7 @@ class User extends CI_Controller{
             $this->load->view('admin_super/layout/footer', $var);           
         }elseif($role == 2){
             $iduser = $this->session('iduser');
-            $var['user'] = $this->M_User->get_allUserPT($iduser)->num_rows();
+            $var['user'] = $this->M_User->get_allUserPT($iduser);
 
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/user', $var);
