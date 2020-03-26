@@ -8,8 +8,23 @@ class Dashboard extends CI_Controller{
             redirect('$url','refresh');
         }
     }
+
+    function session($sess){
+        $get = $this->session->userdata($sess);
+        return $get;
+    }
+
     function index(){
-        $this->output->enable_profiler(TRUE);
+        $role = $this->session->userdata('role');
         
+        if($role == 1){
+
+        }elseif($role == 2){
+
+        }elseif($role == 3){
+
+        }elseif($role == 4){
+
+        }
     }
 }
