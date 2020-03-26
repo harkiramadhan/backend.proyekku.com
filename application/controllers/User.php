@@ -97,20 +97,26 @@ class User extends CI_Controller{
         }elseif($role == 2){
             $idpt = $this->session('iduser');
             if($type == "add"){
-                $data = [
-                    'idrole' => 3,
-                    'idpt' => $idpt,
-                    'iddiv' => $this->input->post('iddiv', TRUE),
-                    'name' => $this->input->post('name', TRUE),
-                    'username' => $this->input->post('username', TRUE),
-                    'password' => md5($this->input->post('password', TRUE)),
-                    'status' => 'pending'
-                ];
-
-                $this->db->insert('userpt', $data);
-                if($this->db->affected_rows() > 0){
-                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                $cek = $this->db->get_where('userpt', ['username' => $username]);
+                if($cek->num_rows() > 0){
+                    $this->session->set_flashdata('error', "Email ".$username." Sudah Tersedia");
                     redirect('user');
+                }else{
+                    $data = [
+                        'idrole' => 3,
+                        'idpt' => $idpt,
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'name' => $this->input->post('name', TRUE),
+                        'username' => $this->input->post('username', TRUE),
+                        'password' => md5($this->input->post('password', TRUE)),
+                        'status' => 'pending'
+                    ];
+    
+                    $this->db->insert('userpt', $data);
+                    if($this->db->affected_rows() > 0){
+                        $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                        redirect('user');
+                    }
                 }
             }elseif($type == "edit"){
                 if($this->input->post('password', TRUE) == TRUE){
@@ -172,20 +178,26 @@ class User extends CI_Controller{
             $idpt = $this->session('idpt');
             $iddiv = $this->session('iddiv');
             if($type == "add"){
-                $data = [
-                    'idrole' => 4,
-                    'idpt' => $idpt,
-                    'iddiv' => $iddiv,
-                    'name' => $this->input->post('name', TRUE),
-                    'username' => $this->input->post('username', TRUE),
-                    'password' => md5($this->input->post('password', TRUE)),
-                    'status' => 'pending'
-                ];
-
-                $this->db->insert('userpt', $data);
-                if($this->db->affected_rows() > 0){
-                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                $cek = $this->db->get_where('userpt', ['username' => $username]);
+                if($cek->num_rows() > 0){
+                    $this->session->set_flashdata('error', "Email ".$username." Sudah Tersedia");
                     redirect('user');
+                }else{
+                    $data = [
+                        'idrole' => 4,
+                        'idpt' => $idpt,
+                        'iddiv' => $iddiv,
+                        'name' => $this->input->post('name', TRUE),
+                        'username' => $this->input->post('username', TRUE),
+                        'password' => md5($this->input->post('password', TRUE)),
+                        'status' => 'pending'
+                    ];
+    
+                    $this->db->insert('userpt', $data);
+                    if($this->db->affected_rows() > 0){
+                        $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                        redirect('user');
+                    }
                 }
             }elseif($type == "edit"){
                 if($this->input->post('password', TRUE) == TRUE){
