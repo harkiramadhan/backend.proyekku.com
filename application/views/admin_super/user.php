@@ -17,7 +17,8 @@
                 <thead class="thead-dark">
                     <tr>
                         <th width="5px">No</th>
-                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th width="5px">Role</th>
                         <th width="5px">Status</th>
                         <th width="5px" class="text-center">Action</th>
@@ -29,6 +30,7 @@
                     foreach($user->result() as $row){ ?>
                     <tr>
                         <th><?= $no++ ?></th>
+                        <th><?= $row->name ?></th>
                         <th><?= $row->username ?></th>
                         <th><?= $row->role ?></th>
                         <th>

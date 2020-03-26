@@ -1,4 +1,3 @@
-
 <!--
 =========================================================
 * Argon Dashboard - v1.2.0
@@ -18,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Login</title>
+  <title><?= $title ?></title>
   <!-- Favicon -->
   <link rel="icon" href="<?= base_url('') ?>/assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -63,12 +62,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="login.html" class="nav-link">
+            <a href="<?= base_url() ?>" class="nav-link active">
               <span class="nav-link-inner--text">Login</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="register.html" class="nav-link">
+            <a href="<?= site_url('register') ?>" class="nav-link">
               <span class="nav-link-inner--text">Register</span>
             </a>
           </li>

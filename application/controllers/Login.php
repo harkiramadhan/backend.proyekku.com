@@ -7,7 +7,8 @@ class Login extends CI_Controller{
   }
 
   function index(){
-    $this->load->view('login');
+    $var['title'] = "Login";
+    $this->load->view('login', $var);
   }
 
   function auth(){
@@ -37,7 +38,44 @@ class Login extends CI_Controller{
   }
 
   function register(){
-    $this->load->view('register_form');
+    $var['title'] = "Register";
+    $this->load->view('register_form', $var);
+  }
+
+  function register_submit(){
+    $text = $this->input->post('text', TRUE);
+    $name = $this->input->post('name', TRUE);
+    $username = $this->input->post('email', TRUE);
+    $password = $this->input->post('password', TRUE);
+    $agree = $this->input->post('agree', TRUE);
+
+    if($text == NULL){
+      if($agree == "on"){
+        if($name == TRUE && $username == TRUE && $password == TRUE){
+          $data = [
+            'name' => $name,
+            'username' => $username,
+            'password' => md5($password)
+          ];
+
+          $this->db->insert('user', $data);
+
+          if($this->db->affected_rows() > 0){
+            $this->session->set_flashdata('msg', "Please Wait For Approval");
+            redirect($_SERVER['HTTP_REFERER']);
+          }
+          
+        }else{
+          $this->session->set_flashdata('msg', "Please Complete The Form");
+          redirect($_SERVER['HTTP_REFERER']);
+        }
+      }else{
+        $this->session->set_flashdata('msg', "Please Check The Agreement");
+        redirect($_SERVER['HTTP_REFERER']);
+      }
+    }else{
+      redirect($_SERVER['HTTP_REFERER']);
+    }
   }
 
   function logout(){
