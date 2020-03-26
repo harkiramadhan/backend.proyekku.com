@@ -16,9 +16,14 @@ class Dashboard extends CI_Controller{
 
     function index(){
         $role = $this->session->userdata('role');
+
+        $var['title'] = "Dashboard";
         
         if($role == 1){
 
+            $this->load->view('admin_super/layout/header', $var);
+            $this->load->view('admin_super/dashboard', $var);
+            $this->load->view('admin_super/layout/footer', $var);           
         }elseif($role == 2){
 
         }elseif($role == 3){
