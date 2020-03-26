@@ -1,7 +1,12 @@
 <?php
 class Login extends CI_Controller{
 
+  function __construct(){
+    parent::__construct();
+    $this->load->model('M_Auth');
+  }
+
     function index(){
-      echo "test";
+      $this->load->view('login');
     }
 }
