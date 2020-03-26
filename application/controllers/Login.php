@@ -24,6 +24,7 @@ class Login extends CI_Controller{
         $this->session->set_userdata('masuk', TRUE);
         $this->session->set_userdata('role', $data->idrole);
         $this->session->set_userdata('username', $data->username);
+        $this->session->set_userdata('iduser', $data->id);
 
         redirect('dashboard','refresh');
       }else{
