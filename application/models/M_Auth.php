@@ -12,6 +12,17 @@ class M_Auth extends CI_Model{
         return $this->db->get();
     }
 
+    function userDiv($username, $password){
+        $this->db->select('userpt.*, role.role');
+        $this->db->from('userpt');
+        $this->db->join('role', "userpt.idrole = role.id");
+        $this->db->where([
+            'userpt.username' => $username,
+            'userpt.password' => md5($password)
+        ]);
+        return $this->db->get();
+    }
+
     function cek_user($username){
         $this->db->select('username');
         $this->db->from('user');

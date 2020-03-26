@@ -33,8 +33,25 @@ class Login extends CI_Controller{
       }
       
     }else{
-      $this->session->set_flashdata('msg', "Email atau Password Salah");
-      redirect('login');
+      $cek2 = $this->M_Auth->userDiv($username, $password);
+      if($cek2->num_rows() > 0){
+        $data2 = $cek2->row();
+        if($data2->status == "active"){
+          $this->session->set_userdata('masuk', TRUE);
+          $this->session->set_userdata('role', $data2->idrole);
+          $this->session->set_userdata('username', $data2->username);
+          $this->session->set_userdata('iduser', $data2->id);
+          $this->session->set_userdata('iddiv', $data2->iddiv);
+
+          redirect('dashboard','refresh');
+        }else{
+          $this->session->set_flashdata('msg', "User Yang Anda Masukkan Tidak/Belum Aktif");
+          redirect('login');
+        }
+      }else{
+        $this->session->set_flashdata('msg', "Email atau Password Salah");
+        redirect('login');
+      }
     }
   }
 

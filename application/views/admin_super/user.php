@@ -18,7 +18,7 @@
                     <tr>
                         <th width="5px">No</th>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th width="5px">Email</th>
                         <th width="5px">Role</th>
                         <th width="5px">Status</th>
                         <th width="5px" class="text-center">Action</th>

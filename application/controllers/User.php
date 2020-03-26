@@ -37,7 +37,6 @@ class User extends CI_Controller{
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/user', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
-
         }elseif($role == 3){
 
         }elseif($role == 4){
