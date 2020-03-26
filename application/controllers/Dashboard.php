@@ -36,7 +36,14 @@ class Dashboard extends CI_Controller{
             $this->load->view('admin_pt/dashboard', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
         }elseif($role == 3){
-            
+            $iduser = $this->session('iduser');
+            $iddiv = $this->session('iddiv');
+            $var['user'] = $this->M_User->get_allUserDiv($iddiv)->num_rows();
+            $var['userPending'] = $this->M_User->get_userDivPending($iddiv)->num_rows();
+
+            $this->load->view('admin_div/layout/header', $var);
+            $this->load->view('admin_div/dashboard', $var);
+            $this->load->view('admin_div/layout/footer', $var);   
         }elseif($role == 4){
 
         }
