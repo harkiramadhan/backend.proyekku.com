@@ -18,20 +18,33 @@
                     <tr>
                         <th width="5px">No</th>
                         <th>Username</th>
+                        <th width="5px">Role</th>
                         <th width="5px">Status</th>
                         <th width="5px" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody class="list">
+                    <?php 
+                    $no = 1;
+                    foreach($user->result() as $row){ ?>
                     <tr>
-                        <th>1</th>
-                        <td>harkiramadhan@gmail.com</td>
-                        <td>
+                        <th><?= $no++ ?></th>
+                        <th><?= $row->username ?></th>
+                        <th><?= $row->role ?></th>
+                        <th>
                             <span class="badge badge-dot mr-4">
-                            <i class="bg-warning"></i>
-                            <span class="status">pending</span>
+                                <?php if($row->status == "active"): ?>
+                                    <i class="bg-success"></i>
+                                    <span class="status">active</span>
+                                <?php elseif($row->status == "pending"): ?>
+                                    <i class="bg-warning"></i>
+                                    <span class="status">pending</span>
+                                <?php else: ?>
+                                    <i class="bg-warning"></i>
+                                    <span class="status">Non Active</span>
+                                <?php endif; ?>
                             </span>
-                        </td>
+                        </th>
                         <td class="text-center">
                             <div class="btn-group">
                                 <button class="btn btn-sm btn-success"><i class="fas fa-check"></i> Active</button>
@@ -40,6 +53,7 @@
                             </div>
                         </td>
                     </tr>
+                    <?php } ?>
                 </tbody>
                 </table>
             </div>

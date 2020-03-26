@@ -22,6 +22,7 @@ class User extends CI_Controller{
         $var['title'] = "User";
         
         if($role == 1){
+            $var['user'] = $this->M_User->get_allUser();
 
             $this->load->view('admin_super/layout/header', $var);
             $this->load->view('admin_super/user', $var);
