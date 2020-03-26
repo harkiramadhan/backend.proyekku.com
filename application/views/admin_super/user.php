@@ -20,7 +20,7 @@
                         <th>Username</th>
                         <th width="5px">Role</th>
                         <th width="5px">Status</th>
-                        <th width="5px" class="text-center">Action</th>
+                        <th width="5px" class="text-left">Action</th>
                     </tr>
                 </thead>
                 <tbody class="list">
