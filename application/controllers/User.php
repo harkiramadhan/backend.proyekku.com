@@ -65,6 +65,17 @@ class User extends CI_Controller{
                     $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Non Aktifkan");
                     redirect('user');
                 }
+            }elseif($type == "del"){
+                $data = [
+                    'status' => "soft_delete"
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('user', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Hapus");
+                    redirect('user');
+                }
             }
 
 

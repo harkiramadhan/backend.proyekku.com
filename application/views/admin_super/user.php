@@ -59,8 +59,13 @@
                                         <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-check"></i> Active</button>
                                     <?php endif; ?>
                                 </form>
-                                <button class="btn btn-sm btn-info ml-3 mr-1"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm btn-info ml-3 mr-1 rounded"><i class="fas fa-pencil-alt"></i></button>
+                                <form action="<?= site_url('user/action') ?>" method="post">
+                                    <input type="hidden" name="iduser" value="<?= $row->id ?>">
+                                    <input type="hidden" name="username" value="<?= $row->username ?>">
+                                    <input type="hidden" name="type" value="del">
+                                    <button type="submit" class="btn btn-sm btn-danger rounded"><i class="fas fa-trash"></i></button>
+                                </form>
                             </div>
                         </td>
                     </tr>
