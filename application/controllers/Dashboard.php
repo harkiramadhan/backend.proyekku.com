@@ -3,6 +3,7 @@ class Dashboard extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('M_Auth');
+        $this->load->model('M_User');
         if($this->session->userdata('masuk') != TRUE){
             $url = base_url();
             redirect($url,'refresh');
@@ -21,6 +22,8 @@ class Dashboard extends CI_Controller{
         $var['username'] = $this->session('username');
         
         if($role == 1){
+            $var['user'] = $this->M_User->get_allUser()->num_rows();
+            $var['userPending'] = $this->M_User->get_userPending()->num_rows();
 
             $this->load->view('admin_super/layout/header', $var);
             $this->load->view('admin_super/dashboard', $var);

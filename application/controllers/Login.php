@@ -52,19 +52,26 @@ class Login extends CI_Controller{
     if($text == NULL){
       if($agree == "on"){
         if($name == TRUE && $username == TRUE && $password == TRUE){
-          $data = [
-            'name' => $name,
-            'username' => $username,
-            'password' => md5($password)
-          ];
-
-          $this->db->insert('user', $data);
-
-          if($this->db->affected_rows() > 0){
-            $this->session->set_flashdata('msg', "Please Wait For Approval");
+          $cek = $this->M_Auth->cek_user($username);
+          if($cek->num_rows() > 0){
+            $this->session->set_flashdata('msg', "The Email You Entered Already Exists");
             redirect($_SERVER['HTTP_REFERER']);
+          }else{
+            $data = [
+              'name' => $name,
+              'username' => $username,
+              'password' => md5($password),
+              'status' => 'pending',
+              'idrole' => 2
+            ];
+  
+            $this->db->insert('user', $data);
+  
+            if($this->db->affected_rows() > 0){
+              $this->session->set_flashdata('msg', "Please Wait For Approval");
+              redirect($_SERVER['HTTP_REFERER']);
+            }
           }
-          
         }else{
           $this->session->set_flashdata('msg', "Please Complete The Form");
           redirect($_SERVER['HTTP_REFERER']);
