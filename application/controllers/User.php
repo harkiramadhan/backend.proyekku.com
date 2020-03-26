@@ -35,4 +35,46 @@ class User extends CI_Controller{
 
         }
     }
+
+    function action(){
+        $role = $this->session->userdata('role');
+        $type = $this->input->post('type', TRUE);
+        $iduser = $this->input->post('iduser', TRUE);
+        $username = $this->input->post('username', TRUE);
+
+        if($role == 1){
+            if($type == "active"){
+                $data = [
+                    'status' => "active"
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('user', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Aktifkan");
+                    redirect('user');
+                }
+            }elseif($type == "non"){
+                $data = [
+                    'status' => ""
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('user', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Non Aktifkan");
+                    redirect('user');
+                }
+            }
+
+
+
+        }elseif($role == 2){
+
+        }elseif($role == 3){
+
+        }elseif($role == 4){
+
+        }
+    }
 }

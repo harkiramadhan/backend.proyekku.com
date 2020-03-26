@@ -20,7 +20,7 @@
                         <th>Username</th>
                         <th width="5px">Role</th>
                         <th width="5px">Status</th>
-                        <th width="5px" class="text-left">Action</th>
+                        <th width="5px" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody class="list">
@@ -45,10 +45,21 @@
                                 <?php endif; ?>
                             </span>
                         </th>
-                        <td class="text-center">
+                        <td class="text-right">
                             <div class="btn-group">
-                                <button class="btn btn-sm btn-success"><i class="fas fa-check"></i> Active</button>
-                                <button class="btn btn-sm btn-info mx-1"><i class="fas fa-pencil-alt"></i></button>
+                                <form action="<?= site_url('user/action') ?>" method="post">
+                                    <input type="hidden" name="iduser" value="<?= $row->id ?>">
+                                    <input type="hidden" name="username" value="<?= $row->username ?>">
+                                    
+                                    <?php if($row->status == "active"): ?>
+                                        <input type="hidden" name="type" value="non">
+                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Non Active</button>
+                                    <?php else: ?>
+                                        <input type="hidden" name="type" value="active">
+                                        <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-check"></i> Active</button>
+                                    <?php endif; ?>
+                                </form>
+                                <button class="btn btn-sm btn-info ml-3 mr-1"><i class="fas fa-pencil-alt"></i></button>
                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                             </div>
                         </td>
