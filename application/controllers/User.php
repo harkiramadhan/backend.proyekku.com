@@ -38,6 +38,14 @@ class User extends CI_Controller{
             $this->load->view('admin_pt/user', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
         }elseif($role == 3){
+            $iduser = $this->session('iduser');
+            $iddiv = $this->session('iddiv');
+            $var['user'] = $this->M_User->get_allUserDiv($iddiv);
+            $var['division'] = $this->M_Division->get_division($iduser);
+
+            $this->load->view('admin_div/layout/header', $var);
+            $this->load->view('admin_div/user', $var);
+            $this->load->view('admin_div/layout/footer', $var);   
 
         }elseif($role == 4){
 
@@ -161,6 +169,77 @@ class User extends CI_Controller{
             }
 
         }elseif($role == 3){
+            $idpt = $this->session('idpt');
+            $iddiv = $this->session('iddiv');
+            if($type == "add"){
+                $data = [
+                    'idrole' => 4,
+                    'idpt' => $idpt,
+                    'iddiv' => $iddiv,
+                    'name' => $this->input->post('name', TRUE),
+                    'username' => $this->input->post('username', TRUE),
+                    'password' => md5($this->input->post('password', TRUE)),
+                    'status' => 'pending'
+                ];
+
+                $this->db->insert('userpt', $data);
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                    redirect('user');
+                }
+            }elseif($type == "edit"){
+                if($this->input->post('password', TRUE) == TRUE){
+                    $data = [
+                        'name' => $this->input->post('name', TRUE),
+                        'username' => $this->input->post('username', TRUE),
+                        'password' => md5($this->input->post('password', TRUE))
+                    ];
+                }else{
+                    $data = [
+                        'name' => $this->input->post('name', TRUE),
+                        'username' => $this->input->post('username', TRUE)
+                    ];
+                }
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                    redirect('user');
+                }
+            }elseif($type == "active"){
+                $data = [
+                    'status' => "active"
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Aktifkan");
+                    redirect('user');
+                }
+            }elseif($type == "non"){
+                $data = [
+                    'status' => ""
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Non Aktifkan");
+                    redirect('user');
+                }
+            }elseif($type == "del"){
+                $data = [
+                    'status' => "soft_delete"
+                ];
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Hapus");
+                    redirect('user');
+                }
+            }
 
         }elseif($role == 4){
 

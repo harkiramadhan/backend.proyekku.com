@@ -36,7 +36,7 @@ class Dashboard extends CI_Controller{
             $this->load->view('admin_pt/dashboard', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
         }elseif($role == 3){
-
+            
         }elseif($role == 4){
 
         }
