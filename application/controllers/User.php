@@ -4,6 +4,7 @@ class User extends CI_Controller{
         parent::__construct();
         $this->load->model('M_Auth');
         $this->load->model('M_User');
+        $this->load->model('M_Division');
 
         if($this->session->userdata('masuk') != TRUE){
             $url = base_url();
@@ -31,6 +32,7 @@ class User extends CI_Controller{
         }elseif($role == 2){
             $iduser = $this->session('iduser');
             $var['user'] = $this->M_User->get_allUserPT($iduser);
+            $var['division'] = $this->M_Division->get_all($iduser);
 
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/user', $var);
@@ -85,9 +87,46 @@ class User extends CI_Controller{
                 }
             }
 
-
-
         }elseif($role == 2){
+            $idpt = $this->session('iduser');
+            if($type == "add"){
+                $data = [
+                    'idrole' => 3,
+                    'idpt' => $idpt,
+                    'iddiv' => $this->input->post('iddiv', TRUE),
+                    'name' => $this->input->post('name', TRUE),
+                    'username' => $this->input->post('username', TRUE),
+                    'password' => md5($this->input->post('password', TRUE)),
+                    'status' => 'pending'
+                ];
+
+                $this->db->insert('userpt', $data);
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                    redirect('user');
+                }
+            }elseif($type == "edit"){
+                if($this->input->post('password', TRUE) == TRUE){
+                    $data = [
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'name' => $this->input->post('name', TRUE),
+                        'username' => $this->input->post('username', TRUE),
+                        'password' => md5($this->input->post('password', TRUE))
+                    ];
+                }else{
+                    $data = [
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'name' => $this->input->post('name', TRUE),
+                        'username' => $this->input->post('username', TRUE)
+                    ];
+                }
+                $this->db->where('id', $iduser);
+                $this->db->update('userpt', $data);
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Simpan");
+                    redirect('user');
+                }
+            }
 
         }elseif($role == 3){
 

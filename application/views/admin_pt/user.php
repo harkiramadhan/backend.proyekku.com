@@ -21,7 +21,8 @@
                     <tr>
                         <th width="5px">No</th>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th width="5px">Email</th>
+                        <th width="5px">Divisi</th>
                         <th width="5px">Role</th>
                         <th width="5px">Status</th>
                         <th width="5px" class="text-center">Action</th>
@@ -35,6 +36,7 @@
                         <th><?= $no++ ?></th>
                         <th><?= $row->name ?></th>
                         <th><?= $row->username ?></th>
+                        <th><?= $row->division ?></th>
                         <th><?= $row->role ?></th>
                         <th>
                             <span class="badge badge-dot mr-4">
@@ -64,7 +66,7 @@
                                         <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-check"></i> Active</button>
                                     <?php endif; ?>
                                 </form>
-                                <button class="btn btn-sm btn-info ml-3 mr-1 rounded"><i class="fas fa-pencil-alt"></i></button>
+                                <button class="btn btn-sm btn-info ml-3 mr-1 rounded" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
                                 <form action="<?= site_url('user/action') ?>" method="post">
                                     <input type="hidden" name="iduser" value="<?= $row->id ?>">
                                     <input type="hidden" name="username" value="<?= $row->username ?>">
@@ -74,6 +76,55 @@
                             </div>
                         </td>
                     </tr>
+                    <div class="modal fade" id="edit_<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="<?= site_url('user/action') ?>" method="post">
+                                <input type="hidden" name="type" value="edit">
+                                <input type="hidden" name="iduser" value="<?= $row->id ?>">
+                                <div class="modal-body bg-secondary">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Name <small class="text-warning"><strong>*</strong></small></label>
+                                                <input type="text" name="name" class="form-control form-control-sm form-control-alternative" placeholder="Name " value="<?= $row->name ?>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Email <small class="text-warning"><strong>*</strong></small></label>
+                                                <input type="email" name="username" class="form-control form-control-sm form-control-alternative" placeholder="Email " value="<?= $row->username ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Password <small class="text-warning"><strong>*</strong></small></label>
+                                                <input type="password" name="password" class="form-control form-control-sm form-control-alternative" placeholder="Password ">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
+                                                <select name="iddiv" class="form-control form-control-sm form-control-alternative" required>
+                                                    <option value="">- Select Division -</option>
+                                                    <?php foreach($division->result() as $dive){ ?>
+                                                        <option value="<?= $dive->id ?>" <?php if($row->iddiv == $dive->id){echo "selected";} ?> ><?= $dive->division ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <?php } ?>
                 </tbody>
                 </table>
@@ -91,6 +142,8 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form action="<?= site_url('user/action') ?>" method="post">
+                <input type="hidden" name="type" value="add">
                 <div class="modal-body bg-secondary">
                     <div class="row">
                         <div class="col-md-6">
@@ -102,21 +155,29 @@
                                 <label for="">Email <small class="text-warning"><strong>*</strong></small></label>
                                 <input type="email" name="username" class="form-control form-control-sm form-control-alternative" placeholder="Email " required>
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Password <small class="text-warning"><strong>*</strong></small></label>
                                 <input type="password" name="password" class="form-control form-control-sm form-control-alternative" placeholder="Password " required>
                             </div>
                             <div class="form-group">
                                 <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
-                                <select name="" id="" class="from-control"></select>
+                                <select name="iddiv" class="form-control form-control-sm form-control-alternative" required>
+                                    <option value="">- Select Division -</option>
+                                    <?php foreach($division->result() as $div){ ?>
+                                        <option value="<?= $div->id ?>"><?= $div->division ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                     </div>                
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
