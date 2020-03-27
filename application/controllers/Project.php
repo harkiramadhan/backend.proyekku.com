@@ -76,6 +76,21 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "editTask"){
+                $iidtask = $this->input->post('idtask', TRUE);
+                $data = [
+                    'task' => $this->input->post('task', TRUE),
+                    'pic' => $this->input->post('pic', TRUE),
+                    'start' => $this->input->post('start', TRUE),
+                    'end' => $this->input->post('end', TRUE)
+                ];
+                $this->db->where('id', $iidtask);
+                $this->db->update('task', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Simpan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
         }
     }
