@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['register'] ='login/register';
 $route['submit'] = 'login/register_submit';
 $route['logout'] = 'login/logout';
+$route['project/(:num)'] = 'project/detail/$1';

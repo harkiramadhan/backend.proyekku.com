@@ -61,7 +61,7 @@
                   <i class="fas fa-calendar text-primary text-center mr-2"></i>
                   <span class="nav-link-text" style="cursor:pointer">Projects</span>
               </a>
-              <div class="collapse " id="navbar-dashboards">
+              <div class="collapse <?php if($this->uri->segment(1) == "project"){echo "show";} ?>" id="navbar-dashboards">
                   <ul class="nav nav-sm flex-column">
                     <?php
                       $idpt = $this->session->userdata('iduser');
@@ -69,7 +69,7 @@
                       foreach($getProject as $p){
                     ?>
                     <li class="nav-item">
-                      <a class="nav-link " href="#!">
+                      <a class="nav-link <?php if($this->uri->segment(1) == "project" && $this->uri->segment(2) == $p->id){echo "active";} ?>" href="<?= site_url('project/'.$p->id) ?>">
                         <i class="ni ni-bold-right text-primary text-capitalize"></i> <?= $p->project_name ?></a>
                     </li>
                     <?php } ?>

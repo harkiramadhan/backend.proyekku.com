@@ -15,7 +15,7 @@ class Project extends CI_Controller{
         return $get;
     }
 
-    function index(){
+    function detail($idproject){
         $role = $this->session->userdata('role');
 
         $var['title'] = "Project";
