@@ -77,7 +77,10 @@
                                     </span>
                                 </td>
                                 <td>
-                                
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-info"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-sm btn-warning ml-1"><i class="fas fa-trash"></i></button>
+                                    </div>
                                 </td>
                             </tr>
                             <?php } ?>
