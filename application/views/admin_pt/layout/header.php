@@ -372,23 +372,31 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <form action="<?= site_url('project/action') ?>" method="post">
           <div class="modal-body bg-secondary">
             <div class="form-group">
               <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
-              <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" required>
+              <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
             </div>
             <div class="form-group">
               <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
               <select name="iddivision" class="form-control form-control-alternative form-control-sm" required>
                 <option value="">- Select Division -</option>
-                <option value=""></option>
+                <?php
+                  $idpt = $this->session->userdata('iduser');
+                  $getdiv = $this->db->get_where('division', ['idpt' => $idpt])->result();
+                  foreach($getdiv as $d){
+                ?>
+                <option value="<?= $d->id ?>"><?= $d->division ?></option>
+                <?php } ?>
               </select>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
           </div>
+          </form>
         </div>
       </div>
     </div>
