@@ -10,11 +10,13 @@ class M_Project extends CI_Model{
         return $this->db->get()->row();
     }
 
-    function get_taskByIdProject($idproject){
-        $this->db->select('task.*');
-        $this->db->form('task');
+    function get_taskByIdProject($idproject, $idpt){
+        $this->db->select('task.*, userpt.name, userpt.username');
+        $this->db->from('task');
+        $this->db->join('userpt', 'task.pic = userpt.id');
         $this->db->where([
-            'task.idproject' => $idproject
+            'task.idproject' => $idproject,
+            'task.idpt' => $idpt
         ]);
         $this->db->order_by('task.start', "ASC");
         return $this->db->get();
