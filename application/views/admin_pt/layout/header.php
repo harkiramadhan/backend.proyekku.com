@@ -373,6 +373,7 @@
             </button>
           </div>
           <form action="<?= site_url('project/action') ?>" method="post">
+          <input type="hidden" name="add">
           <div class="modal-body bg-secondary">
             <div class="form-group">
               <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
@@ -380,7 +381,7 @@
             </div>
             <div class="form-group">
               <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
-              <select name="iddivision" class="form-control form-control-alternative form-control-sm" required>
+              <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
                 <option value="">- Select Division -</option>
                 <?php
                   $idpt = $this->session->userdata('iduser');
