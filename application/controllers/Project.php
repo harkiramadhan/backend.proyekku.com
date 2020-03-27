@@ -23,7 +23,8 @@ class Project extends CI_Controller{
     
         if($role == 2){
             $iduser = $this->session('iduser');
-            $var['project'] = $this->M_Project->get_byPt($iduser);
+            $var['project'] = $this->M_Project->get_byId($idproject);
+            // $var['task'] = $this->M_Project->get_taskByIdProject($idproject);
  
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/project', $var);
