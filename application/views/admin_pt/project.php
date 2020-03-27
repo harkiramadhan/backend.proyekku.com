@@ -13,18 +13,24 @@
         <div class="col">
             <div class="card shadow">
             <div class="card-header bg-transparent border-0">
-                <h3 class="mb-0">Project - <?= $project->project_name ?></h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong></h3>
+                    </div>
+                    <div class="col-md-3">
+                        <h3 class="mb-0">Division: <strong><?= $project->division ?></strong></h3>
+                    </div>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
                         <th width="5px">No</th>
-                        <th>Name</th>
-                        <th width="5px">Email</th>
-                        <th width="5px">Divisi</th>
-                        <th width="5px">Role</th>
-                        <th width="5px">Status</th>
+                        <th width="5px">Task Name</th>
+                        <th>Assignee</th>
+                        <th width="5px">Start</th>
+                        <th width="5px">Due</th>
                         <th width="5px" class="text-center">Action</th>
                     </tr>
                 </thead>

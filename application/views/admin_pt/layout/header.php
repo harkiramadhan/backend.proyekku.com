@@ -56,6 +56,9 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+            <li class="nav-item text-center pr-2 pl-2">
+              <button class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#addProject">&nbsp;&nbsp;+ Add Project&nbsp;&nbsp;</button>
+            </li>
             <li class="nav-item ml--2">
               <a class="nav-link" data-toggle="collapse" data-target="#navbar-dashboards" aria-expanded="false" aria-controls="navbar-dashboards">
                   <i class="fas fa-calendar text-primary text-center mr-2"></i>
@@ -117,12 +120,6 @@
                 <i class="ni ni-single-02 text-blue"></i>
                 <span class="nav-link-text">User</span>
               </a>
-            </li>
-          </ul>
-          <hr>
-          <ul class="navbar-nav text-center">
-            <li class="nav-item">
-              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addProject">&nbsp;&nbsp;+ Add Project&nbsp;&nbsp;</button>
             </li>
           </ul>
         </div>

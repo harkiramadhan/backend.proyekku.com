@@ -1,10 +1,11 @@
 <?php
 class M_Project extends CI_Model{
     function get_byId($idproject){
-        $this->db->select('*');
+        $this->db->select('project.*, division.division');
         $this->db->from('project');
+        $this->db->join('division', 'project.iddiv = division.id');
         $this->db->where([
-            'id' => $idproject
+            'project.id' => $idproject
         ]);
         return $this->db->get()->row();
     }
