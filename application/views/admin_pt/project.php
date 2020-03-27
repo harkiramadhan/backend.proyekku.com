@@ -12,56 +12,78 @@
         </div>
         <div class="col">
             <div class="card shadow">
-            <div class="card-header bg-transparent border-0">
-                <div class="row align-items-center">
-                    <div class="col-md-3">
-                        <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong></h3>
-                    </div>
-                    <div class="col-md-3">
-                        <h3 class="mb-0">Division: <strong><?= $project->division ?></strong></h3>
-                    </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                        <div class="form-group mb-0">
-                            <input type="text" id="myInput" placeholder="Search Task ...." class="mb-0 form-control-sm form-control-alternative form-control">
+                <div class="card-header bg-transparent border-0">
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong></h3>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="mb-0">Division: <strong><?= $project->division ?></strong></h3>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-0">
+                                <input type="text" id="myInput" placeholder="Search Task ...." class="mb-0 form-control-sm form-control-alternative form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="table-responsive" style="max-height: 250px">
-                <table class="table align-items-center table-flush table-sm">
-                    <thead class="thead-light">
-                        <tr>
-                            <th width="5px">No</th>
-                            <th width="5px">Task Name</th>
-                            <th>PIC</th>
-                            <th width="5px">Start</th>
-                            <th width="5px">Due</th>
-                            <th width="5px">Progress</th>
-                            <th width="5px">Status</th>
-                            <th width="5px" class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="myTable">
-                        <?php 
-                        $no = 1;
-                        foreach($task->result() as $row){ ?>
-                        <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $row->task ?></td>
-                            <td><?= $row->name." - ".$row->username ?></td>
-                            <td><?= $row->start ?></td>
-                            <td><?= $row->end ?></td>
-                            <td class="text-center"><strong><?= $row->progress ?></strong>%</td>
-                            <td><?= $row->status ?></td>
-                            <td>
-                            
-                            </td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+                <div class="table-responsive" style="max-height: 240px">
+                    <table class="table align-items-center table-flush table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th width="5px">No</th>
+                                <th width="5px">Task Name</th>
+                                <th>PIC</th>
+                                <th width="5px">Start</th>
+                                <th width="5px">Due</th>
+                                <th width="5px">Progress</th>
+                                <th width="5px">Status</th>
+                                <th width="5px" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <?php 
+                            $no = 1;
+                            foreach($task->result() as $row){ ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= $row->task ?></td>
+                                <td><?= $row->name?></td>
+                                <td><?= $row->start ?></td>
+                                <td><?= $row->end ?></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="completion mr-2"><strong><?= $row->progress ?></strong>%</span>
+                                        <div>
+                                        <div class="progress">
+                                            <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progress ?>%;"></div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                    <?php if($row->status == "pending"): ?>
+                                        <i class="bg-warning"></i>
+                                        <span class="status">pending</span>
+                                    <?php elseif($row->status == "done"): ?>
+                                        <i class="bg-success"></i>
+                                        <span class="status">completed</span>
+                                    <?php else: ?>
+                                        <i class="bg-info"></i>
+                                        <span class="status">on schedule</span>
+                                    <?php endif; ?>
+                                    </span>
+                                </td>
+                                <td>
+                                
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
