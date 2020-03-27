@@ -56,9 +56,9 @@
                                     <div class="d-flex align-items-center">
                                         <span class="completion mr-2"><strong><?= $row->progress ?></strong>%</span>
                                         <div>
-                                        <div class="progress">
-                                            <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progress ?>%;"></div>
-                                        </div>
+                                            <div class="progress">
+                                                <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progress ?>%;"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
