@@ -3,7 +3,7 @@ class Project extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('M_Auth');
-        // $this->load->model('M_Project');
+        $this->load->model('M_Project');
         if($this->session->userdata('masuk') != TRUE){
             $url = base_url();
             redirect($url,'refresh');
@@ -23,7 +23,8 @@ class Project extends CI_Controller{
     
         if($role == 2){
             $iduser = $this->session('iduser');
-
+            $var['project'] = $this->M_Project->get_byPt($iduser);
+ 
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/project', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
