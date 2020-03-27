@@ -40,6 +40,7 @@ class Project extends CI_Controller{
     function action(){
         $type = $this->input->post('type', TRUE);
         $iduser = $this->session('iduser');
+        $role = $this->session('role');
 
         if($role == 2){
             if($type == "add"){

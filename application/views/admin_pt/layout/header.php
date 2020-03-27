@@ -63,10 +63,16 @@
               </a>
               <div class="collapse " id="navbar-dashboards">
                   <ul class="nav nav-sm flex-column">
+                    <?php
+                      $idpt = $this->session->userdata('iduser');
+                      $getProject = $this->db->get_where('project', ['idpt' => $idpt])->result();
+                      foreach($getProject as $p){
+                    ?>
                     <li class="nav-item">
                       <a class="nav-link " href="#!">
-                        <i class="ni ni-bold-right text-primary"></i> Toyota</a>
+                        <i class="ni ni-bold-right text-primary text-capitalize"></i> <?= $p->project_name ?></a>
                     </li>
+                    <?php } ?>
                   </ul>
               </div>
             </li>
@@ -373,7 +379,7 @@
             </button>
           </div>
           <form action="<?= site_url('project/action') ?>" method="post">
-          <input type="hidden" name="add">
+          <input type="hidden" name="type" value="add">
           <div class="modal-body bg-secondary">
             <div class="form-group">
               <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
