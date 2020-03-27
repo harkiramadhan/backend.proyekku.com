@@ -91,6 +91,15 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Simpan");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "delTask"){
+                $iidtask = $this->input->post('idtask', TRUE);
+                $this->db->where('id', $iidtask);
+                $this->db->delete('task');
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Hapus");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
         }
     }
