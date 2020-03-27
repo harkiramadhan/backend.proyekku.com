@@ -78,11 +78,63 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-sm btn-info"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
                                         <button class="btn btn-sm btn-warning ml-1"><i class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="edit_<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="<?= site_url('project/action') ?>" method="post">
+                                        <input type="hidden" name="type" value="editTask">
+                                        <input type="hidden" name="idtask" value="<?= $row->id ?>">
+                                        
+                                        <div class="modal-body bg-secondary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
+                                                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " value="<?= $row->task ?>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
+                                                        <select name="pic" class="form-control form-control-alternative form-control-sm" required>
+                                                            <option value="">- Select PIC -</option>
+                                                            <?php
+                                                                foreach($getUser->result() as $us){
+                                                            ?>
+                                                            <option value="<?= $us->id ?>" <?php if($us->id == $row->pic){echo "selected";} ?>><?= $us->name." - ".$us->username ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                                        <input type="date" name="start" class="form-control form-control-alternative form-control-sm" value="<?= $row->start ?>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                                        <input type="date" name="end" class="form-control form-control-alternative form-control-sm" value="<?= $row->end ?>" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <?php } ?>
                         </tbody>
                     </table>
