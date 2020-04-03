@@ -172,12 +172,12 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow">
+            <div class="card shadow isiDetailTask">
                 <div class="card-header bg-transparent border-0">
-                    <h4 class="mb-0 text-capitalize" id="editTitle">Detail : </h4>
+                    <h4 class="mb-0 text-capitalize" id="editTitle">Detail Task</h4>
                 </div>
-                <div class="isiDetailTask">
-                                                                    
+                <div class="card-body">
+                
                 </div>
             </div>
         </div>

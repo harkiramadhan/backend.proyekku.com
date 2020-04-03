@@ -55,6 +55,9 @@ class Project extends CI_Controller{
                 if($getTask->num_rows() > 0){
                     $task = $getTask->row();
                     ?>
+                        <div class="card-header bg-transparent border-0">
+                            <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong></h4>
+                        </div>
                         <div class="card-body bg-secondary">
                             <div class="form-group">
                                 <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
