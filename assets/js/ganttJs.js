@@ -35,6 +35,7 @@ function initChart(data) {
   var stage = anychart.graphics.create("chartContainer");
   var dataTree = anychart.data.tree(data, 'as-table');
   var chart = anychart.ganttProject();
+  chart.editing(true);
   chart.data(dataTree);
   chart.container(stage).draw();
   chart.zoomTo(951350400000, 954201600000);
