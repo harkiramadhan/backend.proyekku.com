@@ -79,7 +79,7 @@
                                 <td>
                                     <form action="<?= site_url('project/action') ?>" method="post">
                                     <div class="btn-group">
-                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
                                         <input type="hidden" name="type" value="delTask">
                                         <input type="hidden" name="idtask" value="<?= $row->id ?>">
                                         <button type="submit" class="btn btn-sm btn-warning ml-1"><i class="fas fa-trash"></i></button>
