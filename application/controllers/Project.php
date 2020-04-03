@@ -93,9 +93,10 @@ class Project extends CI_Controller{
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                        <div class="card-footer text-right btn-group">
+                            <button type="button" class="btn btn-sm btn-success">Save Selected Task</button>
+                            <button type="button" class="btn btn-sm btn-primary mx-1">Add As Sub Task</button>
+                            <button type="button" class="btn btn-sm btn-danger">Remove Task</button>
                         </div>
                     <?php
                 }else{

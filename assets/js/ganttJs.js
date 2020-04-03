@@ -32,21 +32,12 @@ function initChart(data) {
   //create Gantt Project Chart.
   chart = anychart.ganttProject();
 
-  //Create data tree on incoming raw data.
-  dataTree = anychart.data.tree(data, 'asTable');
-
-  //Set data to chart.
+  var stage = anychart.graphics.create("chartContainer");
+  var dataTree = anychart.data.tree(data, 'as-table');
+  var chart = anychart.ganttProject();
   chart.data(dataTree);
-
-  //enabled live edinting.
-  chart.editing(true);
-	
-  //Set chart container and draw.
-  chart.container('chartContainer');
-  chart.draw();
-
-  //display all data in visible area. Use chart.zoomIn() and chart.zoomOut() to scale visibled area.
-  chart.fitAll();
+  chart.container(stage).draw();
+  chart.zoomTo(951350400000, 954201600000);
 
   //chart row selection listener.
   chart.listen('rowSelect', function(e) {
