@@ -103,4 +103,15 @@ class Project extends CI_Controller{
             }
         }
     }
+
+    function get(){
+        $query = $this->db->query("SELECT * FROM anygantt_db.tasks");
+        // print_r($query->result());
+        // while ($tasks[] = $query->result()) {}
+
+        // // remove last null
+        // array_pop($tasks);
+        echo json_encode($query->result());
+        // mysqli_free_result($result);
+    }
 }

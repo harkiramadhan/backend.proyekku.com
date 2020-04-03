@@ -33,6 +33,10 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= base_url('') ?>/assets/css/argon.css?v=1.2.0" type="text/css">
+
+  <?php if($this->uri->segment(1) == "project"): ?>
+    <link rel="stylesheet" href="<?= base_url('') ?>/assets/css/bootstrap-datetimepicker.min.css">
+  <?php endif; ?>
 </head>
 
 <body>

@@ -151,6 +151,28 @@
         
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="mb-0">Gantt Chart</h5>
+                </div>
+                <div class="card-body mb-2 p-0" style="width: 100%; height: 300px;" id="chartContainer">
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="mb-0">Detail</h5>
+                </div>
+                <div class="card-body bg-secondary">
+                
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
