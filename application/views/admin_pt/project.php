@@ -127,12 +127,23 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                                        <input type="date" name="start" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualStart ?>" required>
+                                                        <div class='input-group date datetimepicker'>
+                                                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualStart ?>" placeholder="Actual Start" required>
+                                                            <span class="input-group-addon input-group-append">
+                                                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                                        <input type="date" name="end" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualEnd ?>" required>
+                                                        <div class='input-group date datetimepicker'>
+                                                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualEnd ?>" placeholder="Actual End" required>
+                                                            <span class="input-group-addon input-group-append">
+                                                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                                            </span>
+                                                        </div>
                                                     </div>
+                    
                                                 </div>
                                             </div>
                                         </div>
