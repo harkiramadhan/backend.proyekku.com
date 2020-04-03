@@ -14,16 +14,12 @@
             <div class="card shadow">
                 <div class="card-header bg-transparent border-0">
                     <div class="row align-items-center">
-                        <div class="col-md-3">
-                            <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong></h3>
+                        <div class="col-md-8">
+                            <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong> &nbsp;&nbsp; - &nbsp;&nbsp;Division: <strong><?= $project->division ?></strong></h3>
                             <input type="hidden" id="idproject" value="<?= $project->id ?>">
-                        </div>
-                        <div class="col-md-3">
-                            <h3 class="mb-0">Division: <strong><?= $project->division ?></strong></h3>
                             <input type="hidden" id="iddiv" value="<?= $project->iddiv ?>">
                             <input type="hidden" id="idpt" value="<?= $project->idpt ?>">
                         </div>
-                        <div class="col-md-2"></div>
                         <div class="col-md-4">
                             <div class="form-group mb-0">
                                 <input type="text" id="myInput" placeholder="Search Task ...." class="mb-0 form-control-sm form-control-alternative form-control">
@@ -168,7 +164,7 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h5 class="mb-0">Gantt Chart</h5>
+                    <h4 class="mb-0">Gantt Chart &nbsp;:&nbsp; <strong><?= $project->project_name ?></strong></h4>
                 </div>
                 <div class="card-body mb-2 p-0" style="width: 100%; height: 300px;" id="chartContainer">
                 
@@ -178,10 +174,46 @@
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h5 class="mb-0">Detail</h5>
+                    <h4 class="mb-0">Detail</h4>
                 </div>
                 <div class="card-body bg-secondary">
-                
+                    <div class="form-group">
+                        <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
+                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
+                        <select name="pic" class="form-control form-control-alternative form-control-sm" required>
+                            <option value="">- Select PIC -</option>
+                            <?php
+                                foreach($getUser->result() as $u){
+                            ?>
+                            <option value="<?= $u->id ?>"><?= $u->name." - ".$u->username ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                        <div class='input-group date datetimepicker'>
+                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
+                            <span class="input-group-addon input-group-append">
+                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                        <div class='input-group date datetimepicker'>
+                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
+                            <span class="input-group-addon input-group-append">
+                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
