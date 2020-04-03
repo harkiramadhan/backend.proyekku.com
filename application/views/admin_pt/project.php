@@ -16,9 +16,12 @@
                     <div class="row align-items-center">
                         <div class="col-md-3">
                             <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong></h3>
+                            <input type="hidden" id="idproject" value="<?= $project->id ?>">
                         </div>
                         <div class="col-md-3">
                             <h3 class="mb-0">Division: <strong><?= $project->division ?></strong></h3>
+                            <input type="hidden" id="iddiv" value="<?= $project->iddiv ?>">
+                            <input type="hidden" id="idpt" value="<?= $project->idpt ?>">
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-4">
@@ -48,16 +51,16 @@
                             foreach($task->result() as $row){ ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $row->task ?></td>
-                                <td><?= $row->name?></td>
-                                <td><?= $row->start ?></td>
-                                <td><?= $row->end ?></td>
+                                <td><?= $row->name ?></td>
+                                <td><?= $row->name_user?></td>
+                                <td><?= $row->actualStart ?></td>
+                                <td><?= $row->actualEnd ?></td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <span class="completion mr-2"><strong><?= $row->progress ?></strong>%</span>
+                                        <span class="completion mr-2"><strong><?= $row->progressValue ?></strong>%</span>
                                         <div>
                                             <div class="progress">
-                                                <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progress ?>%;"></div>
+                                                <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progressValue ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progressValue ?>%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +110,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
-                                                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " value="<?= $row->task ?>" required>
+                                                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " value="<?= $row->name ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
@@ -124,11 +127,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                                        <input type="date" name="start" class="form-control form-control-alternative form-control-sm" value="<?= $row->start ?>" required>
+                                                        <input type="date" name="start" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualStart ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                                        <input type="date" name="end" class="form-control form-control-alternative form-control-sm" value="<?= $row->end ?>" required>
+                                                        <input type="date" name="end" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualEnd ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,11 +215,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <input type="date" name="start" class="form-control form-control-alternative form-control-sm" required>
+                                <div class='input-group date datetimepicker'>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
+                                    <span class="input-group-addon input-group-append">
+                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <input type="date" name="end" class="form-control form-control-alternative form-control-sm" required>
+                                <div class='input-group date datetimepicker'>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
+                                    <span class="input-group-addon input-group-append">
+                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

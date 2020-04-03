@@ -64,10 +64,10 @@ class Project extends CI_Controller{
                     'idpt' => $iduser,
                     'iddiv' => $this->input->post('iddiv', TRUE),
                     'idproject' => $this->input->post('idproject', TRUE),
-                    'task' => $this->input->post('task', TRUE),
+                    'name' => $this->input->post('task', TRUE),
                     'pic' => $this->input->post('pic', TRUE),
-                    'start' => $this->input->post('start', TRUE),
-                    'end' => $this->input->post('end', TRUE)
+                    'actualStart' => $this->input->post('start', TRUE),
+                    'actualEnd' => $this->input->post('end', TRUE)
                 ];
 
                 $this->db->insert('task', $data);
@@ -79,10 +79,10 @@ class Project extends CI_Controller{
             }elseif($type == "editTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $data = [
-                    'task' => $this->input->post('task', TRUE),
+                    'name' => $this->input->post('task', TRUE),
                     'pic' => $this->input->post('pic', TRUE),
-                    'start' => $this->input->post('start', TRUE),
-                    'end' => $this->input->post('end', TRUE)
+                    'actualStart' => $this->input->post('start', TRUE),
+                    'actualEnd' => $this->input->post('end', TRUE)
                 ];
                 $this->db->where('id', $iidtask);
                 $this->db->update('task', $data);
@@ -104,14 +104,20 @@ class Project extends CI_Controller{
         }
     }
 
-    function get(){
-        $query = $this->db->query("SELECT * FROM anygantt_db.tasks");
-        // print_r($query->result());
-        // while ($tasks[] = $query->result()) {}
+    function get($q){
+        $explode = explode("_", $q);
+        $idproject = $explode[0];
+        $iddiv = $explode[1];
+        $idpt = $explode[2];
 
-        // // remove last null
-        // array_pop($tasks);
-        echo json_encode($query->result());
-        // mysqli_free_result($result);
+
+        // $query = $this->db->query("SELECT * FROM anygantt_db.tasks");
+        // // print_r($query->result());
+        // // while ($tasks[] = $query->result()) {}
+
+        // // // remove last null
+        // // array_pop($tasks);
+        // echo json_encode($query->result());
+        // // mysqli_free_result($result);
     }
 }
