@@ -38,7 +38,6 @@
                                 <th width="5px">Due</th>
                                 <th width="5px">Progress</th>
                                 <th width="5px">Status</th>
-                                <th width="5px" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
@@ -75,81 +74,7 @@
                                     <?php endif; ?>
                                     </span>
                                 </td>
-                                <td>
-                                    <form action="<?= site_url('project/action') ?>" method="post">
-                                    <div class="btn-group">
-                                        <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
-                                        <input type="hidden" name="type" value="delTask">
-                                        <input type="hidden" name="idtask" value="<?= $row->id ?>">
-                                        <button type="submit" class="btn btn-sm btn-warning ml-1"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </div>
-                                </td>
                             </tr>
-
-                            <!-- Modal Edit Task -->
-                            <div class="modal fade" id="edit_<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="<?= site_url('project/action') ?>" method="post">
-                                        <input type="hidden" name="type" value="editTask">
-                                        <input type="hidden" name="idtask" value="<?= $row->id ?>">
-                                        
-                                        <div class="modal-body bg-secondary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
-                                                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " value="<?= $row->name ?>" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
-                                                        <select name="pic" class="form-control form-control-alternative form-control-sm" required>
-                                                            <option value="">- Select PIC -</option>
-                                                            <?php
-                                                                foreach($getUser->result() as $us){
-                                                            ?>
-                                                            <option value="<?= $us->id ?>" <?php if($us->id == $row->pic){echo "selected";} ?>><?= $us->name." - ".$us->username ?></option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                                        <div class='input-group date datetimepicker'>
-                                                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualStart ?>" placeholder="Actual Start" required>
-                                                            <span class="input-group-addon input-group-append">
-                                                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                                        <div class='input-group date datetimepicker'>
-                                                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" value="<?= $row->actualEnd ?>" placeholder="Actual End" required>
-                                                            <span class="input-group-addon input-group-append">
-                                                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <?php } ?>
                         </tbody>
                     </table>

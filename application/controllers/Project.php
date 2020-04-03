@@ -131,11 +131,17 @@ class Project extends CI_Controller{
                         <div class="card-footer text-center">
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp;Selected Task</button>
+                                </form>
                                 <button type="button" class="btn btn-sm btn-primary mx-1"><i class="fas fa-plus-circle"></i> &nbsp;Sub Task</button>
-                                <button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Selected Task</button>
+                            </div>
+                            <div class="btn-group">
+                                <form action="<?= site_url('project/action') ?>" method="post">
+                                    <input type="hidden" name="type" value="delTask">
+                                    <input type="hidden" name="idtask" value="<?= $task->id ?>">
+                                    <button type="submit" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i> Selected Task</button>
+                                </form>
                             </div>
                         </div>
-                        </form>
                     <?php
                 }else{
 
