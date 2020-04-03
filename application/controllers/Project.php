@@ -110,17 +110,17 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">Progress <small class="text-warning"><strong>*</strong></small></label>
                                 <select name="progressValue" class="form-control form-control-alternative form-control-sm">
-                                    <option value="0%">0%</option>
-                                    <option value="10%">10%</option>
-                                    <option value="20%">20%</option>
-                                    <option value="30%">30%</option>
-                                    <option value="40%">40%</option>
-                                    <option value="50%">50%</option>
-                                    <option value="60%">60%</option>
-                                    <option value="70%">70%</option>
-                                    <option value="80%">80%</option>
-                                    <option value="90%">90%</option>
-                                    <option value="100%">100%</option>
+                                    <option value="0%" <?php if($task->progressValue == "0%"){echo "selected";} ?>>0%</option>
+                                    <option value="10%" <?php if($task->progressValue == "10%"){echo "selected";} ?>>10%</option>
+                                    <option value="20%" <?php if($task->progressValue == "20%"){echo "selected";} ?>>20%</option>
+                                    <option value="30%" <?php if($task->progressValue == "30%"){echo "selected";} ?>>30%</option>
+                                    <option value="40%" <?php if($task->progressValue == "40%"){echo "selected";} ?>>40%</option>
+                                    <option value="50%" <?php if($task->progressValue == "50%"){echo "selected";} ?>>50%</option>
+                                    <option value="60%" <?php if($task->progressValue == "60%"){echo "selected";} ?>>60%</option>
+                                    <option value="70%" <?php if($task->progressValue == "70%"){echo "selected";} ?>>70%</option>
+                                    <option value="80%" <?php if($task->progressValue == "80%"){echo "selected";} ?>>80%</option>
+                                    <option value="90%" <?php if($task->progressValue == "90%"){echo "selected";} ?>>90%</option>
+                                    <option value="100%" <?php if($task->progressValue == "100%"){echo "selected";} ?>>100%</option>
                                 </select>
                             </div>
                         </div>
