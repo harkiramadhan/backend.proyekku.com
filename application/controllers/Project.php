@@ -59,6 +59,10 @@ class Project extends CI_Controller{
                             <div class="row">
                                 <div class="col-12">
                                     <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong></h4>
+                                    <div class="btn-group">
+                                        <button class="btn mt-1 btn-sm btn-default"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
+                                        <button class="btn mt-1 btn-sm btn-success ml-1"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
+                                    </div>
                                 </div>
                                 <div class="col-2 p-0 text-center mt-2">
                                     <span><strong><?= $task->progressValue ?></strong></span>
