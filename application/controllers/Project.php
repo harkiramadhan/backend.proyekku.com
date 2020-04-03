@@ -124,10 +124,12 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                         </div>
-                        <div class="card-footer text-right btn-group">
-                            <button type="submit" class="btn btn-sm btn-success">Save Selected Task</button>
-                            <button type="button" class="btn btn-sm btn-primary mx-1">Add As Sub Task</button>
-                            <button type="button" class="btn btn-sm btn-danger">Remove Task</button>
+                        <div class="card-footer text-center">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp;Selected Task</button>
+                                <button type="button" class="btn btn-sm btn-primary mx-1"><i class="fas fa-plus-circle"></i> &nbsp;Sub Task</button>
+                                <button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Selected Task</button>
+                            </div>
                         </div>
                         </form>
                     <?php
