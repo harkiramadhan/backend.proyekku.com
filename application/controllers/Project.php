@@ -58,7 +58,7 @@ class Project extends CI_Controller{
                         <div class="card-body bg-secondary">
                             <div class="form-group">
                                 <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
-                                <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
+                                <input type="text" name="task" class="form-control form-control-alternative form-control-sm" value="<?= $task->name ?>" placeholder="Task Name " required>
                             </div>
                             <div class="form-group">
                                 <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
@@ -67,14 +67,14 @@ class Project extends CI_Controller{
                                     <?php
                                         foreach($getUser->result() as $u){
                                     ?>
-                                    <option value="<?= $u->id ?>"><?= $u->name." - ".$u->username ?></option>
+                                    <option value="<?= $u->id ?>" <?php if($u->id == $task->pic){echo "selected";} ?>><?= $u->name." - ".$u->username ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -83,7 +83,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
