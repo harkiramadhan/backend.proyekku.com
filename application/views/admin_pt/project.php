@@ -53,10 +53,10 @@
                                 <td><?= $row->actualEnd ?></td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <span class="completion mr-2"><strong><?= $row->progressValue ?></strong>%</span>
+                                        <span class="completion mr-2"><strong><?= $row->progressValue ?></strong></span>
                                         <div>
                                             <div class="progress">
-                                                <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progressValue ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progressValue ?>%;"></div>
+                                                <div class="progress-bar <?php if($row->status == "pending"){echo "bg-warning";}elseif($row->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $row->progressValue ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $row->progressValue ?>;"></div>
                                             </div>
                                         </div>
                                     </div>

@@ -55,8 +55,20 @@ class Project extends CI_Controller{
                 if($getTask->num_rows() > 0){
                     $task = $getTask->row();
                     ?>
-                        <div class="card-header bg-transparent border-0">
-                            <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong></h4>
+                        <div class="card-header bg-transparent border-0 pb-2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong></h4>
+                                </div>
+                                <div class="col-2 p-0 text-center mt-2">
+                                    <span><strong><?= $task->progressValue ?></strong></span>
+                                </div>
+                                <div class="col-10 mt-3 p-0">
+                                    <div class="progress">
+                                        <div class="progress-bar <?php if($task->status == "pending"){echo "bg-warning";}elseif($task->status == "done"){echo "bg-success";}else{echo "bg-info";} ?>" role="progressbar" aria-valuenow="<?= $task->progressValue ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $task->progressValue ?>;"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body bg-secondary">
                             <div class="form-group">
@@ -91,6 +103,22 @@ class Project extends CI_Controller{
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Progress <small class="text-warning"><strong>*</strong></small></label>
+                                <select name="progressValue" class="form-control form-control-alternative form-control-sm">
+                                    <option value="0%">0%</option>
+                                    <option value="10%">10%</option>
+                                    <option value="20%">20%</option>
+                                    <option value="30%">30%</option>
+                                    <option value="40%">40%</option>
+                                    <option value="50%">50%</option>
+                                    <option value="60%">60%</option>
+                                    <option value="70%">70%</option>
+                                    <option value="80%">80%</option>
+                                    <option value="90%">90%</option>
+                                    <option value="100%">100%</option>
+                                </select>
                             </div>
                         </div>
                         <div class="card-footer text-right btn-group">
