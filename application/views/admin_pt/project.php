@@ -174,46 +174,10 @@
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h4 class="mb-0">Detail</h4>
+                    <h4 class="mb-0 text-capitalize" id="editTitle">Detail : </h4>
                 </div>
-                <div class="card-body bg-secondary">
-                    <div class="form-group">
-                        <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
-                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
-                        <select name="pic" class="form-control form-control-alternative form-control-sm" required>
-                            <option value="">- Select PIC -</option>
-                            <?php
-                                foreach($getUser->result() as $u){
-                            ?>
-                            <option value="<?= $u->id ?>"><?= $u->name." - ".$u->username ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                        <div class='input-group date datetimepicker'>
-                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
-                            <span class="input-group-addon input-group-append">
-                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                        <div class='input-group date datetimepicker'>
-                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
-                            <span class="input-group-addon input-group-append">
-                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                <div class="isiDetailTask">
+                                                                    
                 </div>
             </div>
         </div>

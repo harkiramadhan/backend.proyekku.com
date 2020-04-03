@@ -306,32 +306,31 @@ function initChart(data) {
 //region -- UI.
 function updateEditForm() {
   if (isDef(selectedTaskId)) {
-    var item = dataTree.search('id', selectedTaskId);
-    $('#editTitle').html('Selected item ID: ' + selectedTaskId);
-    $('#removeTask').attr('disabled', false);
-    $('#editButtonAdd').attr('disabled', false);
-    $('#editButtonSave').html('Save selected task');
+    var type = "detailTask";
+    $.ajax({
+        url: base_url + "project/modal",
+        type: 'get',
+        data: {selectedTaskId : selectedTaskId, type : type},
+        beforeSend:function(){
 
-    var asValue = mySqlTimestampToMs(item.get('actualStart'));
-    var aeValue = mySqlTimestampToMs(item.get('actualEnd'));
+        },
+        success: function(data){
+            $('.isiDetailTask').html(data);   
+        }
+    });
+    // var item = dataTree.search('id', selectedTaskId);
+    // $('#editTitle').html('Selected item ID: ' + selectedTaskId);
+    // $('#removeTask').attr('disabled', false);
+    // $('#editButtonAdd').attr('disabled', false);
+    // $('#editButtonSave').html('Save selected task');
 
-    $('#actualStart').data("DateTimePicker").date(new Date(asValue));
-    $('#actualEnd').data("DateTimePicker").date(new Date(aeValue));
-    $('#taskName').val(item.get('name'));
-  } else {
-    $('#editTitle').html('Add new root task:');
-    $('#removeTask').attr('disabled', true);
-    $('#editButtonAdd').attr('disabled', true);
-    $('#editButtonSave').html('Add new task');
+    // var asValue = mySqlTimestampToMs(item.get('actualStart'));
+    // var aeValue = mySqlTimestampToMs(item.get('actualEnd'));
+
+    // $('#actualStart').data("DateTimePicker").date(new Date(asValue));
+    // $('#actualEnd').data("DateTimePicker").date(new Date(aeValue));
+    // $('#taskName').val(item.get('name'));
   }
-}
-
-
-function clearEditForm() {
-  $('#editTitle').html('Add new root task:');
-  $('#actualStart').data("DateTimePicker").clear();
-  $('#actualEnd').data("DateTimePicker").clear();
-  $('#taskName').val('');
 }
 
 

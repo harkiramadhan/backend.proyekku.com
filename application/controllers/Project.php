@@ -41,6 +41,67 @@ class Project extends CI_Controller{
         }
     }
 
+    function modal(){
+        $iduser = $this->session('iduser');
+        $role = $this->session->userdata('role');
+
+        // Data
+        $type = $this->input->get('type', TRUE);
+        $id = $this->input->get('selectedTaskId', TRUE);
+        if($role == 2){
+            $getUser = $this->M_User->get_allUserPT($iduser);
+            if($type == "detailTask"){
+                $getTask = $this->M_Project->get_byIdTask($id);
+                if($getTask->num_rows() > 0){
+                    $task = $getTask->row();
+                    ?>
+                        <div class="card-body bg-secondary">
+                            <div class="form-group">
+                                <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
+                                <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
+                                <select name="pic" class="form-control form-control-alternative form-control-sm" required>
+                                    <option value="">- Select PIC -</option>
+                                    <?php
+                                        foreach($getUser->result() as $u){
+                                    ?>
+                                    <option value="<?= $u->id ?>"><?= $u->name." - ".$u->username ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <div class='input-group date datetimepicker'>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
+                                    <span class="input-group-addon input-group-append">
+                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <div class='input-group date datetimepicker'>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
+                                    <span class="input-group-addon input-group-append">
+                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                        </div>
+                    <?php
+                }else{
+
+                }
+            }
+        }
+    }
+
     function action(){
         $type = $this->input->post('type', TRUE);
         $iduser = $this->session('iduser');

@@ -10,6 +10,15 @@ class M_Project extends CI_Model{
         return $this->db->get()->row();
     }
 
+    function get_byIdTask($idtask){
+        $this->db->select('*');
+        $this->db->from('task');
+        $this->db->where([
+            'id' => $idtask
+        ]);
+        return $this->db->get();
+    }
+
     function get_taskByIdProject($idproject, $idpt){
         $this->db->select('task.*, userpt.name name_user, userpt.username');
         $this->db->from('task');
