@@ -70,6 +70,9 @@ class Project extends CI_Controller{
                                 </div>
                             </div>
                         </div>
+                        <form action="<?= site_url('project/action') ?>" method="post">
+                        <input type="hidden" name="type" value="editTask">
+                        <input type="hidden" name="idtask" value="<?= $task->id ?>">
                         <div class="card-body bg-secondary">
                             <div class="form-group">
                                 <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
@@ -122,10 +125,11 @@ class Project extends CI_Controller{
                             </div>
                         </div>
                         <div class="card-footer text-right btn-group">
-                            <button type="button" class="btn btn-sm btn-success">Save Selected Task</button>
+                            <button type="submit" class="btn btn-sm btn-success">Save Selected Task</button>
                             <button type="button" class="btn btn-sm btn-primary mx-1">Add As Sub Task</button>
                             <button type="button" class="btn btn-sm btn-danger">Remove Task</button>
                         </div>
+                        </form>
                     <?php
                 }else{
 
@@ -175,7 +179,8 @@ class Project extends CI_Controller{
                     'name' => $this->input->post('task', TRUE),
                     'pic' => $this->input->post('pic', TRUE),
                     'actualStart' => $this->input->post('start', TRUE),
-                    'actualEnd' => $this->input->post('end', TRUE)
+                    'actualEnd' => $this->input->post('end', TRUE),
+                    'progressValue' => $this->input->post('progressValue', TRUE)
                 ];
                 $this->db->where('id', $iidtask);
                 $this->db->update('task', $data);
