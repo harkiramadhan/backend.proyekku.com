@@ -105,11 +105,18 @@ class Project extends CI_Controller{
     }
 
     function get($q){
+        $iduser = $this->session('iduser');
+        $role = $this->session('role');
+
+        // Data
         $explode = explode("_", $q);
         $idproject = $explode[0];
         $iddiv = $explode[1];
         $idpt = $explode[2];
 
+        if($role == 2){
+            $getTask = $this->M_Project->get_taskByIdProject($idproject, $idpt);
+        }
 
         // $query = $this->db->query("SELECT * FROM anygantt_db.tasks");
         // // print_r($query->result());
@@ -117,7 +124,7 @@ class Project extends CI_Controller{
 
         // // // remove last null
         // // array_pop($tasks);
-        // echo json_encode($query->result());
+        echo json_encode($getTask->result());
         // // mysqli_free_result($result);
     }
 }
