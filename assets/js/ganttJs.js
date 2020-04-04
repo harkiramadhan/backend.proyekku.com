@@ -74,7 +74,7 @@ function initChart(data) {
     //Send ajax POST request.
     $.ajax({
       type: 'POST',
-      url: 'live_edit.php',
+      url: base_url + "project/action",
       data: data,
       success: function(data) { //success callback.
         if (data.success) { //if success field presents.
@@ -101,7 +101,7 @@ function initChart(data) {
     var parentId = targetItem ? targetItem.get('id') : 'NULL';
 
     //JSON data to be sent.
-    var data = {action: 'update', id: id, field: 'parent', value: parentId};
+    var data = {type: 'updateTask', id: id, field: 'parent', value: parentId};
 
     $.ajax({
       type: 'POST',
@@ -170,11 +170,11 @@ function initChart(data) {
 
     //Data for server request contains modified field name and new value to set.
     var value = (e.field == 'actualStart' || e.field == 'actualEnd') ? msToMySqlTimestamp(e.value) : e.value;
-    var data = {action: 'update', id: id, field: e.field, value: value};
+    var data = {type: 'updateTask', id: id, field: e.field, value: value};
 
     $.ajax({
       type: 'POST',
-      url: 'live_edit.php',
+      url: base_url + "project/action",
       data: data,
       success: function(data) {
         console.log(data);

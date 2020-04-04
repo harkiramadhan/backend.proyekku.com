@@ -142,6 +142,24 @@ class Project extends CI_Controller{
                                 </form>
                             </div>
                         </div>
+                        <script type="text/javascript">
+                        $(function() {
+                        $('.datetimepicker').datetimepicker({
+                            format: 'YYYY-MM-DD HH:mm',
+                            icons: {
+                            time: "fa fa-clock",
+                            date: "fa fa-calendar-day",
+                            up: "fa fa-chevron-up",
+                            down: "fa fa-chevron-down",
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-screenshot',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-remove'
+                            }
+                        });
+                        });
+                    </script>
                     <?php
                 }else{
 
@@ -210,6 +228,35 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Hapus");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "updateTask"){
+                if($this->input->post('field', TRUE) == "progressValue"){
+                    $val = $this->input->post('value', TRUE);
+                    $hasil = str_replace("0.", "",$val);
+                    $data = [
+                        'progressValue' => $hasil."%"
+                    ];
+                }elseif($this->input->post('field', TRUE) == "connector"){
+                    $value = $this->input->post('value[]', TRUE);
+                    $connectTo = $value['connectTo']; 
+                    $connectorType = $value['connectorType'];
+                    $data = [
+                        'connectTo' => $connectTo,
+                        'connectorType' => $connectorType
+                    ];
+                }else{
+                    $data = [
+                        $this->input->post('field', TRUE) => $this->input->post('value', TRUE)
+                    ];
+                }
+                
+                $this->db->where('id', $this->input->post('id', TRUE));
+                $this->db->update('task', $data);
+
+                if($this->db->affected_rows() > 0){
+                    echo "Success";
+                }else{
+                    echo "Error";
+                }
             }
         }
     }
@@ -230,4 +277,5 @@ class Project extends CI_Controller{
 
         echo json_encode($getTask->result());
     }
+
 }
