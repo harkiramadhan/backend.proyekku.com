@@ -58,7 +58,15 @@ class Project extends CI_Controller{
                         <div class="card-header bg-transparent border-0 pb-2">
                             <div class="row">
                                 <div class="col-12">
-                                    <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong></h4>
+                                    <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong> &nbsp;
+                                        <?php if($task->status == ""): ?>
+                                            <span class="badge badge-info">On Schedule</span>
+                                        <?php elseif($task->status == "Done"): ?>
+                                            <span class="badge badge-success"><?= $task->status ?></span>
+                                        <?php elseif($task->status == "Pending"): ?>
+                                            <span class="badge badge-warning"><?= $task->status ?></span>
+                                        <?php endif; ?>
+                                    </h4>
                                     <div class="btn-group">
                                         <button class="btn mt-1 btn-sm btn-default mark" data-type="markPending"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
                                         <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markDone"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
@@ -162,7 +170,7 @@ class Project extends CI_Controller{
                                                 $('.isiDetailTask').html(data);   
                                             }
                                         });
-                                    };
+                                    }
                                 });
                             });
                             $('.addSubTask').click(function(){
