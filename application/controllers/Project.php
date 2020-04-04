@@ -130,9 +130,9 @@ class Project extends CI_Controller{
                         </div>
                         <div class="card-footer text-center">
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp;Selected Task</button>
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp; Selected Task</button>
                                 </form>
-                                <button type="button" class="btn btn-sm btn-primary mx-1"><i class="fas fa-plus-circle"></i> &nbsp;Sub Task</button>
+                                <button type="button" class="btn btn-sm btn-primary mx-1 addSubTask"><i class="fas fa-plus-circle"></i> &nbsp;Sub Task</button>
                             </div>
                             <div class="btn-group">
                                 <form action="<?= site_url('project/action') ?>" method="post">
@@ -143,26 +143,149 @@ class Project extends CI_Controller{
                             </div>
                         </div>
                         <script type="text/javascript">
-                        $(function() {
-                        $('.datetimepicker').datetimepicker({
-                            format: 'YYYY-MM-DD HH:mm',
-                            icons: {
-                            time: "fa fa-clock",
-                            date: "fa fa-calendar-day",
-                            up: "fa fa-chevron-up",
-                            down: "fa fa-chevron-down",
-                            previous: 'fa fa-chevron-left',
-                            next: 'fa fa-chevron-right',
-                            today: 'fa fa-screenshot',
-                            clear: 'fa fa-trash',
-                            close: 'fa fa-remove'
-                            }
-                        });
-                        });
-                    </script>
-                    <?php
-                }else{
+                            $('.addSubTask').click(function(){
+                                var type = "addSubTask";
+                                var selectedTaskId = <?= $task->id ?>;
+                                $.ajax({
+                                    url: '<?= site_url('project/modal') ?>',
+                                    type: 'get',
+                                    data: {type : type, selectedTaskId : selectedTaskId},
+                                    beforeSend: function(){
 
+                                    },
+                                    success: function(data){
+                                        $('.isiDetailTask').html(data);
+                                    }
+                                });
+                            });
+                            $(function() {
+                            $('.datetimepicker').datetimepicker({
+                                format: 'YYYY-MM-DD HH:mm',
+                                icons: {
+                                time: "fa fa-clock",
+                                date: "fa fa-calendar-day",
+                                up: "fa fa-chevron-up",
+                                down: "fa fa-chevron-down",
+                                previous: 'fa fa-chevron-left',
+                                next: 'fa fa-chevron-right',
+                                today: 'fa fa-screenshot',
+                                clear: 'fa fa-trash',
+                                close: 'fa fa-remove'
+                                }
+                            });
+                            });
+                        </script>
+                    <?php
+                }
+            }elseif($type == "addSubTask"){
+                $getTask = $this->M_Project->get_byIdTask($id);
+                if($getTask->num_rows() > 0){
+                    $task = $getTask->row();
+                    ?>
+                        <div class="card-header bg-transparent border-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="mb-0 text-capitalize" id="editTitle">Add Sub Task : <strong><?= $task->name ?></strong></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="<?= site_url('project/action') ?>" method="post">
+                        <input type="hidden" name="type" value="addTask">
+                        <input type="hidden" name="parent" value="<?= $task->id ?>">
+                        <input type="hidden" name="iddiv" value="<?= $task->iddiv ?>">
+                        <input type="hidden" name="idproject" value="<?= $task->idproject ?>">
+
+                        <div class="card-body bg-secondary">
+                            <div class="form-group">
+                                <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
+                                <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">PIC <small class="text-warning"><strong>*</strong></small></label>
+                                <select name="pic" class="form-control form-control-alternative form-control-sm" required>
+                                    <option value="">- Select PIC -</option>
+                                    <?php
+                                        foreach($getUser->result() as $u){
+                                    ?>
+                                    <option value="<?= $u->id ?>"><?= $u->name." - ".$u->username ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <div class='input-group date datetimepicker'>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" required>
+                                    <span class="input-group-addon input-group-append">
+                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <div class='input-group date datetimepicker'>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" required>
+                                    <span class="input-group-addon input-group-append">
+                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Progress <small class="text-warning"><strong>*</strong></small></label>
+                                <select name="progressValue" class="form-control form-control-alternative form-control-sm">
+                                    <option value="0%">0%</option>
+                                    <option value="10%">10%</option>
+                                    <option value="20%">20%</option>
+                                    <option value="30%">30%</option>
+                                    <option value="40%">40%</option>
+                                    <option value="50%">50%</option>
+                                    <option value="60%">60%</option>
+                                    <option value="70%">70%</option>
+                                    <option value="80%">80%</option>
+                                    <option value="90%">90%</option>
+                                    <option value="100%">100%</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-footer text-left">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp; New Sub Task</button>
+                                </form>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $('.addSubTask').click(function(){
+                                var type = "addSubTask";
+                                var selectedTaskId = <?= $task->id ?>;
+                                $.ajax({
+                                    url: '<?= site_url('project/modal') ?>',
+                                    type: 'get',
+                                    data: {type : type, selectedTaskId : selectedTaskId},
+                                    beforeSend: function(){
+
+                                    },
+                                    success: function(data){
+                                        $('.isiDetailTask').html(data);
+                                    }
+                                });
+                            });
+                            $(function() {
+                            $('.datetimepicker').datetimepicker({
+                                format: 'YYYY-MM-DD HH:mm',
+                                icons: {
+                                time: "fa fa-clock",
+                                date: "fa fa-calendar-day",
+                                up: "fa fa-chevron-up",
+                                down: "fa fa-chevron-down",
+                                previous: 'fa fa-chevron-left',
+                                next: 'fa fa-chevron-right',
+                                today: 'fa fa-screenshot',
+                                clear: 'fa fa-trash',
+                                close: 'fa fa-remove'
+                                }
+                            });
+                            });
+                        </script>
+                    <?php
                 }
             }
         }
@@ -194,7 +317,8 @@ class Project extends CI_Controller{
                     'name' => $this->input->post('task', TRUE),
                     'pic' => $this->input->post('pic', TRUE),
                     'actualStart' => $this->input->post('start', TRUE),
-                    'actualEnd' => $this->input->post('end', TRUE)
+                    'actualEnd' => $this->input->post('end', TRUE),
+                    'parent' => $this->input->post('parent', TRUE)
                 ];
 
                 $this->db->insert('task', $data);
@@ -248,7 +372,7 @@ class Project extends CI_Controller{
                         $this->input->post('field', TRUE) => $this->input->post('value', TRUE)
                     ];
                 }
-                
+
                 $this->db->where('id', $this->input->post('id', TRUE));
                 $this->db->update('task', $data);
 
