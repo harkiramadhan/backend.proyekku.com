@@ -60,8 +60,8 @@ class Project extends CI_Controller{
                                 <div class="col-12">
                                     <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong></h4>
                                     <div class="btn-group">
-                                        <button class="btn mt-1 btn-sm btn-default"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
-                                        <button class="btn mt-1 btn-sm btn-success ml-1"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
+                                        <button class="btn mt-1 btn-sm btn-default mark" data-type="markPending"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
+                                        <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markDone"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
                                     </div>
                                 </div>
                                 <div class="col-2 p-0 text-center mt-2">
@@ -143,6 +143,28 @@ class Project extends CI_Controller{
                             </div>
                         </div>
                         <script type="text/javascript">
+                            $('.mark').click(function(){
+                                var type = "mark";
+                                var dataType = $(this).attr('data-type');
+                                var selectedTaskId = <?= $task->id ?>;
+
+                                $.ajax({
+                                    url: '<?= site_url('project/action') ?>',
+                                    type: 'post',
+                                    data: {type : type, selectedTaskId : selectedTaskId, dataType : dataType},
+                                    success: function(){
+                                        var type = "detailTask";
+                                        $.ajax({
+                                            url:  "<?= site_url('project/modal') ?>",
+                                            type: 'get',
+                                            data: {selectedTaskId : selectedTaskId, type : type},
+                                            success: function(data){
+                                                $('.isiDetailTask').html(data);   
+                                            }
+                                        });
+                                    };
+                                });
+                            });
                             $('.addSubTask').click(function(){
                                 var type = "addSubTask";
                                 var selectedTaskId = <?= $task->id ?>;
@@ -381,7 +403,33 @@ class Project extends CI_Controller{
                 }else{
                     echo "Error";
                 }
+            }elseif($type == "mark"){
+                $mark = $this->input->post('dataType', TRUE);
+                if($mark == "markPending"){
+                    $data = [
+                        'status' => "Pending"
+                    ];
+                }elseif($mark == "markDone"){
+                    $data = [
+                        'status' => "Done"
+                    ];
+                }else{
+                    $data = [
+                        'status' => ""
+                    ];
+                }
+
+                $this->db->where('id', $this->input->post('selectedTaskId', TRUE));
+                $this->db->update('task', $data);
+
+                if($this->db->affected_rows() > 0){
+                    echo "Sukses";
+                }else{
+                    echo $this->db->error(); 
+                }
             }
+        }elseif($role == 3){
+
         }
     }
 
