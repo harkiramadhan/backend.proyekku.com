@@ -68,8 +68,16 @@ class Project extends CI_Controller{
                                         <?php endif; ?>
                                     </h4>
                                     <div class="btn-group">
-                                        <button class="btn mt-1 btn-sm btn-default mark" data-type="markPending"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
-                                        <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markDone"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
+                                        <?php if($task->status == "Pending"): ?>
+                                            <button class="btn mt-1 btn-sm btn-default mark" data-type="markUnPending"><i class="fas fa-clock"></i> &nbsp;Remove Mark Pending</button>
+                                            <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markDone"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
+                                        <?php elseif($task->status == "Done"): ?>
+                                            <button class="btn mt-1 btn-sm btn-default mark" data-type="markPending"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
+                                            <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markUnDone"><i class="fas fa-check-circle"></i> &nbsp;Remove Mark Done</button>
+                                        <?php else: ?>
+                                            <button class="btn mt-1 btn-sm btn-default mark" data-type="markPending"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
+                                            <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markDone"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="col-2 p-0 text-center mt-2">
