@@ -697,6 +697,68 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Simpan");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "delTask"){
+                $iidtask = $this->input->post('idtask', TRUE);
+                $this->db->where('id', $iidtask);
+                $this->db->delete('task');
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Hapus");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "updateTask"){
+                if($this->input->post('field', TRUE) == "progressValue"){
+                    $val = $this->input->post('value', TRUE);
+                    $hasil = str_replace("0.", "",$val);
+                    $data = [
+                        'progressValue' => $hasil."%"
+                    ];
+                }elseif($this->input->post('field', TRUE) == "connector"){
+                    $value = $this->input->post('value[]', TRUE);
+                    $connectTo = $value['connectTo']; 
+                    $connectorType = $value['connectorType'];
+                    $data = [
+                        'connectTo' => $connectTo,
+                        'connectorType' => $connectorType
+                    ];
+                }else{
+                    $data = [
+                        $this->input->post('field', TRUE) => $this->input->post('value', TRUE)
+                    ];
+                }
+
+                $this->db->where('id', $this->input->post('id', TRUE));
+                $this->db->update('task', $data);
+
+                if($this->db->affected_rows() > 0){
+                    echo "Success";
+                }else{
+                    echo "Error";
+                }
+            }elseif($type == "mark"){
+                $mark = $this->input->post('dataType', TRUE);
+                if($mark == "markPending"){
+                    $data = [
+                        'status' => "Pending"
+                    ];
+                }elseif($mark == "markDone"){
+                    $data = [
+                        'status' => "Done"
+                    ];
+                }else{
+                    $data = [
+                        'status' => ""
+                    ];
+                }
+
+                $this->db->where('id', $this->input->post('selectedTaskId', TRUE));
+                $this->db->update('task', $data);
+
+                if($this->db->affected_rows() > 0){
+                    echo "Sukses";
+                }else{
+                    echo $this->db->error(); 
+                }
             }
         }
     }
