@@ -38,6 +38,37 @@
   <script src="<?= base_url('') ?>/assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="<?= base_url('') ?>/assets/js/argon.js?v=1.2.0"></script>
+  <script>var base_url = '<?= base_url() ?>';</script>
+  <script src="<?= base_url('') ?>/assets/js/argon.js?v=1.2.0"></script>
+  <?php if($this->uri->segment(1) == "project"): ?>
+    <script>
+      var idproject = $('#idproject').val();
+      var idpt = $('#idpt').val();
+      var iddiv = $('#iddiv').val();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="<?= base_url('') ?>/assets/js/bootstrap-datetimepicker.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-bundle.min.js"></script>
+    <script src="<?= base_url('assets/js/ganttJs.js') ?>"></script>
+    <script type="text/javascript">
+    $(function() {
+      $('.datetimepicker').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
+        icons: {
+          time: "fa fa-clock",
+          date: "fa fa-calendar-day",
+          up: "fa fa-chevron-up",
+          down: "fa fa-chevron-down",
+          previous: 'fa fa-chevron-left',
+          next: 'fa fa-chevron-right',
+          today: 'fa fa-screenshot',
+          clear: 'fa fa-trash',
+          close: 'fa fa-remove'
+        }
+      });
+    });
+  </script>
+  <?php endif; ?>
 </body>
 
 </html>
