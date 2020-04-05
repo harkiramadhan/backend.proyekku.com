@@ -56,6 +56,29 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+            <li class="nav-item text-center pr-2 pl-2">
+              <button class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#addProject">&nbsp;&nbsp;+ Add Project&nbsp;&nbsp;</button>
+            </li>
+            <li class="nav-item ml--2">
+              <a class="nav-link" data-toggle="collapse" data-target="#navbar-dashboards" aria-expanded="false" aria-controls="navbar-dashboards">
+                  <i class="fas fa-calendar text-primary text-center mr-2"></i>
+                  <span class="nav-link-text" style="cursor:pointer">Projects</span>
+              </a>
+              <div class="collapse <?php if($this->uri->segment(1) == "project"){echo "show";} ?>" id="navbar-dashboards">
+                  <ul class="nav nav-sm flex-column">
+                    <?php
+                      $iddiv = $this->session->userdata('iddiv');
+                      $getProject = $this->db->get_where('project', ['iddiv' => $iddiv])->result();
+                      foreach($getProject as $p){
+                    ?>
+                    <li class="nav-item">
+                      <a class="nav-link <?php if($this->uri->segment(1) == "project" && $this->uri->segment(2) == $p->id){echo "active";} ?>" href="<?= site_url('project/'.$p->id) ?>">
+                        <i class="ni ni-bold-right text-primary text-capitalize"></i> <?= $p->project_name ?></a>
+                    </li>
+                    <?php } ?>
+                  </ul>
+              </div>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="pt_progress.html">
                 <i class="ni ni-single-02 text-blue"></i>
@@ -93,17 +116,6 @@
               </a>
             </li>
           </ul>
-          <!-- <ul class="navbar-nav">
-            <select class="form-control">
-              <option>Pilihan proyek</option>
-            </select>
-            <li class="nav-item">
-              <a class="nav-link active" href="pt_dashboard.html">
-                <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
-              </a>
-            </li>
-          </ul> -->
         </div>
       </div>
     </div>
@@ -346,4 +358,32 @@
       </div>
     </nav>
     <!-- Header -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?= site_url('project/action') ?>" method="post">
+          <input type="hidden" name="type" value="add">
+          <div class="modal-body bg-secondary">
+            <div class="form-group">
+              <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
+              <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
+            </div>
+            <input type="hidden" name="iddiv" value="<?= $this->session->userdata('iddiv') ?>">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 

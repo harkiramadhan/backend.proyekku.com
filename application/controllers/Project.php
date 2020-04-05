@@ -32,7 +32,14 @@ class Project extends CI_Controller{
             $this->load->view('admin_pt/project', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
         }elseif($role == 3){
-            
+            $iddiv = $this->session('iddiv');
+            $var['project'] = $this->M_Project->get_byId($idproject);
+            $var['getUser'] = $this->M_User->get_allUserDiv($iddiv);
+            $var['task'] = $this->M_Project->get_taskByIdProject($idproject, $iddiv);
+ 
+            $this->load->view('admin_div/layout/header', $var);
+            $this->load->view('admin_div/project', $var);
+            $this->load->view('admin_div/layout/footer', $var);   
         }elseif($role == 4){
 
         }else{
