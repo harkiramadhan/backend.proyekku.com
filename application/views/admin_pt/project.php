@@ -10,7 +10,8 @@
         <div class="col-12 text-right mb-3">
             <div class="btn-group">
                 <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#addTask"><i class="fas fa-plus-circle"></i> &nbsp;Add Task</button>
-                <button class="btn btn-sm btn-danger ml-1" data-toggle="modal" data-target="#deleteProject"><i class="fas fa-trash"></i> &nbsp;Remove Project</button>
+                <button class="btn btn-sm btn-secondary mx-1" data-toggle="modal" data-target="#detailProject"><i class="fas fa-eye"></i> &nbsp;Detail Project</button>
+                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteProject"><i class="fas fa-trash"></i> &nbsp;Remove Project</button>
             </div>
         </div>
         <div class="col">
@@ -177,6 +178,52 @@
         </div>
     </div>
     
+    <div class="modal fade" id="detailProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detail Project <?= $project->project_name ?></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?= site_url('project/action') ?>" method="post">
+          <input type="hidden" name="type" value="editProject">
+          <input type="hidden" name="idproject" value="<?= $project->id ?>">
+          <div class="modal-body bg-secondary">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
+                        <input type="text" value="<?= $project->project_name ?>" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
+                        <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
+                            <option value="">- Select Division -</option>
+                            <?php
+                            $idpt = $this->session->userdata('iduser');
+                            $getdiv = $this->db->get_where('division', ['idpt' => $idpt])->result();
+                            foreach($getdiv as $dd){
+                            ?>
+                            <option value="<?= $dd->id ?>" <?php if($project->iddiv == $dd->id){echo "selected";} ?>><?= $dd->division ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
             <div class="modal-content bg-gradient-danger">
