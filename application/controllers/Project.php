@@ -787,6 +787,8 @@ class Project extends CI_Controller{
             $getTask = $this->M_Project->get_taskByIdProject($idproject, $idpt);
         }elseif($role == 3){
             $getTask = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
+        }elseif($role == 4){
+            $getTask = $this->M_Project->get_taskByIdProjectUser($idproject, $idpt, $iduser);
         }
 
         echo json_encode($getTask->result());
