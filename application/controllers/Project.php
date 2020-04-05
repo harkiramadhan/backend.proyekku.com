@@ -489,6 +489,24 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Tambahkan");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "addTask"){
+                $data = [
+                    'idpt' => $idpt,
+                    'iddiv' => $iddiv,
+                    'idproject' => $this->input->post('idproject', TRUE),
+                    'name' => $this->input->post('task', TRUE),
+                    'pic' => $this->input->post('pic', TRUE),
+                    'actualStart' => $this->input->post('start', TRUE),
+                    'actualEnd' => $this->input->post('end', TRUE),
+                    'parent' => $this->input->post('parent', TRUE)
+                ];
+
+                $this->db->insert('task', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
         }
     }

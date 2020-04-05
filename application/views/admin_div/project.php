@@ -125,8 +125,6 @@
                 <form action="<?= site_url('project/action') ?>" method="post">
                 <input type="hidden" name="type" value="addTask">
                 <input type="hidden" name="idproject" value="<?= $project->id ?>">
-                <input type="hidden" name="iddiv" value="<?= $project->iddiv ?>">
-                <input type="hidden" name="idpt" value="<?= $project->idpt ?>">
                 
                 <div class="modal-body bg-secondary">
                     <div class="row">
@@ -196,21 +194,6 @@
                     <div class="form-group">
                         <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
                         <input type="text" value="<?= $project->project_name ?>" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
-                        <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
-                            <option value="">- Select Division -</option>
-                            <?php
-                            $idpt = $this->session->userdata('iduser');
-                            $getdiv = $this->db->get_where('division', ['idpt' => $idpt])->result();
-                            foreach($getdiv as $dd){
-                            ?>
-                            <option value="<?= $dd->id ?>" <?php if($project->iddiv == $dd->id){echo "selected";} ?>><?= $dd->division ?></option>
-                            <?php } ?>
-                        </select>
                     </div>
                 </div>
             </div>
