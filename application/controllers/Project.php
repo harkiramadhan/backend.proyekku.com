@@ -347,6 +347,20 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Tambahkan");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "editProject"){
+                $idproject = $this->input->post('idproject', TRUE);
+                $data = [
+                    'project_name' => $this->input->post('project_name', TRUE),
+                    'iddiv' => $this->input->post('iddiv', TRUE)
+                ];
+
+                $this->db->where('id', $idproject);
+                $this->db->update('project', $data);
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Simpan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }elseif($type == "deleteProject"){
                 $idproject = $this->input->post('idproject', TRUE);
                 $this->db->where('id', $idproject);
