@@ -33,6 +33,9 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= base_url('') ?>/assets/css/argon.css?v=1.2.0" type="text/css">
+  <?php if($this->uri->segment(1) == "project"): ?>
+    <link rel="stylesheet" href="<?= base_url('') ?>/assets/css/bootstrap-datetimepicker.min.css">
+  <?php endif; ?>
 </head>
 
 <body>
@@ -55,6 +58,29 @@
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
+            </li>
+            <li class="nav-item text-center pr-2 pl-2">
+              <button class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#addProject">&nbsp;&nbsp;+ Add Project&nbsp;&nbsp;</button>
+            </li>
+            <li class="nav-item ml--2">
+              <a class="nav-link" data-toggle="collapse" data-target="#navbar-dashboards" aria-expanded="false" aria-controls="navbar-dashboards">
+                  <i class="fas fa-calendar text-primary text-center mr-2"></i>
+                  <span class="nav-link-text" style="cursor:pointer">Projects</span>
+              </a>
+              <div class="collapse <?php if($this->uri->segment(1) == "project"){echo "show";} ?>" id="navbar-dashboards">
+                  <ul class="nav nav-sm flex-column">
+                    <?php
+                      $iddiv = $this->session->userdata('iddiv');
+                      $getProject = $this->db->get_where('project', ['iddiv' => $iddiv])->result();
+                      foreach($getProject as $p){
+                    ?>
+                    <li class="nav-item">
+                      <a class="nav-link <?php if($this->uri->segment(1) == "project" && $this->uri->segment(2) == $p->id){echo "active";} ?>" href="<?= site_url('project/'.$p->id) ?>">
+                        <i class="ni ni-bold-right text-primary text-capitalize"></i> <?= $p->project_name ?></a>
+                    </li>
+                    <?php } ?>
+                  </ul>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pt_progress.html">
