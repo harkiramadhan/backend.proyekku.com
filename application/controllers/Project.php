@@ -33,9 +33,11 @@ class Project extends CI_Controller{
             $this->load->view('admin_pt/layout/footer', $var);   
         }elseif($role == 3){
             $iddiv = $this->session('iddiv');
+            $idpt = $this->session('idpt');
+
             $var['project'] = $this->M_Project->get_byId($idproject);
             $var['getUser'] = $this->M_User->get_allUserDiv($iddiv);
-            $var['task'] = $this->M_Project->get_taskByIdProject($idproject, $iddiv);
+            $var['task'] = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
  
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/project', $var);
@@ -523,6 +525,8 @@ class Project extends CI_Controller{
 
         if($role == 2){
             $getTask = $this->M_Project->get_taskByIdProject($idproject, $idpt);
+        }elseif($role == 3){
+            $getTask = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
         }
 
         echo json_encode($getTask->result());
