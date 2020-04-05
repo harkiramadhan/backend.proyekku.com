@@ -123,32 +123,26 @@
                 <input type="hidden" name="idproject" value="<?= $project->id ?>">
                 
                 <div class="modal-body bg-secondary">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
-                                <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
-                            </div>
+                    <div class="form-group">
+                        <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
+                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                        <div class='input-group date datetimepicker'>
+                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
+                            <span class="input-group-addon input-group-append">
+                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                            </span>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
-                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
-                                    <span class="input-group-addon input-group-append">
-                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
-                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
-                                    <span class="input-group-addon input-group-append">
-                                        <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                                    </span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                        <div class='input-group date datetimepicker'>
+                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
+                            <span class="input-group-addon input-group-append">
+                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
+                            </span>
                         </div>
                     </div>
                 </div>
