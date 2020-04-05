@@ -376,7 +376,6 @@
               <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
               <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
             </div>
-            <input type="hidden" name="iddiv" value="<?= $this->session->userdata('iddiv') ?>">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>

@@ -475,7 +475,21 @@ class Project extends CI_Controller{
                 }
             }
         }elseif($role == 3){
-
+            $idpt = $this->session('idpt');
+            $iddiv = $this->session('iddiv');
+            if($type == "add"){
+                $data = [
+                    'idpt' => $idpt,
+                    'iddiv' => $iddiv,
+                    'project_name' => $this->input->post('project_name', TRUE)
+                ];
+                $this->db->insert('project', $data);
+    
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }
         }
     }
 
