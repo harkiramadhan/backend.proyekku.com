@@ -144,17 +144,17 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                         </div>
-                        <div class="card-footer text-center">
+                        <div class="card-footer text-left">
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp; Selected Task</button>
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp; Save</button>
                                 </form>
-                                <button type="button" class="btn btn-sm btn-primary mx-1 addSubTask"><i class="fas fa-plus-circle"></i> &nbsp;Sub Task</button>
+                                <button type="button" class="btn btn-sm btn-primary mx-1 addSubTask"><i class="fas fa-plus-circle"></i> &nbsp; Add Sub Task</button>
                             </div>
                             <div class="btn-group">
                                 <form action="<?= site_url('project/action') ?>" method="post">
                                     <input type="hidden" name="type" value="delTask">
                                     <input type="hidden" name="idtask" value="<?= $task->id ?>">
-                                    <button type="submit" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i> Selected Task</button>
+                                    <button type="submit" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i> Remove</button>
                                 </form>
                             </div>
                         </div>
@@ -346,6 +346,15 @@ class Project extends CI_Controller{
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Tambahkan");
                     redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "deleteProject"){
+                $idproject = $this->input->post('idproject', TRUE);
+                $this->db->where('id', $idproject);
+                $this->db->delete('project');
+
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Hapus");
+                    redirect('dashboard', "refresh");
                 }
             }elseif($type == "addTask"){
                 $data = [
