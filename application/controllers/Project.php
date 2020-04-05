@@ -45,7 +45,13 @@ class Project extends CI_Controller{
             $this->load->view('admin_div/project', $var);
             $this->load->view('admin_div/layout/footer', $var);   
         }elseif($role == 4){
-
+            $iduser = $this->session('iduser');
+            $var['project'] = $this->M_Project->get_byId($idproject);
+            $var['task'] = $this->M_Project->get_taskByIdProjectUser($iduser, $idpt, $iduser);
+        
+            $this->load->view('user/layout/header', $var);
+            $this->load->view('user/project', $var);
+            $this->load->view('user/layout/footer', $var);   
         }else{
             $url = base_url();
             redirect($url, 'refresh');
