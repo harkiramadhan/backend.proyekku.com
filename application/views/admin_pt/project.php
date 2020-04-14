@@ -31,15 +31,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive" style="max-height: 240px">
+                <div class="table-responsive">
                     <table class="table align-items-center table-flush table-sm">
                         <thead class="thead-light">
                             <tr>
                                 <th width="5px">No</th>
                                 <th width="5px">Task Name</th>
                                 <th>PIC</th>
-                                <th width="5px">Start</th>
-                                <th width="5px">Due</th>
+                                <th width="240px">Start</th>
+                                <th width="240px">Due</th>
                                 <th width="5px">Progress</th>
                                 <th width="5px">Status</th>
                             </tr>
@@ -80,6 +80,14 @@
                                 </td>
                             </tr>
                             <?php } ?>
+                        </tbody>
+                    </table>
+                    <table class="table align-items-center table-flush table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="5px"><i class="fas fa-plus-circle"></i></td>
+                                <td><input type="text" id="nameTaskAdd" name="task" class="form-control form-control-sm" placeholder="Create A New Task " required></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

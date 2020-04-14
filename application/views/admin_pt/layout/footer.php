@@ -66,6 +66,17 @@
         }
       });
     });
+
+    $('#nameTaskAdd').keyup(function (e) {
+        var keyCode = e.which;
+        var isi = $(this).val();
+        console.log("keyup ("+keyCode+")")
+        if (keyCode == 13) {
+          alert(isi);
+            // console.log("enter");
+            // return false;
+        }
+    });
   </script>
   <?php endif; ?>
 </body>
