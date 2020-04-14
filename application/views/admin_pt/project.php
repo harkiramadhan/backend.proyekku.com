@@ -1,6 +1,19 @@
 <!-- Header -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
+        <div class="nav-wrapper">
+            <ul class="nav nav-pills flex-row flex-md-row" id="tabs-icons-text" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="false">Tasks</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="false">Progress Detail</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="false">Schedule</a>
+              </li>
+            </ul>
+        </div>
     </div>
 </div>
 <!-- Page content -->
