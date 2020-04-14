@@ -85,12 +85,17 @@
 
     $('#nameTaskAdd').keyup(function (e) {
         var keyCode = e.which;
-        var isi = $(this).val();
-        console.log("keyup ("+keyCode+")")
+        var task = $(this).val();
+        var type = 'addTask';
         if (keyCode == 13) {
-          alert(isi);
-            // console.log("enter");
-            // return false;
+          $.ajax({
+            url: base_url + 'project/action',
+            type: 'post',
+            data: {iddiv : iddiv, idproject : idproject,  task : task, type : type},
+            success: function(){
+              location.reload();
+            },
+          });
         }
     });
     
