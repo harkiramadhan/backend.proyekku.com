@@ -95,7 +95,7 @@
                             <?php } ?>
                         </tbody>
                     </table>
-                    <table class="table align-items-center table-flush table-sm">
+                    <table class="table align-items-center table-flush table-sm bg-secondary">
                         <tbody>
                             <tr>
                                 <td width="5px"><i class="fas fa-plus-circle"></i></td>
