@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush table-sm">
+                    <table class="table align-items-center table-flush table-sm table-hover">
                         <thead class="thead-light">
                             <tr>
                                 <th width="5px">No</th>
@@ -48,7 +48,7 @@
                             <?php 
                             $no = 1;
                             foreach($task->result() as $row){ ?>
-                            <tr>
+                            <tr class="taskList" id="<?= $row->id ?>" style="cursor: pointer">
                                 <td><?= $no++ ?></td>
                                 <td><?= $row->name ?></td>
                                 <td><?= $row->name_user?></td>

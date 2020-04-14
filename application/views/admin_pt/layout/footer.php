@@ -67,6 +67,22 @@
       });
     });
 
+    $('.taskList').click(function(){
+      var selectedTaskId = $(this).attr('id');
+      var type = 'detailTask';
+      $.ajax({
+        url: base_url + "project/modal",
+        type: 'get',
+        data: {selectedTaskId : selectedTaskId, type : type},
+        beforeSend:function(){
+
+        },
+        success: function(data){
+            $('.isiDetailTask').html(data);   
+        }
+    });
+    });
+
     $('#nameTaskAdd').keyup(function (e) {
         var keyCode = e.which;
         var isi = $(this).val();
@@ -77,6 +93,7 @@
             // return false;
         }
     });
+    
   </script>
   <?php endif; ?>
 </body>
