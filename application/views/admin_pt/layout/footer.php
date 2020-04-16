@@ -98,6 +98,10 @@
           });
         }
     });
+
+    $('.nav-link.schedule').on('shown.bs.tab', function(event){
+      
+    });
     
   </script>
   <?php endif; ?>
