@@ -286,7 +286,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card shadow">
-                        <div class="card-body mb-2 p-0" style="width: 100%; height: 300px;" id="chartContainer">
+                        <div class="card-body mb-2 p-0" style="width: 100%; height: 500px;" id="chartContainer">
                         
                         </div>
                     </div>
