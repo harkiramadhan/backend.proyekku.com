@@ -80,7 +80,7 @@
         success: function(data){
             $('.isiDetailTask').html(data);   
         }
-    });
+      });
     });
 
     $('#nameTaskAdd').keyup(function (e) {
@@ -98,11 +98,18 @@
           });
         }
     });
-
-    $('.nav-link.schedule').on('shown.bs.tab', function(event){
-      
-    });
     
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+      });
+      var activeTab = localStorage.getItem('activeTab');
+      if(activeTab){
+        $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
+      }
+    });
   </script>
   <?php endif; ?>
 </body>
