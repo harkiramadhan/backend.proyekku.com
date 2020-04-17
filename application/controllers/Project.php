@@ -1255,4 +1255,5 @@ class Project extends CI_Controller{
 
         echo json_encode($getTask->result());
     }
+
 }

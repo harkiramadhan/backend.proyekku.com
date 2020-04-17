@@ -57,4 +57,3 @@ $route['register'] ='login/register';
 $route['submit'] = 'login/register_submit';
 $route['logout'] = 'login/logout';
 $route['project/(:num)'] = 'project/detail/$1';
-$route['project/(:num)/(:any)'] = 'project/detail/$1/$2';
