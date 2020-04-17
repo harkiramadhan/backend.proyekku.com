@@ -303,4 +303,26 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent border-0">
+                            <h3 class="mb-0">Report</h3>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent border-0">
+                            <h3 class="mb-0">Issues</h3>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
