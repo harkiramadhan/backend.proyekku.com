@@ -79,6 +79,9 @@
         },
         success: function(data){
             $('.isiDetailTask').html(data);   
+            $('html, body').animate({
+                scrollTop: $(".isiDetailTask").offset().top
+            }, 2000);
         }
       });
     });
