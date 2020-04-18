@@ -1,3 +1,4 @@
+<button class="btn btn-lg btn-default" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <!-- Header -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
