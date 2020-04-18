@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive" style="max-height: 240px">
+                        <div class="table-responsive">
                             <table class="table align-items-center table-flush table-sm table-hover">
                                 <thead class="thead-light">
                                     <tr>
@@ -95,6 +95,14 @@
                                         </td>
                                     </tr>
                                     <?php } ?>
+                                </tbody>
+                            </table>
+                            <table class="table align-items-center table-flush table-sm bg-secondary">
+                                <tbody>
+                                    <tr>
+                                        <td width="5px"><i class="fas fa-plus-circle"></i></td>
+                                        <td><input type="text" id="nameTaskAdd" name="task" class="form-control form-control-sm" placeholder="Create A New Task " required></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
