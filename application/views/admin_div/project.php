@@ -35,20 +35,20 @@
                     <div class="card shadow">
                         <div class="card-header bg-transparent border-0">
                             <div class="row align-items-center">
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                 <h3 class="mb-0">Progress Detail</h3>
                                     <input type="hidden" id="idproject" value="<?= $project->id ?>">
                                     <input type="hidden" id="iddiv" value="<?= $project->iddiv ?>">
                                     <input type="hidden" id="idpt" value="<?= $project->idpt ?>">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group mb-0">
                                         <input type="text" id="myInput" placeholder="Search Task ...." class="mb-0 form-control-sm form-control-alternative form-control">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive" style="max-height: 240px">
+                        <div class="table-responsive">
                             <table class="table align-items-center table-flush table-sm table-hover">
                                 <thead class="thead-light">
                                     <tr>
