@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="table-responsive" style="max-height: 240px">
-                            <table class="table align-items-center table-flush table-sm">
+                            <table class="table align-items-center table-flush table-sm table-hover">
                                 <thead class="thead-light">
                                     <tr>
                                         <th width="5px">No</th>
