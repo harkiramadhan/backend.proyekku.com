@@ -99,6 +99,14 @@
                                     <?php } ?>
                                 </tbody>
                             </table>
+                            <table class="table align-items-center table-flush table-sm bg-secondary">
+                                <tbody>
+                                    <tr>
+                                        <td width="5px"><i class="fas fa-plus-circle"></i></td>
+                                        <td><input type="text" id="nameTaskAdd" name="task" class="form-control form-control-sm" placeholder="Create A New Task " required></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
