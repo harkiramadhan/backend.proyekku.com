@@ -1,3 +1,4 @@
+<button class="btn btn-sm btn-default" onclick="topFunction()" id="myBtn"><i class="ni ni-bold-up"></i></button>
 <!-- Header -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
