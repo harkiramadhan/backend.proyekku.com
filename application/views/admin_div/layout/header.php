@@ -83,35 +83,14 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pt_progress.html">
-                <i class="ni ni-single-02 text-blue"></i>
-                <span class="nav-link-text">Progress detail</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pt_schedule.html">
-                <i class="ni ni-map-big text-blue"></i>
-                <span class="nav-link-text">Schedule</span>
-              </a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="pt_diskusi.html">
                 <i class="ni ni-chat-round text-blue"></i>
                 <span class="nav-link-text">Diskusi</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pt_laporan.html">
-                <i class="ni ni-folder-17 text-blue"></i>
-                <span class="nav-link-text">Laporan</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pt_issue.html">
-                <i class="ni ni-sound-wave text-blue"></i>
-                <span class="nav-link-text">Issues</span>
-              </a>
-            </li>
+          </ul>
+          <hr class="p-0 m-2">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link <?php if($this->uri->segment(1) == "user"){echo "active";} ?>" href="<?= site_url('user') ?>">
                 <i class="ni ni-single-02 text-blue"></i>
