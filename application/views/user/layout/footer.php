@@ -67,6 +67,40 @@
         }
       });
     });
+
+    $('.taskList').click(function(){
+      var selectedTaskId = $(this).attr('id');
+      var type = 'detailTask';
+      $.ajax({
+        url: base_url + "project/modal",
+        type: 'get',
+        data: {selectedTaskId : selectedTaskId, type : type},
+        beforeSend:function(){
+
+        },
+        success: function(data){
+            $('.isiDetailTask').html(data);   
+            $('html, body').animate({
+                scrollTop: $(".isiDetailTask").offset().top
+            }, 2000);
+        }
+      });
+    });
+    
+    $('.nav-link').click(function(){
+      $('.isiDetailTask').html("<div class='card-header bg-transparent border-0'><h4 class='mb-0 text-capitalize'id='editTitle'>Detail Task</h4></div><div class='card-body bg-secondary'><button type='button' class='btn btn-block btn-sm btn-default' style='cursor: default'>Click The Task For Detail</button></div>");
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+      });
+      var activeTab = localStorage.getItem('activeTab');
+      if(activeTab){
+        $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
+      }
+    });
   </script>
   <?php endif; ?>
 </body>
