@@ -81,7 +81,7 @@
             $('.isiDetailTask').html(data);   
             $('html, body').animate({
                 scrollTop: $(".isiDetailTask").offset().top
-            }, 2000);
+            }, 1000);
         }
       });
     });
