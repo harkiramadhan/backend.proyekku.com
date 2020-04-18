@@ -102,6 +102,9 @@
         }
     });
     
+    $('.nav-link').click(function(){
+      $('.isiDetailTask').html("<div class='card-header bg-transparent border-0'><h4 class='mb-0 text-capitalize'id='editTitle'>Detail Task</h4></div><div class='card-body bg-secondary'><button type='button' class='btn btn-block btn-sm btn-default' style='cursor: default'>Click The Task For Detail</button></div>");
+    });
   </script>
   <script>
     $(document).ready(function(){
