@@ -66,6 +66,36 @@
           close: 'fa fa-remove'
         }
       });
+      
+      $('.taskList').click(function(){
+        var selectedTaskId = $(this).attr('id');
+        var type = 'detailTask';
+        $.ajax({
+          url: base_url + "project/modal",
+          type: 'get',
+          data: {selectedTaskId : selectedTaskId, type : type},
+          beforeSend:function(){
+
+          },
+          success: function(data){
+              $('.isiDetailTask').html(data);   
+              $('html, body').animate({
+                  scrollTop: $(".isiDetailTask").offset().top
+              }, 2000);
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+      });
+      var activeTab = localStorage.getItem('activeTab');
+      if(activeTab){
+        $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
+      }
     });
   </script>
   <?php endif; ?>
