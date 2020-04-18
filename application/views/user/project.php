@@ -1,6 +1,23 @@
 <!-- Header -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
+        <div class="nav-wrapper">
+            <ul class="nav nav-pills flex-row flex-md-row" id="tabs-icons-text" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="false"><i class="ni ni-bullet-list-67"></i> &nbsp;Progress Detail</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-calendar-grid-58"></i> &nbsp;Schedule</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="ni ni-folder-17"></i> &nbsp;Report</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-2" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="ni ni-sound-wave"></i> &nbsp;Issues</a>
+              </li>
+            </ul>
+        </div>
+        <h2 class="text-white">Project Name : <strong><?= $project->project_name ?></strong> &nbsp;&nbsp; - &nbsp;&nbsp;Division: <strong><?= $project->division ?></strong></h2>
     </div>
 </div>
 <!-- Page content -->
@@ -17,7 +34,7 @@
                 <div class="card-header bg-transparent border-0">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h3 class="mb-0">Project Name : <strong><?= $project->project_name ?></strong> &nbsp;&nbsp; - &nbsp;&nbsp;Division: <strong><?= $project->division ?></strong></h3>
+                        <h3 class="mb-0">Progress Detail</h3>
                             <input type="hidden" id="idproject" value="<?= $project->id ?>">
                             <input type="hidden" id="iddiv" value="<?= $project->iddiv ?>">
                             <input type="hidden" id="idpt" value="<?= $project->idpt ?>">
@@ -30,7 +47,7 @@
                     </div>
                 </div>
                 <div class="table-responsive" style="max-height: 240px">
-                    <table class="table align-items-center table-flush table-sm">
+                    <table class="table align-items-center table-flush table-sm table-hover">
                         <thead class="thead-light">
                             <tr>
                                 <th width="5px">No</th>
@@ -45,7 +62,7 @@
                             <?php 
                             $no = 1;
                             foreach($task->result() as $row){ ?>
-                            <tr>
+                            <tr class="taskList" id="<?= $row->id ?>" style="cursor: pointer">
                                 <td><?= $no++ ?></td>
                                 <td><?= $row->name ?></td>
                                 <td><?= $row->actualStart ?></td>
