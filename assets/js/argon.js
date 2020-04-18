@@ -1104,6 +1104,6 @@ function scrollFunction() {
 
 function topFunction() {
 	$('html, body').animate({
-		scrollTop: $("#tabs-icons-text").offset().top
+		scrollTop: $("body").offset().top
 	}, 1000);
 }
