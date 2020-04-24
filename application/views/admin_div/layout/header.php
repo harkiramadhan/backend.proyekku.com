@@ -358,6 +358,14 @@
               <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
               <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
             </div>
+            <div class="form-group">
+              <label for="">Start Date <small class="text-danger">*</small></label>
+              <input type="date" class="form-control form-control-alternative form-control-sm" name="start" required > 
+            </div>
+            <div class="form-group">
+              <label for="">End Date <small class="text-danger">*</small></label>
+              <input type="date" class="form-control form-control-alternative form-control-sm" name="end" required > 
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
