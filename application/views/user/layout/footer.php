@@ -66,6 +66,13 @@
           close: 'fa fa-remove'
         }
       });
+
+      $("#startDatetimepicker").on("dp.change", function (e) {
+            $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
+        });
+      $("#endDatetimepicker").on("dp.change", function (e) {
+          $('#startDatetimepicker').data("DateTimePicker").maxDate(e.date);
+      });
     });
 
     $('#nameTaskAdd').keyup(function (e) {
