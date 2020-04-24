@@ -221,8 +221,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm',
-                                    // format: 'MM-DD-YYYY',
+                                    format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -344,8 +343,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm',
-                                    // format: 'MM-DD-YYYY',
+                                    format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -517,8 +515,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm',
-                                    // format: 'MM-DD-YYYY',
+                                    format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -630,8 +627,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm',
-                                    // format: 'MM-DD-YYYY',
+                                    format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -789,8 +785,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm',
-                                    // format: 'MM-DD-YYYY',
+                                    format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -891,8 +886,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm',
-                                    // format: 'MM-DD-YYYY',
+                                    format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -1275,28 +1269,6 @@ class Project extends CI_Controller{
         }
     }
 
-    function get2($q){
-        $iduser = $this->session('iduser');
-        $role = $this->session('role');
-
-        // Data
-        $explode = explode("_", $q);
-        $idproject = $explode[0];
-        $iddiv = $explode[1];
-        $idpt = $explode[2];
-
-        if($role == 2){
-            $getTask = $this->M_Project->get_taskByIdProject($idproject, $idpt);
-        }elseif($role == 3){
-            $getTask = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
-        }elseif($role == 4){
-            $getTask = $this->M_Project->get_taskByIdProjectUser($idproject, $idpt, $iduser);
-        }
-
-        header('Content-Type: application/json');
-        echo json_encode($getTask->result());
-    }
-
     function get($q){
         $iduser = $this->session('iduser');
         $role = $this->session('role');
@@ -1344,7 +1316,6 @@ class Project extends CI_Controller{
             }
         }
         echo json_encode($hasil);
-        // echo json_encode($getTask->result());
     }
 
 }

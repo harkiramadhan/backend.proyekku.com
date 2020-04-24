@@ -111,13 +111,16 @@
             });
           }
       });
-      
-      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        $('div').find(".isiDetailTask").addClass("active");
-      });
 
       $('.nav-link').click(function(){
-        $( this ).parent().find( 'card' ).removeClass( 'active' );
+        var id = $(this).attr('id');
+        if(id === "tabs-icons-text-1-tab"){
+          $('.dt-1').addClass('isiDetailTask');
+          $('.dt-2').removeClass('isiDetailTask');
+        }else{
+          $('.dt-2').addClass('isiDetailTask');
+          $('.dt-1').removeClass('isiDetailTask');
+        }
         $('.isiDetailTask').html("<div class='card-header bg-transparent border-0'><h4 class='mb-0 text-capitalize'id='editTitle'>Detail Task</h4></div><div class='card-body bg-secondary'><button type='button' class='btn btn-block btn-sm btn-default' style='cursor: default'>Click The Task For Detail</button></div>");
       });
     </script>
