@@ -147,6 +147,10 @@ class Project extends CI_Controller{
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="">Description </label>
+                                <textarea class="form-control form-control-alternative form-control-sm" name="desc" cols="30" rows="10" placeholder="Type Description Here ..."><?= $task->desc ?></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Progress <small class="text-warning"><strong>*</strong></small></label>
                                 <select name="progressValue" class="form-control form-control-alternative form-control-sm">
                                     <option value="0%" <?php if($task->progressValue == "0%"){echo "selected";} ?>>0%</option>
@@ -974,7 +978,8 @@ class Project extends CI_Controller{
                     'pic' => $this->input->post('pic', TRUE),
                     'actualStart' => $this->input->post('start', TRUE),
                     'actualEnd' => $this->input->post('end', TRUE),
-                    'progressValue' => $this->input->post('progressValue', TRUE)
+                    'progressValue' => $this->input->post('progressValue', TRUE),
+                    'desc' => $this->input->post('desc', TRUE)
                 ];
                 $this->db->where('id', $iidtask);
                 $this->db->update('task', $data);
