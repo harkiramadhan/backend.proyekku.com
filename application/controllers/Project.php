@@ -893,7 +893,9 @@ class Project extends CI_Controller{
                 $data = [
                     'idpt' => $iduser,
                     'iddiv' => $this->input->post('iddiv', TRUE),
-                    'project_name' => $this->input->post('project_name', TRUE)
+                    'project_name' => $this->input->post('project_name', TRUE),
+                    'start' => $this->input->post('start', TRUE),
+                    'end' => $this->input->post('end', TRUE)
                 ];
                 $this->db->insert('project', $data);
     
@@ -904,8 +906,10 @@ class Project extends CI_Controller{
             }elseif($type == "editProject"){
                 $idproject = $this->input->post('idproject', TRUE);
                 $data = [
+                    'iddiv' => $this->input->post('iddiv', TRUE), 
                     'project_name' => $this->input->post('project_name', TRUE),
-                    'iddiv' => $this->input->post('iddiv', TRUE)
+                    'start' => $this->input->post('start', TRUE),
+                    'end' => $this->input->post('end', TRUE)
                 ];
 
                 $this->db->where('id', $idproject);
