@@ -54,6 +54,7 @@
     $(function() {
       $('.datetimepicker').datetimepicker({
         format: 'YYYY-MM-DD HH:mm',
+        // format: 'MM-DD-YYYY',
         icons: {
           time: "fa fa-clock",
           date: "fa fa-calendar-day",
@@ -64,7 +65,9 @@
           today: 'fa fa-screenshot',
           clear: 'fa fa-trash',
           close: 'fa fa-remove'
-        }
+        },
+        minDate: '<?= date('m-d-Y', strtotime($project->start)) ?>',
+        maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($project->end)) ) ?>'
       });
     });
 
