@@ -778,6 +778,7 @@ class Project extends CI_Controller{
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
                                     format: 'YYYY-MM-DD HH:mm',
+                                    // format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -788,7 +789,9 @@ class Project extends CI_Controller{
                                     today: 'fa fa-screenshot',
                                     clear: 'fa fa-trash',
                                     close: 'fa fa-remove'
-                                    }
+                                    },
+                                    minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
+                                    maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
                                 });
                             });
                         </script>
@@ -877,6 +880,7 @@ class Project extends CI_Controller{
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
                                     format: 'YYYY-MM-DD HH:mm',
+                                    // format: 'MM-DD-YYYY',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -887,7 +891,9 @@ class Project extends CI_Controller{
                                     today: 'fa fa-screenshot',
                                     clear: 'fa fa-trash',
                                     close: 'fa fa-remove'
-                                    }
+                                    },
+                                    minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
+                                    maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
                                 });
                             });
                         </script>
