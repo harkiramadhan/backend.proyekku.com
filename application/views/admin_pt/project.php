@@ -186,6 +186,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <label for="">Description</label>
+                                    <textarea class="form-control form-control-alternative form-control-sm" name="desc" cols="30" rows="10" placeholder="Type Description Here ..."></textarea>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" name="parent" value="0">
