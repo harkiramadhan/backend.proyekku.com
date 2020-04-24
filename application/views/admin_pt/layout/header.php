@@ -350,7 +350,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
@@ -361,22 +361,36 @@
           <form action="<?= site_url('project/action') ?>" method="post">
           <input type="hidden" name="type" value="add">
           <div class="modal-body bg-secondary">
-            <div class="form-group">
-              <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
-              <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
-            </div>
-            <div class="form-group">
-              <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
-              <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
-                <option value="">- Select Division -</option>
-                <?php
-                  $idpt = $this->session->userdata('iduser');
-                  $getdiv = $this->db->get_where('division', ['idpt' => $idpt])->result();
-                  foreach($getdiv as $d){
-                ?>
-                <option value="<?= $d->id ?>"><?= $d->division ?></option>
-                <?php } ?>
-              </select>
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
+                    <input type="text" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
+                    <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
+                      <option value="">- Select Division -</option>
+                      <?php
+                        $idpt = $this->session->userdata('iduser');
+                        $getdiv = $this->db->get_where('division', ['idpt' => $idpt])->result();
+                        foreach($getdiv as $d){
+                      ?>
+                      <option value="<?= $d->id ?>"><?= $d->division ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Start Date <small class="text-danger">*</small></label>
+                  <input type="date" class="form-control form-control-alternative form-control-sm" name="start" required > 
+                </div>
+                <div class="form-group">
+                  <label for="">End Date <small class="text-danger">*</small></label>
+                  <input type="date" class="form-control form-control-alternative form-control-sm" name="start" required > 
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
