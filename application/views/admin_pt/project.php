@@ -170,7 +170,7 @@
                                     <div class="form-group">
                                         <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
                                         <div class='input-group date datetimepicker'>
-                                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" required>
+                                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" onkeydown="return false" required>
                                             <span class="input-group-addon input-group-append">
                                                 <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                             </span>
@@ -179,7 +179,7 @@
                                     <div class="form-group">
                                         <label for="">End <small class="text-warning"><strong>*</strong></small></label>
                                         <div class='input-group date datetimepicker'>
-                                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" required>
+                                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" onkeydown="return false" required>
                                             <span class="input-group-addon input-group-append">
                                                 <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                             </span>
