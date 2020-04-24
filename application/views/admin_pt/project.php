@@ -19,6 +19,7 @@
             </ul>
         </div>
         <h2 class="text-white">Project Name : <strong><?= $project->project_name ?></strong> &nbsp;&nbsp; - &nbsp;&nbsp;Division: <strong><?= $project->division ?></strong></h2>
+        <h2 class="text-white">Project Date&nbsp;&nbsp;&nbsp;: <strong><?= date('d F Y', strtotime($project->start))." - ".$project->end ?></strong></h2>
     </div>
 </div>
 <!-- Page content -->
