@@ -50,83 +50,88 @@
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-bundle.min.js"></script>
     <script src="<?= base_url('assets/js/ganttJs.js') ?>"></script>
     <script type="text/javascript">
-    $(function() {
-      $('.datetimepicker').datetimepicker({
-        format: 'YYYY-MM-DD HH:mm',
-        // format: 'MM-DD-YYYY',
-        icons: {
-          time: "fa fa-clock",
-          date: "fa fa-calendar-day",
-          up: "fa fa-chevron-up",
-          down: "fa fa-chevron-down",
-          previous: 'fa fa-chevron-left',
-          next: 'fa fa-chevron-right',
-          today: 'fa fa-screenshot',
-          clear: 'fa fa-trash',
-          close: 'fa fa-remove'
-        },
-        minDate: '<?= date('m-d-Y', strtotime($project->start)) ?>',
-        maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($project->end)) ) ?>'
-      });
-
-      $("#startDatetimepicker").on("dp.change", function (e) {
-            $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
+      $(function() {
+        $('.datetimepicker').datetimepicker({
+          format: 'YYYY-MM-DD HH:mm',
+          // format: 'MM-DD-YYYY',
+          icons: {
+            time: "fa fa-clock",
+            date: "fa fa-calendar-day",
+            up: "fa fa-chevron-up",
+            down: "fa fa-chevron-down",
+            previous: 'fa fa-chevron-left',
+            next: 'fa fa-chevron-right',
+            today: 'fa fa-screenshot',
+            clear: 'fa fa-trash',
+            close: 'fa fa-remove'
+          },
+          minDate: '<?= date('m-d-Y', strtotime($project->start)) ?>',
+          maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($project->end)) ) ?>'
         });
-      $("#endDatetimepicker").on("dp.change", function (e) {
-          $('#startDatetimepicker').data("DateTimePicker").maxDate(e.date);
-      });
-    });
 
-    $('.taskList').click(function(){
-      var selectedTaskId = $(this).attr('id');
-      var type = 'detailTask';
-      $.ajax({
-        url: base_url + "project/modal",
-        type: 'get',
-        data: {selectedTaskId : selectedTaskId, type : type},
-        beforeSend:function(){
-
-        },
-        success: function(data){
-            $('.isiDetailTask').html(data);   
-            $('html, body').animate({
-                scrollTop: $(".isiDetailTask").offset().top
-            }, 1000);
-        }
-      });
-    });
-
-    $('#nameTaskAdd').keyup(function (e) {
-        var keyCode = e.which;
-        var task = $(this).val();
-        var type = 'addTask';
-        if (keyCode == 13) {
-          $.ajax({
-            url: base_url + 'project/action',
-            type: 'post',
-            data: {iddiv : iddiv, idproject : idproject,  task : task, type : type},
-            success: function(){
-              location.reload();
-            },
+        $("#startDatetimepicker").on("dp.change", function (e) {
+              $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
           });
-        }
-    });
-    
-    $('.nav-link').click(function(){
-      $('.isiDetailTask').html("<div class='card-header bg-transparent border-0'><h4 class='mb-0 text-capitalize'id='editTitle'>Detail Task</h4></div><div class='card-body bg-secondary'><button type='button' class='btn btn-block btn-sm btn-default' style='cursor: default'>Click The Task For Detail</button></div>");
-    });
-  </script>
-  <script>
-    $(document).ready(function(){
-      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-        localStorage.setItem('activeTab', $(e.target).attr('href'));
+        $("#endDatetimepicker").on("dp.change", function (e) {
+            $('#startDatetimepicker').data("DateTimePicker").maxDate(e.date);
+        });
       });
-      var activeTab = localStorage.getItem('activeTab');
-      if(activeTab){
-        $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
-      }
-    });
-  </script>
+
+      $('.taskList').click(function(){
+        var selectedTaskId = $(this).attr('id');
+        var type = 'detailTask';
+        $.ajax({
+          url: base_url + "project/modal",
+          type: 'get',
+          data: {selectedTaskId : selectedTaskId, type : type},
+          beforeSend:function(){
+
+          },
+          success: function(data){
+              $('.isiDetailTask').html(data);   
+              $('html, body').animate({
+                  scrollTop: $(".isiDetailTask").offset().top
+              }, 1000);
+          }
+        });
+      });
+
+      $('#nameTaskAdd').keyup(function (e) {
+          var keyCode = e.which;
+          var task = $(this).val();
+          var type = 'addTask';
+          if (keyCode == 13) {
+            $.ajax({
+              url: base_url + 'project/action',
+              type: 'post',
+              data: {iddiv : iddiv, idproject : idproject,  task : task, type : type},
+              success: function(){
+                location.reload();
+              },
+            });
+          }
+      });
+      
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('div').find(".isiDetailTask").addClass("active");
+      });
+
+      $('.nav-link').click(function(){
+        $( this ).parent().find( 'card' ).removeClass( 'active' );
+        $('.isiDetailTask').html("<div class='card-header bg-transparent border-0'><h4 class='mb-0 text-capitalize'id='editTitle'>Detail Task</h4></div><div class='card-body bg-secondary'><button type='button' class='btn btn-block btn-sm btn-default' style='cursor: default'>Click The Task For Detail</button></div>");
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+          localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+          $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
+        }
+      });
+    </script>
   <?php endif; ?>
 </body>
 

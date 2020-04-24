@@ -33,7 +33,7 @@ function initChart(data) {
   chart = anychart.ganttProject();
 
   var stage = anychart.graphics.create("chartContainer");
-  var dataTree = anychart.data.tree(data, 'as-table');
+  var dataTree = anychart.data.tree(data, 'as-tree');
   var chart = anychart.ganttProject();
   chart.editing(true);
   chart.data(dataTree);

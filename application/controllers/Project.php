@@ -1275,6 +1275,28 @@ class Project extends CI_Controller{
         }
     }
 
+    function get2($q){
+        $iduser = $this->session('iduser');
+        $role = $this->session('role');
+
+        // Data
+        $explode = explode("_", $q);
+        $idproject = $explode[0];
+        $iddiv = $explode[1];
+        $idpt = $explode[2];
+
+        if($role == 2){
+            $getTask = $this->M_Project->get_taskByIdProject($idproject, $idpt);
+        }elseif($role == 3){
+            $getTask = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
+        }elseif($role == 4){
+            $getTask = $this->M_Project->get_taskByIdProjectUser($idproject, $idpt, $iduser);
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($getTask->result());
+    }
+
     function get($q){
         $iduser = $this->session('iduser');
         $role = $this->session('role');
@@ -1293,7 +1315,36 @@ class Project extends CI_Controller{
             $getTask = $this->M_Project->get_taskByIdProjectUser($idproject, $idpt, $iduser);
         }
 
-        echo json_encode($getTask->result());
+        header('Content-Type: application/json');
+        $data = [];
+        foreach($getTask->result() as $row){
+            if($row->parent == 0){
+                $get_children = $this->db->get_where('task', ['parent' => $row->id]);
+                if($get_children->num_rows() > 0){
+                    foreach($get_children->result() as $ch){
+                        $children[] = [
+                            'id' => $ch->id,
+                            'name' => $ch->name,
+                            'actualStart' => $ch->actualStart,
+                            'actualEnd' => $ch->actualEnd,
+                            'progressValue' => $ch->progressValue
+                        ];
+                    }
+                }else{
+                    $children = NULL;
+                }
+                $data = [
+                    'id' => $row->id,
+                    'name' => $row->name,
+                    'actualStart' => $row->actualStart,
+                    'actualEnd' => $row->actualEnd,
+                    'children' => $children
+                ];
+                $hasil[] = $data; 
+            }
+        }
+        echo json_encode($hasil);
+        // echo json_encode($getTask->result());
     }
 
 }
