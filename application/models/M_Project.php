@@ -11,10 +11,11 @@ class M_Project extends CI_Model{
     }
 
     function get_byIdTask($idtask){
-        $this->db->select('*');
+        $this->db->select('task.*, project.start project_start, project.end project_end');
         $this->db->from('task');
+        $this->db->join('project', "task.idproject = project.id");
         $this->db->where([
-            'id' => $idtask
+            'task.id' => $idtask
         ]);
         return $this->db->get();
     }
