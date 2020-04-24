@@ -419,7 +419,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" required>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -428,7 +428,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" required>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -504,20 +504,20 @@ class Project extends CI_Controller{
                                 });
                             });
                             $(function() {
-                            $('.datetimepicker').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm',
-                                icons: {
-                                time: "fa fa-clock",
-                                date: "fa fa-calendar-day",
-                                up: "fa fa-chevron-up",
-                                down: "fa fa-chevron-down",
-                                previous: 'fa fa-chevron-left',
-                                next: 'fa fa-chevron-right',
-                                today: 'fa fa-screenshot',
-                                clear: 'fa fa-trash',
-                                close: 'fa fa-remove'
-                                }
-                            });
+                                $('.datetimepicker').datetimepicker({
+                                    format: 'YYYY-MM-DD HH:mm',
+                                    icons: {
+                                    time: "fa fa-clock",
+                                    date: "fa fa-calendar-day",
+                                    up: "fa fa-chevron-up",
+                                    down: "fa fa-chevron-down",
+                                    previous: 'fa fa-chevron-left',
+                                    next: 'fa fa-chevron-right',
+                                    today: 'fa fa-screenshot',
+                                    clear: 'fa fa-trash',
+                                    close: 'fa fa-remove'
+                                    }
+                                });
                             });
                         </script>
                     <?php
@@ -559,7 +559,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" required>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -568,7 +568,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" required>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -614,20 +614,20 @@ class Project extends CI_Controller{
                                 });
                             });
                             $(function() {
-                            $('.datetimepicker').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm',
-                                icons: {
-                                time: "fa fa-clock",
-                                date: "fa fa-calendar-day",
-                                up: "fa fa-chevron-up",
-                                down: "fa fa-chevron-down",
-                                previous: 'fa fa-chevron-left',
-                                next: 'fa fa-chevron-right',
-                                today: 'fa fa-screenshot',
-                                clear: 'fa fa-trash',
-                                close: 'fa fa-remove'
-                                }
-                            });
+                                $('.datetimepicker').datetimepicker({
+                                    format: 'YYYY-MM-DD HH:mm',
+                                    icons: {
+                                    time: "fa fa-clock",
+                                    date: "fa fa-calendar-day",
+                                    up: "fa fa-chevron-up",
+                                    down: "fa fa-chevron-down",
+                                    previous: 'fa fa-chevron-left',
+                                    next: 'fa fa-chevron-right',
+                                    today: 'fa fa-screenshot',
+                                    clear: 'fa fa-trash',
+                                    close: 'fa fa-remove'
+                                    }
+                                });
                             });
                         </script>
                     <?php
@@ -685,7 +685,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" required>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -694,7 +694,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" required>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -770,20 +770,20 @@ class Project extends CI_Controller{
                                 });
                             });
                             $(function() {
-                            $('.datetimepicker').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm',
-                                icons: {
-                                time: "fa fa-clock",
-                                date: "fa fa-calendar-day",
-                                up: "fa fa-chevron-up",
-                                down: "fa fa-chevron-down",
-                                previous: 'fa fa-chevron-left',
-                                next: 'fa fa-chevron-right',
-                                today: 'fa fa-screenshot',
-                                clear: 'fa fa-trash',
-                                close: 'fa fa-remove'
-                                }
-                            });
+                                $('.datetimepicker').datetimepicker({
+                                    format: 'YYYY-MM-DD HH:mm',
+                                    icons: {
+                                    time: "fa fa-clock",
+                                    date: "fa fa-calendar-day",
+                                    up: "fa fa-chevron-up",
+                                    down: "fa fa-chevron-down",
+                                    previous: 'fa fa-chevron-left',
+                                    next: 'fa fa-chevron-right',
+                                    today: 'fa fa-screenshot',
+                                    clear: 'fa fa-trash',
+                                    close: 'fa fa-remove'
+                                    }
+                                });
                             });
                         </script>
                     <?php
@@ -814,7 +814,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" required>
+                                    <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -823,7 +823,7 @@ class Project extends CI_Controller{
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
                                 <div class='input-group date datetimepicker'>
-                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" required>
+                                    <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
                                     </span>
@@ -869,20 +869,20 @@ class Project extends CI_Controller{
                                 });
                             });
                             $(function() {
-                            $('.datetimepicker').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm',
-                                icons: {
-                                time: "fa fa-clock",
-                                date: "fa fa-calendar-day",
-                                up: "fa fa-chevron-up",
-                                down: "fa fa-chevron-down",
-                                previous: 'fa fa-chevron-left',
-                                next: 'fa fa-chevron-right',
-                                today: 'fa fa-screenshot',
-                                clear: 'fa fa-trash',
-                                close: 'fa fa-remove'
-                                }
-                            });
+                                $('.datetimepicker').datetimepicker({
+                                    format: 'YYYY-MM-DD HH:mm',
+                                    icons: {
+                                    time: "fa fa-clock",
+                                    date: "fa fa-calendar-day",
+                                    up: "fa fa-chevron-up",
+                                    down: "fa fa-chevron-down",
+                                    previous: 'fa fa-chevron-left',
+                                    next: 'fa fa-chevron-right',
+                                    today: 'fa fa-screenshot',
+                                    clear: 'fa fa-trash',
+                                    close: 'fa fa-remove'
+                                    }
+                                });
                             });
                         </script>
                     <?php
