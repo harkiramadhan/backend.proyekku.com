@@ -216,8 +216,6 @@
                                     <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
                                     <input type="text" value="<?= $project->project_name ?>" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
                                     <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
@@ -230,6 +228,16 @@
                                         <option value="<?= $dd->id ?>" <?php if($project->iddiv == $dd->id){echo "selected";} ?>><?= $dd->division ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Start Date <small class="text-danger">*</small></label>
+                                    <input type="date" class="form-control form-control-alternative form-control-sm" name="start" value="<?= $project->start ?>" required > 
+                                </div>
+                                <div class="form-group">
+                                    <label for="">End Date <small class="text-danger">*</small></label>
+                                    <input type="date" class="form-control form-control-alternative form-control-sm" name="end" value="<?= $project->end ?>" required > 
                                 </div>
                             </div>
                         </div>

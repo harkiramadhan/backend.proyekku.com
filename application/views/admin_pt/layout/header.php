@@ -388,7 +388,7 @@
                 </div>
                 <div class="form-group">
                   <label for="">End Date <small class="text-danger">*</small></label>
-                  <input type="date" class="form-control form-control-alternative form-control-sm" name="start" required > 
+                  <input type="date" class="form-control form-control-alternative form-control-sm" name="end" required > 
                 </div>
               </div>
             </div>
