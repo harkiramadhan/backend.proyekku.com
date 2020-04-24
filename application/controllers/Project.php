@@ -929,37 +929,23 @@ class Project extends CI_Controller{
                     redirect('dashboard', "refresh");
                 }
             }elseif($type == "addTask"){
-                $project = $this->db->get_where('project', ['id' => $this->input->post('idproject', TRUE)])->row();
+                $data = [
+                    'idpt' => $iduser,
+                    'iddiv' => $this->input->post('iddiv', TRUE),
+                    'idproject' => $this->input->post('idproject', TRUE),
+                    'name' => $this->input->post('task', TRUE),
+                    'pic' => $this->input->post('pic', TRUE),
+                    'actualStart' => $this->input->post('start', TRUE),
+                    'actualEnd' => $this->input->post('end', TRUE),
+                    'parent' => $this->input->post('parent', TRUE)
+                ];
 
-                $actualStart = $this->input->post('start', TRUE);
-                $actualEnd = $this->input->post('end', TRUE);
-                $start = date('Y-m-d', strtotime($actualStart));
-                $end = date('Y-m-d', strtotime($actualEnd));
+                $this->db->insert('task', $data);
 
-                if($start < $project->start || $start > $project->end){
-
-                }elseif($end < $project->start || $end > $project->end){
-
-                }else{
-                    $data = [
-                        'idpt' => $iduser,
-                        'iddiv' => $this->input->post('iddiv', TRUE),
-                        'idproject' => $this->input->post('idproject', TRUE),
-                        'name' => $this->input->post('task', TRUE),
-                        'pic' => $this->input->post('pic', TRUE),
-                        'actualStart' => $this->input->post('start', TRUE),
-                        'actualEnd' => $this->input->post('end', TRUE),
-                        'parent' => $this->input->post('parent', TRUE)
-                    ];
-    
-                    $this->db->insert('task', $data);
-    
-                    if($this->db->affected_rows() > 0){
-                        $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
-                        redirect($_SERVER['HTTP_REFERER']);
-                    }
+                if($this->db->affected_rows() > 0){
+                    $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
-                
             }elseif($type == "editTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $data = [
@@ -1046,7 +1032,9 @@ class Project extends CI_Controller{
                 $data = [
                     'idpt' => $idpt,
                     'iddiv' => $iddiv,
-                    'project_name' => $this->input->post('project_name', TRUE)
+                    'project_name' => $this->input->post('project_name', TRUE),
+                    'start' => $this->input->post('start', TRUE),
+                    'end' => $this->input->post('end', TRUE)
                 ];
                 $this->db->insert('project', $data);
     
