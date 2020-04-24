@@ -69,6 +69,13 @@
         minDate: '<?= date('m-d-Y', strtotime($project->start)) ?>',
         maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($project->end)) ) ?>'
       });
+
+      $("#startDatetimepicker").on("dp.change", function (e) {
+            $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
+        });
+      $("#endDatetimepicker").on("dp.change", function (e) {
+          $('#startDatetimepicker').data("DateTimePicker").maxDate(e.date);
+      });
     });
 
     $('#nameTaskAdd').keyup(function (e) {
