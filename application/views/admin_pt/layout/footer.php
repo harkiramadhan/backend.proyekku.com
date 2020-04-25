@@ -136,7 +136,7 @@
           if(activeTab === "tabs-icons-text-1-tab"){
             $('.dt-1').addClass('isiDetailTask');
             $('.dt-2').removeClass('isiDetailTask');
-          }else{
+          }else if(activeTab === "tabs-icons-text-2-tab"){
             $('.dt-2').addClass('isiDetailTask');
             $('.dt-1').removeClass('isiDetailTask');
           }
