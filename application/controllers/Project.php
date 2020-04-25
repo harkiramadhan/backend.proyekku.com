@@ -1345,6 +1345,16 @@ class Project extends CI_Controller{
                         'connectorType' => $element['connectorType'],
                         'children'=> $children
                     ];
+                }elseif($children != NULL){
+                    $branch[] = [
+                        'id' => $element['id'],
+                        'name' => $element['name'],
+                        'actualStart' => $element['actualStart'],
+                        'actualEnd' => $element['actualEnd'],
+                        'connectTo' => $element['connectTo'],
+                        'connectorType' => $element['connectorType'],
+                        'children'=> $children
+                    ];
                 }else{
                     $branch[] = [
                         'id' => $element['id'],
