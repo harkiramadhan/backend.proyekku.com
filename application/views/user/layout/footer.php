@@ -53,7 +53,7 @@
     <script type="text/javascript">
     $(function() {
       $('.datetimepicker').datetimepicker({
-        format: 'YYYY-MM-DD HH:mm',
+        format: 'YYYY-MM-DD',
         icons: {
           time: "fa fa-clock",
           date: "fa fa-calendar-day",

@@ -221,7 +221,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'MM-DD-YYYY',
+                                    format: 'YYYY-MM-DD',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -343,7 +343,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'MM-DD-YYYY',
+                                    format: 'YYYY-MM-DD',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -521,7 +521,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'MM-DD-YYYY',
+                                    format: 'YYYY-MM-DD',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -639,7 +639,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'MM-DD-YYYY',
+                                    format: 'YYYY-MM-DD',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -803,7 +803,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'MM-DD-YYYY',
+                                    format: 'YYYY-MM-DD',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",
@@ -910,7 +910,7 @@ class Project extends CI_Controller{
                             });
                             $(function() {
                                 $('.datetimepicker').datetimepicker({
-                                    format: 'MM-DD-YYYY',
+                                    format: 'YYYY-MM-DD',
                                     icons: {
                                     time: "fa fa-clock",
                                     date: "fa fa-calendar-day",

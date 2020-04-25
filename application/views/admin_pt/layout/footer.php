@@ -52,7 +52,7 @@
     <script type="text/javascript">
       $(function() {
         $('.datetimepicker').datetimepicker({
-          format: 'YYYY-MM-DD HH:mm',
+          format: 'YYYY-MM-DD',
           // format: 'MM-DD-YYYY',
           icons: {
             time: "fa fa-clock",
@@ -126,23 +126,24 @@
     </script>
     <script>
       $(document).ready(function(){
+        $('.dt-1').addClass('isiDetailTask');
+        $('.dt-2').removeClass('isiDetailTask');
+        
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-          localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab){
-          $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
-
-          if(activeTab === "tabs-icons-text-1-tab"){
+          localStorage.setItem('activeTab', $(e.target).attr('id'));
+          var selectedTab = e.target.id;
+          alert(selectedTab);
+          if(selectedTab === "tabs-icons-text-1-tab"){
             $('.dt-1').addClass('isiDetailTask');
             $('.dt-2').removeClass('isiDetailTask');
-          }else if(activeTab === "tabs-icons-text-2-tab"){
+          }else if(selectedTab === "tabs-icons-text-2-tab"){
             $('.dt-2').addClass('isiDetailTask');
             $('.dt-1').removeClass('isiDetailTask');
           }
-        }else{
-          $('.dt-1').addClass('isiDetailTask');
-          $('.dt-2').removeClass('isiDetailTask');
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+          $('#tabs-icons-text a[id="' + activeTab + '"]').tab('show');
         }
       });
     </script>

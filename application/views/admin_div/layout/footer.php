@@ -53,7 +53,7 @@
     <script type="text/javascript">
     $(function() {
       $('.datetimepicker').datetimepicker({
-        format: 'YYYY-MM-DD HH:mm',
+        format: 'YYYY-MM-DD',
         // format: 'MM-DD-YYYY',
         icons: {
           time: "fa fa-clock",
@@ -71,8 +71,8 @@
       });
 
       $("#startDatetimepicker").on("dp.change", function (e) {
-          $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
-      });
+            $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
+        });
       $("#endDatetimepicker").on("dp.change", function (e) {
           $('#startDatetimepicker').data("DateTimePicker").maxDate(e.date);
       });
@@ -115,14 +115,6 @@
 
     $('.nav-link').click(function(){
       $('.isiDetailTask').html("<div class='card-header bg-transparent border-0'><h4 class='mb-0 text-capitalize'id='editTitle'>Detail Task</h4></div><div class='card-body bg-secondary'><button type='button' class='btn btn-block btn-sm btn-default' style='cursor: default'>Click The Task For Detail</button></div>");
-      var id = $(this).attr('id');
-      if(id === "tabs-icons-text-1-tab"){
-        $('.dt-1').addClass('isiDetailTask');
-        $('.dt-2').removeClass('isiDetailTask');
-      }else{
-        $('.dt-2').addClass('isiDetailTask');
-        $('.dt-1').removeClass('isiDetailTask');
-      }
     });
   </script>
   <script>
