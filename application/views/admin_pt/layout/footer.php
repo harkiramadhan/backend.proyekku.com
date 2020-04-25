@@ -132,6 +132,17 @@
         var activeTab = localStorage.getItem('activeTab');
         if(activeTab){
           $('#tabs-icons-text a[href="' + activeTab + '"]').tab('show');
+
+          if(activeTab === "tabs-icons-text-1-tab"){
+            $('.dt-1').addClass('isiDetailTask');
+            $('.dt-2').removeClass('isiDetailTask');
+          }else{
+            $('.dt-2').addClass('isiDetailTask');
+            $('.dt-1').removeClass('isiDetailTask');
+          }
+        }else{
+          $('.dt-1').addClass('isiDetailTask');
+          $('.dt-2').removeClass('isiDetailTask');
         }
       });
     </script>

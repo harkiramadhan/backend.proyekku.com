@@ -306,7 +306,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card shadow isiDetailTask dt-2">
+                    <div class="card shadow dt-2">
                         <div class="card-header bg-transparent border-0">
                             <h4 class="mb-0 text-capitalize" id="editTitle">Detail Task</h4>
                         </div>
