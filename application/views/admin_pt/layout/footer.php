@@ -132,7 +132,6 @@
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
           localStorage.setItem('activeTab', $(e.target).attr('id'));
           var selectedTab = e.target.id;
-          alert(selectedTab);
           if(selectedTab === "tabs-icons-text-1-tab"){
             $('.dt-1').addClass('isiDetailTask');
             $('.dt-2').removeClass('isiDetailTask');

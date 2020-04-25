@@ -1318,34 +1318,27 @@ class Project extends CI_Controller{
         }
 
         header('Content-Type: application/json');
-        $data = [];
-        foreach($getTask->result() as $row){
-            if($row->parent == 0){
-                $get_children = $this->db->get_where('task', ['parent' => $row->id]);
-                if($get_children->num_rows() > 0){
-                    foreach($get_children->result() as $ch){
-                        $children[] = [
-                            'id' => $ch->id,
-                            'name' => $ch->name,
-                            'actualStart' => $ch->actualStart,
-                            'actualEnd' => $ch->actualEnd,
-                            'progressValue' => $ch->progressValue
-                        ];
-                    }
-                }else{
-                    $children = NULL;
-                }
-                $data = [
-                    'id' => $row->id,
-                    'name' => $row->name,
-                    'actualStart' => $row->actualStart,
-                    'actualEnd' => $row->actualEnd,
-                    'children' => $children
-                ];
-                $hasil[] = $data; 
-            }
+        
+        $new = array();
+        $arr = $getTask->result_array();
+        foreach ($arr as $a){
+            $new[$a['parent']][] = $a;
         }
-        echo json_encode($hasil);
+        $tree = $this->createTree($new, array($arr[0]));
+        // return $branch;
+        
+        echo json_encode($tree);
+    }
+
+    function createTree(&$list, $parent){
+        $tree = array();
+        foreach ($parent as $k=>$l){
+            if(isset($list[$l['id']])){
+                $l['children'] = $this->createTree($list, $list[$l['id']]);
+            }
+            $tree[] = $l;
+        } 
+        return $tree;
     }
 
 }

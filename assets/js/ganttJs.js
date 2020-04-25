@@ -40,6 +40,29 @@ function initChart(data) {
   chart.container(stage).draw();
   chart.zoomTo(951350400000, 954201600000);
 
+  var buttons = chart.dataGrid().buttons();
+
+  // configure data grid buttons
+  buttons.fontWeight(600);
+  buttons.fontSize(16);
+  buttons.fontFamily("Courier");
+  buttons.background().fill(null);
+  buttons.background().stroke(null);
+  buttons.width(30);
+  buttons.cursor("default");
+
+  // configure data grid buttons in the normal state
+  buttons.normal().content("[+]");
+  buttons.normal().fontColor("#ef6c00");
+
+  // configure data grid buttons in the hover state
+  buttons.hovered().content("[+]");
+  buttons.hovered().fontColor(anychart.color.lighten("#ef6c00"));
+
+  // configure data grid buttons in the selected state
+  buttons.selected().content("[-]");
+  buttons.selected().fontColor("#64b5f6");
+
   //chart row selection listener.
   chart.listen('rowSelect', function(e) {
     if (e.item) { //select: if item presents in event, saving its ID.
