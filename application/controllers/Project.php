@@ -282,7 +282,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker startDatetimepicker'>
                                     <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -291,7 +291,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker endDatetimepicker'>
                                     <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -357,6 +357,12 @@ class Project extends CI_Controller{
                                     },
                                     minDate: '<?= date('m-d-Y', strtotime($task->actualStart)) ?>',
                                     maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->actualEnd)) ) ?>'
+                                });
+                                $(".startDatetimepicker").on("dp.change", function (e) {
+                                    $('.endDatetimepicker').data("DateTimePicker").minDate(e.date);
+                                });
+                                $(".endDatetimepicker").on("dp.change", function (e) {
+                                    $('.startDatetimepicker').data("DateTimePicker").maxDate(e.date);
                                 });
                             });
                         </script>
@@ -428,7 +434,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker startDatetimepicker'>
                                     <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -437,7 +443,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker endDatetimepicker'>
                                     <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -530,6 +536,12 @@ class Project extends CI_Controller{
                                     minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
                                     maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
                                 });
+                                $(".startDatetimepicker").on("dp.change", function (e) {
+                                    $('.endDatetimepicker').data("DateTimePicker").minDate(e.date);
+                                });
+                                $(".endDatetimepicker").on("dp.change", function (e) {
+                                    $('.startDatetimepicker').data("DateTimePicker").maxDate(e.date);
+                                });
                             });
                         </script>
                     <?php
@@ -570,7 +582,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker startDatetimepicker'>
                                     <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -579,7 +591,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker endDatetimepicker'>
                                     <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -641,6 +653,12 @@ class Project extends CI_Controller{
                                     },
                                     minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
                                     maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
+                                });
+                                $(".startDatetimepicker").on("dp.change", function (e) {
+                                    $('.endDatetimepicker').data("DateTimePicker").minDate(e.date);
+                                });
+                                $(".endDatetimepicker").on("dp.change", function (e) {
+                                    $('.startDatetimepicker').data("DateTimePicker").maxDate(e.date);
                                 });
                             });
                         </script>
@@ -698,7 +716,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker startDatetimepicker'>
                                     <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -707,7 +725,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker endDatetimepicker'>
                                     <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -800,6 +818,12 @@ class Project extends CI_Controller{
                                     minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
                                     maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
                                 });
+                                $(".startDatetimepicker").on("dp.change", function (e) {
+                                    $('.endDatetimepicker').data("DateTimePicker").minDate(e.date);
+                                });
+                                $(".endDatetimepicker").on("dp.change", function (e) {
+                                    $('.startDatetimepicker').data("DateTimePicker").maxDate(e.date);
+                                });
                             });
                         </script>
                     <?php
@@ -829,7 +853,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker startDatetimepicker'>
                                     <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -838,7 +862,7 @@ class Project extends CI_Controller{
                             </div>
                             <div class="form-group">
                                 <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date datetimepicker endDatetimepicker'>
                                     <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
                                         <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
@@ -900,6 +924,12 @@ class Project extends CI_Controller{
                                     },
                                     minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
                                     maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
+                                });
+                                $(".startDatetimepicker").on("dp.change", function (e) {
+                                    $('.endDatetimepicker').data("DateTimePicker").minDate(e.date);
+                                });
+                                $(".endDatetimepicker").on("dp.change", function (e) {
+                                    $('.startDatetimepicker').data("DateTimePicker").maxDate(e.date);
                                 });
                             });
                         </script>
