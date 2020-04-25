@@ -1318,27 +1318,48 @@ class Project extends CI_Controller{
         }
 
         header('Content-Type: application/json');
-        
-        $new = array();
         $arr = $getTask->result_array();
-        foreach ($arr as $a){
-            $new[$a['parent']][] = $a;
-        }
-        $tree = $this->createTree($new, array($arr[0]));
-        // return $branch;
-        
+        $tree = $this->buildTree($arr);
         echo json_encode($tree);
     }
 
-    function createTree(&$list, $parent){
-        $tree = array();
-        foreach ($parent as $k=>$l){
-            if(isset($list[$l['id']])){
-                $l['children'] = $this->createTree($list, $list[$l['id']]);
+
+    private function buildTree(array $elements, $parentId = 0) {
+        $branch = array();
+        foreach ($elements as $element) { 
+            if ($element['parent'] == $parentId) {
+                $children =$this->buildTree($elements, $element['id']);
+                if ($children == TRUE) {
+                    $element['children'] = $children;
+                }else{
+                    $children = null;
+                }
+
+                if($element['parent'] == 0){
+                    $branch[] = [
+                        'id' => $element['id'],
+                        'name' => $element['name'],
+                        'actualStart' => $element['actualStart'],
+                        'actualEnd' => $element['actualEnd'],
+                        'connectTo' => $element['connectTo'],
+                        'connectorType' => $element['connectorType'],
+                        'children'=> $children
+                    ];
+                }else{
+                    $branch[] = [
+                        'id' => $element['id'],
+                        'name' => $element['name'],
+                        'actualStart' => $element['actualStart'],
+                        'actualEnd' => $element['actualEnd'],
+                        'connectTo' => $element['connectTo'],
+                        'connectorType' => $element['connectorType'],
+                        'progressValue' => $element['progressValue'],
+                        'children'=> $children
+                    ];
+                }
             }
-            $tree[] = $l;
-        } 
-        return $tree;
+        }
+        return $branch;
     }
 
 }
