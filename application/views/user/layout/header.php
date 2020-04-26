@@ -301,7 +301,7 @@
                     <img alt="Image placeholder" src="<?= base_url('') ?>/assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold"><?= $username ?></span>
+                    <span class="mb-0 text-sm  font-weight-bold"><?= $username." - ".$role ?></span>
                   </div>
                 </div>
               </a>
