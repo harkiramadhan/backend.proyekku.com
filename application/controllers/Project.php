@@ -21,6 +21,7 @@ class Project extends CI_Controller{
 
         $var['title'] = "Project";
         $var['username'] = $this->session('username');
+        $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
     
         if($role == 2){
             $iduser = $this->session('iduser');
@@ -29,7 +30,6 @@ class Project extends CI_Controller{
             
             $project = $var['project'];
             $var['getUser'] = $this->M_User->get_allUserDiv($project->iddiv);
-            $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
             
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/project', $var);
