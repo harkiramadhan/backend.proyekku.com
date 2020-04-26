@@ -29,6 +29,7 @@ class Project extends CI_Controller{
             
             $project = $var['project'];
             $var['getUser'] = $this->M_User->get_allUserDiv($project->iddiv);
+            $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
             
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/project', $var);
@@ -165,6 +166,12 @@ class Project extends CI_Controller{
                                     <option value="90%" <?php if($task->progressValue == "90%"){echo "selected";} ?>>90%</option>
                                     <option value="100%" <?php if($task->progressValue == "100%"){echo "selected";} ?>>100%</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="card-body bg-secondary">
+                            <div class="form-group">
+                                <label for="">Issues</label>
+                                <textarea name="" id="" cols="30" rows="3" class="form-control form-control-alternative form-control-sm"></textarea>
                             </div>
                         </div>
                         <div class="card-footer text-left">
