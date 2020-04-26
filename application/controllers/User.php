@@ -22,6 +22,7 @@ class User extends CI_Controller{
 
         $var['title'] = "User";
         $var['username'] = $this->session('username');
+        $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
         
         if($role == 1){
             $var['user'] = $this->M_User->get_allUser();

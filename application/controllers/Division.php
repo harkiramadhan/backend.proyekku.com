@@ -19,6 +19,7 @@ class Division extends CI_Controller{
 
         $var['title'] = "Division";
         $var['username'] = $this->session('username');
+        $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
         
         if($role == 1){
 
