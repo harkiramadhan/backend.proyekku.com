@@ -335,6 +335,9 @@
                         <div class="card-header bg-transparent border-0">
                             <h3 class="mb-0">Issues</h3>   
                         </div>
+                        <div class="table-responsive">
+                        
+                        </div>
                     </div>
                 </div>
             </div>
