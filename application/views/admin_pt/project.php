@@ -333,10 +333,31 @@
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0">Issues</h3>   
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3 class="mb-0">Issues</h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="myInput" class="form-control form-control-alternative form-control-sm" placeholder="Search Issue ...">                                            
+                                </div>
+                            </div>   
                         </div>
                         <div class="table-responsive">
-                        
+                            <table class="table align-items-center table-flush table-sm table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th width="5px">Priority</th>
+                                        <th>Problem Desc</th>
+                                        <th width="5px">Type</th>
+                                        <th width="5px">Division</th>
+                                        <th width="5px">Request</th>
+                                        <th width="5px">Time</th>
+                                        <th width="5px">Deadline</th>
+                                        <th width="5px">Status</th>
+                                        <th>Document</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
