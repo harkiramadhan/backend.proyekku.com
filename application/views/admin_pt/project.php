@@ -354,7 +354,6 @@
                                         <th width="5px">Priority</th>
                                         <th width="5px">Task</th>
                                         <th>Problem Desc</th>
-                                        <th width="5px">Type</th>
                                         <th width="5px">Request</th>
                                         <th width="5px">Time</th>
                                         <th width="5px">Deadline</th>
@@ -379,26 +378,40 @@
 
                             <form action="<?= site_url('project/action') ?>" method="post">
                             <div class="modal-body bg-secondary">
-                               <div class="row">
-                               <div class="col-lg-3">
-                                    <label for="">Priority <small class="text-warning">*</small></label>
-                                    <select name="" class="form-control form-control-sm form-control-alternative">
-                                        <option value="">- Priority -</option>
-                                        <option value="">Level I</option>
-                                        <option value="">Level II</option>
-                                        <option value="">Level III</option>
-                                        <option value="">Level IV</option>
-                                    </select>
-                               </div>
-                               <div class="col-lg-6">
-                                <label for="">Task <small class="text-warning">*</small></label>
-                                    <select name="" class="form-control form-control-sm form-control-alternative">
-                                        <option value="">- Task -</option>
-                                    </select>
-                               </div>
-                               <div class="col-lg-3"></div>
-                               <div class="col-lg-3"></div>
-                               </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label for="">Priority <small class="text-warning">*</small></label>
+                                        <select name="" class="form-control form-control-sm form-control-alternative">
+                                            <option value="">- Priority -</option>
+                                            <option value="">Level I</option>
+                                            <option value="">Level II</option>
+                                            <option value="">Level III</option>
+                                            <option value="">Level IV</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <label for="">Task <small class="text-warning">*</small></label>
+                                        <select name="" class="form-control form-control-sm form-control-alternative">
+                                            <option value="">- Task -</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-12 mt-2">
+                                        <label for="">Problem Desc <small class="text-warning">*</small></label>
+                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 mt-2">
+                                        <label for="">Request <small class="text-warning">*</small></label>
+                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request"></textarea>
+                                    </div>
+                                    <div class="col-lg-6 mt-2">
+                                        <label for="">Time <small class="text-warning">*</small></label>
+                                        <input type="date" name="" placeholder="Time" class="form-control form-control-sm form-control-alternative">
+                                    </div>
+                                    <div class="col-lg-6 mt-2">
+                                        <label for="">Deadline <small class="text-warning">*</small></label>
+                                        <input type="date" name="" placeholder="Deadline" class="form-control form-control-sm form-control-alternative">
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
