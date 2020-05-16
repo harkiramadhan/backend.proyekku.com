@@ -167,11 +167,6 @@ class Project extends CI_Controller{
                                     <option value="100%" <?php if($task->progressValue == "100%"){echo "selected";} ?>>100%</option>
                                 </select>
                             </div>
-                        <hr>
-                            <div class="form-group">
-                                <label for="">Issues</label>
-                                <textarea name="" id="" cols="30" rows="3" class="form-control form-control-alternative form-control-sm"></textarea>
-                            </div>
                         </div>
                         <div class="card-footer text-left">
                             <div class="btn-group">

@@ -330,6 +330,11 @@
         </div>
         <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
             <div class="row">
+                <div class="col-12 text-right mb-3">
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#addIssue"><i class="fas fa-plus-circle"></i> &nbsp;Add Issue</button>
+                    </div>
+                </div>
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header bg-transparent border-0">
@@ -347,9 +352,9 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th width="5px">Priority</th>
+                                        <th width="5px">Task</th>
                                         <th>Problem Desc</th>
                                         <th width="5px">Type</th>
-                                        <th width="5px">Division</th>
                                         <th width="5px">Request</th>
                                         <th width="5px">Time</th>
                                         <th width="5px">Deadline</th>
@@ -358,6 +363,48 @@
                                     </tr>
                                 </thead>
                             </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Issue</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <form action="<?= site_url('project/action') ?>" method="post">
+                            <div class="modal-body bg-secondary">
+                               <div class="row">
+                               <div class="col-lg-3">
+                                    <label for="">Priority <small class="text-warning">*</small></label>
+                                    <select name="" class="form-control form-control-sm form-control-alternative">
+                                        <option value="">- Priority -</option>
+                                        <option value="">Level I</option>
+                                        <option value="">Level II</option>
+                                        <option value="">Level III</option>
+                                        <option value="">Level IV</option>
+                                    </select>
+                               </div>
+                               <div class="col-lg-6">
+                                <label for="">Task <small class="text-warning">*</small></label>
+                                    <select name="" class="form-control form-control-sm form-control-alternative">
+                                        <option value="">- Task -</option>
+                                    </select>
+                               </div>
+                               <div class="col-lg-3"></div>
+                               <div class="col-lg-3"></div>
+                               </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
