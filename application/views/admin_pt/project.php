@@ -379,7 +379,7 @@
                             <form action="<?= site_url('project/action') ?>" method="post">
                             <div class="modal-body bg-secondary">
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                         <label for="">Priority <small class="text-warning">*</small></label>
                                         <select name="" class="form-control form-control-sm form-control-alternative">
                                             <option value="">- Priority -</option>
@@ -389,7 +389,7 @@
                                             <option value="">Level IV</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-10">
                                         <label for="">Task <small class="text-warning">*</small></label>
                                         <select name="" class="form-control form-control-sm form-control-alternative">
                                             <option value="">- Task -</option>
@@ -410,6 +410,20 @@
                                     <div class="col-lg-6 mt-2">
                                         <label for="">Deadline <small class="text-warning">*</small></label>
                                         <input type="date" name="" placeholder="Deadline" class="form-control form-control-sm form-control-alternative">
+                                    </div>
+                                    <div class="col-lg-2 mt-2">
+                                        <label for="">Status <small class="text-warning">*</small></label>
+                                        <select name="" class="form-control form-control-sm form-control-alternative">
+                                            <option value="">- Status -</option>
+                                            <option value="">Level I</option>
+                                            <option value="">Level II</option>
+                                            <option value="">Level III</option>
+                                            <option value="">Level IV</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-10 mt-2">
+                                        <label for="">Document</label>
+                                        <input type="file" name="" id="" class="form-control form-control-alternative form-control-sm">
                                     </div>
                                 </div>
                             </div>
