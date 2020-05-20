@@ -1083,6 +1083,45 @@ class Project extends CI_Controller{
                 }else{
                     echo $this->db->error(); 
                 }
+            }elseif($type == "addIssue"){
+                $config['upload_path']      = './uploads/';
+                $config['allowed_types']    = '*';
+                $config['encrypt_name']     = TRUE;
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->insert('issue', $data);
+                }else{
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                    ];
+                }
+
+                if($this->db->affected_rows() > 0 ){
+                    $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
         }elseif($role == 3){
             $idpt = $this->session('idpt');

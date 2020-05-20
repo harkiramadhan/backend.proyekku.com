@@ -377,12 +377,14 @@
                                 </button>
                             </div>
 
-                            <form action="<?= site_url('project/action') ?>" method="post">
+                            <form action="<?= site_url('project/action') ?>" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="type" value="addIssue">
+                            <input type="hidden" name="iddiv" value="<?= $project->iddiv ?>">
                             <div class="modal-body bg-secondary">
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <label for="">Priority <small class="text-warning">*</small></label>
-                                        <select name="" class="form-control form-control-sm form-control-alternative" required>
+                                        <select name="priority" class="form-control form-control-sm form-control-alternative" required>
                                             <option value="">- Select Priority -</option>
                                             <option value="I">Level I</option>
                                             <option value="II">Level II</option>
@@ -392,7 +394,7 @@
                                     </div>
                                     <div class="col-lg-10">
                                         <label for="">Task</label>
-                                        <select name="" class="form-control form-control-sm form-control-alternative">
+                                        <select name="idtask" class="form-control form-control-sm form-control-alternative">
                                             <option value="">- Select Task -</option>
                                             <?php 
                                             foreach($task->result() as $t){ 
@@ -402,33 +404,32 @@
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <label for="">Problem Desc <small class="text-warning">*</small></label>
-                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc" required></textarea>
+                                        <textarea name="problem" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc" required></textarea>
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <label for="">Request <small class="text-warning">*</small></label>
-                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request" required></textarea>
+                                        <textarea name="request" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request" required></textarea>
                                     </div>
                                     <div class="col-lg-6 mt-2">
                                         <label for="">Time <small class="text-warning">*</small></label>
-                                        <input type="date" name="" placeholder="Time" class="form-control form-control-sm form-control-alternative" required>
+                                        <input type="date" name="time" placeholder="Time" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-6 mt-2">
                                         <label for="">Deadline <small class="text-warning">*</small></label>
-                                        <input type="date" name="" placeholder="Deadline" class="form-control form-control-sm form-control-alternative" required>
+                                        <input type="date" name="deadline" placeholder="Deadline" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-2 mt-2">
                                         <label for="">Status <small class="text-warning">*</small></label>
-                                        <select name="" class="form-control form-control-sm form-control-alternative" required>
+                                        <select name="status" class="form-control form-control-sm form-control-alternative" required>
                                             <option value="">- Select Status -</option>
-                                            <option value="">Level I</option>
-                                            <option value="">Level II</option>
-                                            <option value="">Level III</option>
-                                            <option value="">Level IV</option>
+                                            <option value="Delay">Delay</option>
+                                            <option value="On Progress">On Progress</option>
+                                            <option value="Done">Done</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-10 mt-2">
                                         <label for="">Document</label>
-                                        <input type="file" name="" id="" class="form-control form-control-alternative form-control-sm">
+                                        <input type="file" name="doc" class="form-control form-control-alternative form-control-sm">
                                     </div>
                                 </div>
                             </div>
