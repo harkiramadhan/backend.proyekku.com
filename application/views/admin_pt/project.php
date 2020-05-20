@@ -319,10 +319,37 @@
         </div>
         <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
             <div class="row">
+                <div class="col-12 text-right mb-3">
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#addReport"><i class="fas fa-plus-circle"></i> &nbsp;Add Report</button>
+                    </div>
+                </div>
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0">Report</h3>   
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3 class="mb-0">Report</h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="myInput3" class="form-control form-control-alternative form-control-sm" placeholder="Search Report ...">                                            
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush table-sm table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th width="5px">No</th>
+                                        <th>Description</th>
+                                        <th width="5px" class="text-center">Document</th>
+                                        <th width="5px" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable3">
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -354,7 +381,7 @@
                                         <th width="5px">No</th>
                                         <th width="5px">Priority</th>
                                         <th width="5px">Task</th>
-                                        <th>Problem Desc</th>
+                                        <th>Problem Description</th>
                                         <th>Request</th>
                                         <th width="5px">Time</th>
                                         <th width="5px">Deadline</th>
