@@ -27,6 +27,14 @@ class Project extends CI_Controller{
             $iduser = $this->session('iduser');
             $var['project'] = $this->M_Project->get_byId($idproject);
             $var['task'] = $this->M_Project->get_taskByIdProject($idproject, $iduser);
+
+            $this->db->select('task.name, issue.*');
+            $this->db->from('issue');
+            $this->db->join('task', 'issue.idtask = task.id', 'left');
+            $this->db->where([
+                'issue.idproject' => $idproject
+            ]);
+            $var['issue'] = $this->db->get();
             
             $project = $var['project'];
             $var['getUser'] = $this->M_User->get_allUserDiv($project->iddiv);
@@ -1086,7 +1094,7 @@ class Project extends CI_Controller{
             }elseif($type == "addIssue"){
                 $config['upload_path']      = './uploads/';
                 $config['allowed_types']    = '*';
-                $config['encrypt_name']     = TRUE;
+                
                 $this->load->library('upload', $config);
                 if($this->upload->do_upload('doc')){
                     $doc = $this->upload->data();

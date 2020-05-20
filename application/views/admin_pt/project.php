@@ -360,8 +360,55 @@
                                         <th width="5px">Deadline</th>
                                         <th width="5px">Status</th>
                                         <th width="5px">Document</th>
+                                        <th width="5px">Action</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <?php 
+                                    $noi = 1;
+                                    foreach($issue->result() as $i){ ?>
+                                    <tr>
+                                        <td><?= $noi++ ?></td>
+                                        <td>
+                                        <?php
+                                            if($i->priority == "I"){
+                                                echo "<span class='badge badge-danger'>Level I</span>";
+                                            }elseif($i->priority == "II"){
+                                                echo "<span class='badge badge-warning'>Level II</span>";
+                                            }elseif($i->priority == "III"){
+                                                echo "<span class='badge badge-default'>Level III</span>";
+                                            }elseif($i->priority == "IV"){
+                                                echo "<span class='badge badge-info'>Level IV</span>";
+                                            }
+                                        ?>
+                                        </td>
+                                        <td><?= $i->name ?></td>
+                                        <td><?= $i->desc ?></td>
+                                        <td><?= $i->request ?></td>
+                                        <td><?= $i->time ?></td>
+                                        <td><?= $i->deadline ?></td>
+                                        <td>
+                                        <?php
+                                            if($i->status == "Delay"){
+                                                echo "<span class='badge badge-warning'>Delay</span>";
+                                            }elseif($i->status == "On Progress"){
+                                                echo "<span class='badge badge-info'>On Progress</span>";
+                                            }elseif($i->status == "Done"){
+                                                echo "<span class='badge badge-success'>Done</span>";
+                                            }
+                                        ?>
+                                        </td>
+                                        <td>
+                                        <?php if($i->doc == TRUE){
+                                            echo "<a href=".base_url('./uploads/' . $i->doc)." target='__blank' class='btn btn-sm btn-default'><i class='fas fa-download'></i> ".$i->doc."</a>";
+                                        } ?>
+                                        </td>
+                                        <td>
+                                        
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -379,6 +426,7 @@
 
                             <form action="<?= site_url('project/action') ?>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="type" value="addIssue">
+                            <input type="hidden" name="idproject" value="<?= $project->id ?>">
                             <input type="hidden" name="iddiv" value="<?= $project->iddiv ?>">
                             <div class="modal-body bg-secondary">
                                 <div class="row">
