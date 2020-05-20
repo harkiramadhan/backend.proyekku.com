@@ -351,14 +351,15 @@
                             <table class="table align-items-center table-flush table-sm table-hover">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th width="5px">No</th>
                                         <th width="5px">Priority</th>
                                         <th width="5px">Task</th>
                                         <th>Problem Desc</th>
-                                        <th width="5px">Request</th>
+                                        <th>Request</th>
                                         <th width="5px">Time</th>
                                         <th width="5px">Deadline</th>
                                         <th width="5px">Status</th>
-                                        <th>Document</th>
+                                        <th width="5px">Document</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -382,7 +383,7 @@
                                     <div class="col-lg-2">
                                         <label for="">Priority <small class="text-warning">*</small></label>
                                         <select name="" class="form-control form-control-sm form-control-alternative">
-                                            <option value="">- Priority -</option>
+                                            <option value="">- Select Priority -</option>
                                             <option value="">Level I</option>
                                             <option value="">Level II</option>
                                             <option value="">Level III</option>
@@ -390,9 +391,13 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-10">
-                                        <label for="">Task <small class="text-warning">*</small></label>
+                                        <label for="">Task</label>
                                         <select name="" class="form-control form-control-sm form-control-alternative">
-                                            <option value="">- Task -</option>
+                                            <option value="">- Select Task -</option>
+                                            <?php 
+                                            foreach($task->result() as $t){ 
+                                                echo "<option value=".$t->id.">".$t->name." - ".$t->name_user."</option>";
+                                            }?>
                                         </select>
                                     </div>
                                     <div class="col-lg-12 mt-2">
@@ -414,7 +419,7 @@
                                     <div class="col-lg-2 mt-2">
                                         <label for="">Status <small class="text-warning">*</small></label>
                                         <select name="" class="form-control form-control-sm form-control-alternative">
-                                            <option value="">- Status -</option>
+                                            <option value="">- Select Status -</option>
                                             <option value="">Level I</option>
                                             <option value="">Level II</option>
                                             <option value="">Level III</option>
