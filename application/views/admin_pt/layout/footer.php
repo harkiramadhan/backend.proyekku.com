@@ -146,6 +146,22 @@
         }
       });
     </script>
+    <script>
+      $('.editIssue').click(function(){
+        var idissue = $(this).attr('data-id');
+        var type = "editIssue";
+        var idproject = '<?= $this->uri->segment(2) ?>';
+        $.ajax({
+          url : '<?= site_url('project/modal') ?>',
+          type : 'get',
+          data: {idissue : idissue, type : type, idproject : idproject},
+          success: function(data){
+            $('#detailIssue').modal('show');
+            $('.isiIssue').html(data);
+          }
+        });
+      });
+    </script>
   <?php endif; ?>
 </body>
 

@@ -377,6 +377,88 @@ class Project extends CI_Controller{
                         </script>
                     <?php
                 }
+            }elseif($type == "editIssue"){
+                $issue = $this->db->get_where('issue', ['id' => $this->input->get('idissue', TRUE)])->row();
+                $task = $this->M_Project->get_taskByIdProject($this->input->get('idproject', TRUE), $iduser);
+                ?>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Issue</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="<?= site_url('project/action') ?>" method="post" enctype="multipart/form-data">
+                    
+                    <input type="hidden" name="type" value="editIssue">
+                    <input type="hidden" name="idissue" value="<?= $this->input->get('idissue', TRUE) ?>">
+                    
+                    <div class="modal-body bg-secondary">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label for="">Priority <small class="text-warning">*</small></label>
+                                <select name="priority" class="form-control form-control-sm form-control-alternative" required>
+                                    <option value="">- Select Priority -</option>
+                                    <option value="I" <?php if($issue->priority == "I"){echo "selected";} ?>>Level I</option>
+                                    <option value="II" <?php if($issue->priority == "II"){echo "selected";} ?>>Level II</option>
+                                    <option value="III" <?php if($issue->priority == "III"){echo "selected";} ?>>Level III</option>
+                                    <option value="IV" <?php if($issue->priority == "IV"){echo "selected";} ?>>Level IV</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-10">
+                                <label for="">Task</label>
+                                <select name="idtask" class="form-control form-control-sm form-control-alternative">
+                                    <option value="">- Select Task -</option>
+                                    <?php 
+                                    foreach($task->result() as $t){ ?>
+                                        <option value="<?= $t->id ?>" <?php if($issue->idtask == $t->id){echo 'selected';} ?> ><?= $t->name." - ".$t->name_user ?></option>";
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 mt-2">
+                                <label for="">Problem Desc <small class="text-warning">*</small></label>
+                                <textarea name="problem" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc" required><?= $issue->desc ?></textarea>
+                            </div>
+                            <div class="col-lg-12 mt-2">
+                                <label for="">Request <small class="text-warning">*</small></label>
+                                <textarea name="request" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request" required><?= $issue->request ?></textarea>
+                            </div>
+                            <div class="col-lg-6 mt-2">
+                                <label for="">Time <small class="text-warning">*</small></label>
+                                <input type="date" name="time" placeholder="Time" class="form-control form-control-sm form-control-alternative" value="<?= $issue->time ?>" required>
+                            </div>
+                            <div class="col-lg-6 mt-2">
+                                <label for="">Deadline <small class="text-warning">*</small></label>
+                                <input type="date" name="deadline" placeholder="Deadline" class="form-control form-control-sm form-control-alternative" value="<?= $issue->deadline ?>" required>
+                            </div>
+                            <div class="col-lg-2 mt-2">
+                                <label for="">Status <small class="text-warning">*</small></label>
+                                <select name="status" class="form-control form-control-sm form-control-alternative" required>
+                                    <option value="">- Select Status -</option>
+                                    <option value="Delay" <?php if($issue->status == "Delay"){echo "selected";} ?>>Delay</option>
+                                    <option value="On Progress" <?php if($issue->status == "On Progress"){echo "selected";} ?>>On Progress</option>
+                                    <option value="Done" <?php if($issue->status == "Done"){echo "selected";} ?>>Done</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-10 mt-2">
+                                <label for="">Document</label>
+                                <input type="file" name="doc" class="form-control form-control-alternative form-control-sm">
+                                <div class="col-lg-12 mt-2 pl-0 pr-0">
+                                    <?php if($issue->doc == TRUE){
+                                        echo "<a href=".base_url('./uploads/' . $issue->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$issue->doc."</a>";
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                    </div>
+                    </form>
+                </div>
+                <?php
             }
         }elseif($role == 3){
             $idpt = $this->session('idpt');

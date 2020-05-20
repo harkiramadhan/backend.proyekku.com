@@ -343,7 +343,7 @@
                                     <h3 class="mb-0">Issues</h3>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="myInput" class="form-control form-control-alternative form-control-sm" placeholder="Search Issue ...">                                            
+                                    <input type="text" id="myInput2" class="form-control form-control-alternative form-control-sm" placeholder="Search Issue ...">                                            
                                 </div>
                             </div>   
                         </div>
@@ -363,7 +363,7 @@
                                         <th width="5px" class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="myTable2">
                                     <?php 
                                     $noi = 1;
                                     foreach($issue->result() as $i){ ?>
@@ -417,6 +417,12 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="detailIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl isiIssue" role="document">
+                        
                     </div>
                 </div>
 
