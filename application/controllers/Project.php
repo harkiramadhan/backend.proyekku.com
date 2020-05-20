@@ -1522,6 +1522,24 @@ class Project extends CI_Controller{
         }
     }
 
+    function deleteReport($idreport){
+        $cek = $this->db->get_where('report', ['id' => $idreport])->row();
+        
+        if($cek->doc == TRUE){
+            $path = './uploads/reports/';
+            $file_name = $cek->doc;
+            unlink($path.$file_name);
+        }
+
+        $this->db->where('id', $idreport);
+        $this->db->delete('report');
+
+        if($this->db->affected_rows() > 0){
+            $this->session->set_flashdata('sukses', "Report Berhasil Di Hapus");
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
     function get($q){
         $iduser = $this->session('iduser');
         $role = $this->session('role');
