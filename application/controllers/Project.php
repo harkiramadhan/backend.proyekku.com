@@ -27,6 +27,7 @@ class Project extends CI_Controller{
             $iduser = $this->session('iduser');
             $var['project'] = $this->M_Project->get_byId($idproject);
             $var['task'] = $this->M_Project->get_taskByIdProject($idproject, $iduser);
+            $var['report'] = $this->db->get_where('report', ['idproject' => $idproject ]);
 
             $this->db->select('task.name, issue.*');
             $this->db->from('issue');
@@ -1263,6 +1264,29 @@ class Project extends CI_Controller{
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
                     redirect($_SERVER['HTTP_REFERER']);
                 }
+            }elseif($type == "addReport"){
+                $config['upload_path']      = './uploads/reports/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->insert('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Tambahkan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }
+
             }
         }elseif($role == 3){
             $idpt = $this->session('idpt');

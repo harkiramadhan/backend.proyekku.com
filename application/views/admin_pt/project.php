@@ -348,7 +348,27 @@
                                     </tr>
                                 </thead>
                                 <tbody id="myTable3">
-
+                                <?php 
+                                    $nor = 1;
+                                    foreach($report->result() as $r){
+                                ?>
+                                <tr>
+                                    <td width="5px"><?= $nor++ ?></td>
+                                    <td><?= $r->desc ?></td>
+                                    <td width="5px"><?= $r->date ?></td>
+                                    <td class="text-center">
+                                    <?php if($r->doc == TRUE){
+                                        echo "<a href=".base_url('./uploads/reports/' . $r->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$r->doc."</a>";
+                                    } ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-primary editReport" data-id="<?= $r->id ?>"><i class="fas fa-pencil-alt"></i></button>
+                                            <a href="<?= site_url('project/deleteReport/'. $r->id) ?>" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -366,9 +386,11 @@
                             </div>
 
                             <form action="<?= site_url('project/action') ?>" method="post" enctype="multipart/form-data">
+                            
                             <input type="hidden" name="type" value="addReport">
                             <input type="hidden" name="idproject" value="<?= $project->id ?>">
                             <input type="hidden" name="iddiv" value="<?= $project->iddiv ?>">
+
                             <div class="modal-body bg-secondary">
                                 <div class="row">
                                     <div class="col-lg-12 mt-2">
@@ -380,8 +402,8 @@
                                         <input type="date" name="date" placeholder="Date" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-12 mt-2">
-                                        <label for="">Document</label>
-                                        <input type="file" name="doc" class="form-control form-control-alternative form-control-sm">
+                                        <label for="">Document <small class="text-warning">*</small></label>
+                                        <input type="file" name="doc" class="form-control form-control-alternative form-control-sm" required>
                                     </div>
                                 </div>
                             </div>
