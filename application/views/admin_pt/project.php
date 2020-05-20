@@ -359,8 +359,8 @@
                                         <th width="5px">Time</th>
                                         <th width="5px">Deadline</th>
                                         <th width="5px">Status</th>
-                                        <th width="5px">Document</th>
-                                        <th width="5px">Action</th>
+                                        <th width="5px" class="text-center">Document</th>
+                                        <th width="5px" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -388,23 +388,29 @@
                                         <td><?= $i->time ?></td>
                                         <td><?= $i->deadline ?></td>
                                         <td>
-                                        <?php
-                                            if($i->status == "Delay"){
-                                                echo "<span class='badge badge-warning'>Delay</span>";
-                                            }elseif($i->status == "On Progress"){
-                                                echo "<span class='badge badge-info'>On Progress</span>";
-                                            }elseif($i->status == "Done"){
-                                                echo "<span class='badge badge-success'>Done</span>";
-                                            }
-                                        ?>
+                                        <span class="badge badge-dot mr-4">
+                                            <?php if($i->status == "Delay"): ?>
+                                                <i class="bg-warning"></i>
+                                                <span class="status">Delay</span>
+                                            <?php elseif($i->status == "Done"): ?>
+                                                <i class="bg-success"></i>
+                                                <span class="status">Done</span>
+                                            <?php else: ?>
+                                                <i class="bg-info"></i>
+                                                <span class="status">On Progress</span>
+                                            <?php endif; ?>
+                                            </span>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                         <?php if($i->doc == TRUE){
-                                            echo "<a href=".base_url('./uploads/' . $i->doc)." target='__blank' class='btn btn-sm btn-default'><i class='fas fa-download'></i> ".$i->doc."</a>";
+                                            echo "<a href=".base_url('./uploads/' . $i->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$i->doc."</a>";
                                         } ?>
                                         </td>
-                                        <td>
-                                        
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                                                <button class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i></button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <?php } ?>
