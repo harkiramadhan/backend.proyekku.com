@@ -59,8 +59,8 @@
                                         <th width="5px">No</th>
                                         <th width="5px">Task Name</th>
                                         <th>PIC</th>
-                                        <th width="240px">Start</th>
-                                        <th width="240px">Due</th>
+                                        <th width="5px">Start</th>
+                                        <th width="5px">Due</th>
                                         <th width="5px">Progress</th>
                                         <th width="5px">Status</th>
                                     </tr>
