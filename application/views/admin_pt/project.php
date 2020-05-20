@@ -382,12 +382,12 @@
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <label for="">Priority <small class="text-warning">*</small></label>
-                                        <select name="" class="form-control form-control-sm form-control-alternative">
+                                        <select name="" class="form-control form-control-sm form-control-alternative" required>
                                             <option value="">- Select Priority -</option>
-                                            <option value="">Level I</option>
-                                            <option value="">Level II</option>
-                                            <option value="">Level III</option>
-                                            <option value="">Level IV</option>
+                                            <option value="I">Level I</option>
+                                            <option value="II">Level II</option>
+                                            <option value="III">Level III</option>
+                                            <option value="IV">Level IV</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-10">
@@ -402,23 +402,23 @@
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <label for="">Problem Desc <small class="text-warning">*</small></label>
-                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc"></textarea>
+                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc" required></textarea>
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <label for="">Request <small class="text-warning">*</small></label>
-                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request"></textarea>
+                                        <textarea name="" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request" required></textarea>
                                     </div>
                                     <div class="col-lg-6 mt-2">
                                         <label for="">Time <small class="text-warning">*</small></label>
-                                        <input type="date" name="" placeholder="Time" class="form-control form-control-sm form-control-alternative">
+                                        <input type="date" name="" placeholder="Time" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-6 mt-2">
                                         <label for="">Deadline <small class="text-warning">*</small></label>
-                                        <input type="date" name="" placeholder="Deadline" class="form-control form-control-sm form-control-alternative">
+                                        <input type="date" name="" placeholder="Deadline" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-2 mt-2">
                                         <label for="">Status <small class="text-warning">*</small></label>
-                                        <select name="" class="form-control form-control-sm form-control-alternative">
+                                        <select name="" class="form-control form-control-sm form-control-alternative" required>
                                             <option value="">- Select Status -</option>
                                             <option value="">Level I</option>
                                             <option value="">Level II</option>
