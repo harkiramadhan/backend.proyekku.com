@@ -460,6 +460,50 @@ class Project extends CI_Controller{
                     </form>
                 </div>
                 <?php
+            }elseif($type == "editReport"){
+                $report = $this->db->get_where('report', ['id' => $this->input->get('idreport', TRUE)])->row();
+                ?>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Report</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="<?= site_url('project/action') ?>" method="post" enctype="multipart/form-data">
+                    
+                    <input type="hidden" name="type" value="editReport">
+                    <input type="hidden" name="idreport" value="<?= $this->input->get('idreport', TRUE) ?>">
+                    
+                    <div class="modal-body bg-secondary">
+                        <div class="row">
+                            <div class="col-lg-12 mt-2">
+                                <label for="">Description <small class="text-warning">*</small></label>
+                                <textarea name="desc" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Description" required><?= $report->desc ?></textarea>
+                            </div>
+                            <div class="col-lg-12 mt-2">
+                                <label for="">Date <small class="text-warning">*</small></label>
+                                <input type="date" name="date" placeholder="Date" class="form-control form-control-sm form-control-alternative" value="<?= $report->date ?>" required>
+                            </div>
+                            <div class="col-lg-12 mt-2">
+                                <label for="">Document</label>
+                                <input type="file" name="doc" class="form-control form-control-alternative form-control-sm">
+                                <div class="col-lg-12 mt-2 pl-0 pr-0">
+                                    <?php if($report->doc == TRUE){
+                                        echo "<a href=".base_url('./uploads/reports/' . $report->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$report->doc."</a>";
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                    </div>
+                    </form>
+                </div>
+                <?php
             }
         }elseif($role == 3){
             $idpt = $this->session('idpt');
@@ -1287,6 +1331,50 @@ class Project extends CI_Controller{
                     }
                 }
 
+            }elseif($type == "editReport"){
+                $idreport = $this->input->post('idreport', TRUE);
+                $cek = $this->db->get_where('report', ['id' => $idreport])->row();
+
+                $config['upload_path']      = './uploads/reports/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+
+                    if($cek->doc == TRUE){
+                        $path = './uploads/reports/';
+                        $file_name = $cek->doc;
+                        unlink($path.$file_name);
+                    }
+
+                    $data = [
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->where('id', $idreport);
+                    $this->db->update('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }else{
+                    $data = [
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE)
+                    ];
+
+                    $this->db->where('id', $idreport);
+                    $this->db->update('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }
             }
         }elseif($role == 3){
             $idpt = $this->session('idpt');
