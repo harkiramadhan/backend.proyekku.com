@@ -408,8 +408,8 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
-                                                <button class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-sm btn-primary editIssue" data-id="<?= $i->id ?>"><i class="fas fa-pencil-alt"></i></button>
+                                                <a href="<?= site_url('project/deleteIssue/'. $i->id) ?>" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
