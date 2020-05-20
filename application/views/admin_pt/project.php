@@ -342,6 +342,7 @@
                                     <tr>
                                         <th width="5px">No</th>
                                         <th>Description</th>
+                                        <th width="5px" class="text-center">Date</th>
                                         <th width="5px" class="text-center">Document</th>
                                         <th width="5px" class="text-center">Action</th>
                                     </tr>
@@ -350,6 +351,45 @@
 
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Report</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <form action="<?= site_url('project/action') ?>" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="type" value="addReport">
+                            <input type="hidden" name="idproject" value="<?= $project->id ?>">
+                            <input type="hidden" name="iddiv" value="<?= $project->iddiv ?>">
+                            <div class="modal-body bg-secondary">
+                                <div class="row">
+                                    <div class="col-lg-12 mt-2">
+                                        <label for="">Description <small class="text-warning">*</small></label>
+                                        <textarea name="desc" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Description" required></textarea>
+                                    </div>
+                                    <div class="col-lg-12 mt-2">
+                                        <label for="">Date <small class="text-warning">*</small></label>
+                                        <input type="date" name="date" placeholder="Date" class="form-control form-control-sm form-control-alternative" required>
+                                    </div>
+                                    <div class="col-lg-12 mt-2">
+                                        <label for="">Document</label>
+                                        <input type="file" name="doc" class="form-control form-control-alternative form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -490,7 +530,7 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-12 mt-2">
-                                        <label for="">Problem Desc <small class="text-warning">*</small></label>
+                                        <label for="">Problem Description <small class="text-warning">*</small></label>
                                         <textarea name="problem" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Problem Desc" required></textarea>
                                     </div>
                                     <div class="col-lg-12 mt-2">
