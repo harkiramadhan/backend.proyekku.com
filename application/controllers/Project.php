@@ -1206,6 +1206,57 @@ class Project extends CI_Controller{
                         'deadline' => $this->input->post('deadline', TRUE),
                         'status' => $this->input->post('status', TRUE),
                     ];
+
+                    $this->db->insert('issue', $data);
+                }
+
+                if($this->db->affected_rows() > 0 ){
+                    $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "editIssue"){
+                $idissue = $this->input->post('idissue', TRUE);
+                $cek = $this->db->get_where('issue', ['id' => $idissue]);
+
+                $config['upload_path']      = './uploads/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+
+                    if($cek->num_rows() > 0){
+                        $path = './uploads/';
+                        $file_name = $cek->row()->doc;
+                        unlink($path.$file_name);
+                    }
+
+                    $data = [
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->where('id', $idissue);
+                    $this->db->update('issue', $data);
+                }else{
+                    $data = [
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                    ];
+
+                    $this->db->where('id', $idissue);
+                    $this->db->update('issue', $data);
                 }
 
                 if($this->db->affected_rows() > 0 ){
