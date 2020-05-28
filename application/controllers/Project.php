@@ -1498,6 +1498,163 @@ class Project extends CI_Controller{
                 }else{
                     echo $this->db->error(); 
                 }
+            }elseif($type == "addIssue"){
+                $config['upload_path']      = './uploads/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->insert('issue', $data);
+                }else{
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                    ];
+
+                    $this->db->insert('issue', $data);
+                }
+
+                if($this->db->affected_rows() > 0 ){
+                    $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "editIssue"){
+                $idissue = $this->input->post('idissue', TRUE);
+                $cek = $this->db->get_where('issue', ['id' => $idissue]);
+
+                $config['upload_path']      = './uploads/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+
+                    if($cek->num_rows() > 0){
+                        $path = './uploads/';
+                        $file_name = $cek->row()->doc;
+                        unlink($path.$file_name);
+                    }
+
+                    $data = [
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->where('id', $idissue);
+                    $this->db->update('issue', $data);
+                }else{
+                    $data = [
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                    ];
+
+                    $this->db->where('id', $idissue);
+                    $this->db->update('issue', $data);
+                }
+
+                if($this->db->affected_rows() > 0 ){
+                    $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "addReport"){
+                $config['upload_path']      = './uploads/reports/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->insert('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Tambahkan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }
+
+            }elseif($type == "editReport"){
+                $idreport = $this->input->post('idreport', TRUE);
+                $cek = $this->db->get_where('report', ['id' => $idreport])->row();
+
+                $config['upload_path']      = './uploads/reports/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+
+                    if($cek->doc == TRUE){
+                        $path = './uploads/reports/';
+                        $file_name = $cek->doc;
+                        unlink($path.$file_name);
+                    }
+
+                    $data = [
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->where('id', $idreport);
+                    $this->db->update('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }else{
+                    $data = [
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE)
+                    ];
+
+                    $this->db->where('id', $idreport);
+                    $this->db->update('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }
             }
         }elseif($role == 4){
             $idpt = $this->session('idpt');
@@ -1596,6 +1753,163 @@ class Project extends CI_Controller{
                     echo "Sukses";
                 }else{
                     echo $this->db->error(); 
+                }
+            }elseif($type == "addIssue"){
+                $config['upload_path']      = './uploads/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->insert('issue', $data);
+                }else{
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                    ];
+
+                    $this->db->insert('issue', $data);
+                }
+
+                if($this->db->affected_rows() > 0 ){
+                    $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "editIssue"){
+                $idissue = $this->input->post('idissue', TRUE);
+                $cek = $this->db->get_where('issue', ['id' => $idissue]);
+
+                $config['upload_path']      = './uploads/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+
+                    if($cek->num_rows() > 0){
+                        $path = './uploads/';
+                        $file_name = $cek->row()->doc;
+                        unlink($path.$file_name);
+                    }
+
+                    $data = [
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->where('id', $idissue);
+                    $this->db->update('issue', $data);
+                }else{
+                    $data = [
+                        'priority' => $this->input->post('priority', TRUE),
+                        'idtask' => $this->input->post('idtask', TRUE),
+                        'desc' => $this->input->post('problem', TRUE),
+                        'request' => $this->input->post('request', TRUE),
+                        'time' => $this->input->post('time', TRUE),
+                        'deadline' => $this->input->post('deadline', TRUE),
+                        'status' => $this->input->post('status', TRUE),
+                    ];
+
+                    $this->db->where('id', $idissue);
+                    $this->db->update('issue', $data);
+                }
+
+                if($this->db->affected_rows() > 0 ){
+                    $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($type == "addReport"){
+                $config['upload_path']      = './uploads/reports/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+                    $data = [
+                        'idproject' => $this->input->post('idproject', TRUE),
+                        'iddiv' => $this->input->post('iddiv', TRUE),
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->insert('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Tambahkan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }
+
+            }elseif($type == "editReport"){
+                $idreport = $this->input->post('idreport', TRUE);
+                $cek = $this->db->get_where('report', ['id' => $idreport])->row();
+
+                $config['upload_path']      = './uploads/reports/';
+                $config['allowed_types']    = '*';
+                
+                $this->load->library('upload', $config);
+                if($this->upload->do_upload('doc')){
+                    $doc = $this->upload->data();
+
+                    if($cek->doc == TRUE){
+                        $path = './uploads/reports/';
+                        $file_name = $cek->doc;
+                        unlink($path.$file_name);
+                    }
+
+                    $data = [
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE),
+                        'doc' => $doc['file_name']  
+                    ];
+
+                    $this->db->where('id', $idreport);
+                    $this->db->update('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
+                }else{
+                    $data = [
+                        'desc' => $this->input->post('desc', TRUE),
+                        'date' => $this->input->post('date', TRUE)
+                    ];
+
+                    $this->db->where('id', $idreport);
+                    $this->db->update('report', $data);
+                    
+                    if($this->db->affected_rows() > 0 ){
+                        $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
+                        redirect($_SERVER['HTTP_REFERER']);
+                    }
                 }
             }
         }
