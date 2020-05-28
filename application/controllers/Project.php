@@ -1087,8 +1087,7 @@ class Project extends CI_Controller{
                     'iddiv' => $this->input->post('iddiv', TRUE),
                     'project_name' => $this->input->post('project_name', TRUE),
                     'start' => $this->input->post('start', TRUE),
-                    'end' => $this->input->post('end', TRUE),
-                    'desc' => $this->input->post('desc', TRUE)
+                    'end' => $this->input->post('end', TRUE)
                 ];
                 $this->db->insert('project', $data);
     
@@ -1420,7 +1419,8 @@ class Project extends CI_Controller{
                     'pic' => $this->input->post('pic', TRUE),
                     'actualStart' => $this->input->post('start', TRUE),
                     'actualEnd' => $this->input->post('end', TRUE),
-                    'progressValue' => $this->input->post('progressValue', TRUE)
+                    'progressValue' => $this->input->post('progressValue', TRUE),
+                    'desc' => $this->input->post('desc', TRUE)
                 ];
                 $this->db->where('id', $iidtask);
                 $this->db->update('task', $data);
@@ -1677,7 +1677,8 @@ class Project extends CI_Controller{
                     'name' => $this->input->post('task', TRUE),
                     'actualStart' => $this->input->post('start', TRUE),
                     'actualEnd' => $this->input->post('end', TRUE),
-                    'progressValue' => $this->input->post('progressValue', TRUE)
+                    'progressValue' => $this->input->post('progressValue', TRUE),
+                    'desc' => $this->input->post('desc', TRUE)
                 ];
                 $this->db->where('id', $iidtask);
                 $this->db->update('task', $data);
