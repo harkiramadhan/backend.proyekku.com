@@ -945,7 +945,9 @@ class Project extends CI_Controller{
                             <div class="row">
                                 <div class="col-12">
                                     <h4 class="mb-0 text-capitalize" id="editTitle">Detail : <strong><?= $task->name ?></strong> &nbsp;
-                                        <?php if($task->status == ""): ?>
+                                        <?php 
+                                        if($task->pic == $iduser){
+                                        if($task->status == ""): ?>
                                             <span class="badge badge-info">On Schedule</span>
                                         <?php elseif($task->status == "Done"): ?>
                                             <span class="badge badge-success"><?= $task->status ?></span>
@@ -963,7 +965,7 @@ class Project extends CI_Controller{
                                         <?php else: ?>
                                             <button class="btn mt-1 btn-sm btn-default mark" data-type="markPending"><i class="fas fa-clock"></i> &nbsp;Mark As Pending</button>
                                             <button class="btn mt-1 btn-sm btn-success ml-1 mark" data-type="markDone"><i class="fas fa-check-circle"></i> &nbsp;Mark As Done</button>
-                                        <?php endif; ?>
+                                        <?php endif; }?>
                                     </div>
                                 </div>
                                 <div class="col-2 p-0 text-center mt-2">
