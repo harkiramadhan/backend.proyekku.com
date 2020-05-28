@@ -1087,7 +1087,8 @@ class Project extends CI_Controller{
                     'iddiv' => $this->input->post('iddiv', TRUE),
                     'project_name' => $this->input->post('project_name', TRUE),
                     'start' => $this->input->post('start', TRUE),
-                    'end' => $this->input->post('end', TRUE)
+                    'end' => $this->input->post('end', TRUE),
+                    'desc' => $this->input->post('desc', TRUE)
                 ];
                 $this->db->insert('project', $data);
     
@@ -1385,7 +1386,8 @@ class Project extends CI_Controller{
                     'iddiv' => $iddiv,
                     'project_name' => $this->input->post('project_name', TRUE),
                     'start' => $this->input->post('start', TRUE),
-                    'end' => $this->input->post('end', TRUE)
+                    'end' => $this->input->post('end', TRUE),
+                    'desc' => $this->input->post('desc', TRUE)
                 ];
                 $this->db->insert('project', $data);
     
@@ -1659,7 +1661,8 @@ class Project extends CI_Controller{
                     'pic' => $iduser,
                     'actualStart' => $this->input->post('start', TRUE),
                     'actualEnd' => $this->input->post('end', TRUE),
-                    'parent' => $this->input->post('parent', TRUE)
+                    'parent' => $this->input->post('parent', TRUE),
+                    'desc' => $this->input->post('desc', TRUE)
                 ];
 
                 $this->db->insert('task', $data);
