@@ -22,21 +22,21 @@ class Project extends CI_Controller{
         $var['title'] = "Project";
         $var['username'] = $this->session('username');
         $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
+        $var['report'] = $this->db->get_where('report', ['idproject' => $idproject ]);
+
+        $this->db->select('task.name, issue.*');
+        $this->db->from('issue');
+        $this->db->join('task', 'issue.idtask = task.id', 'left');
+        $this->db->where([
+            'issue.idproject' => $idproject
+        ]);
+        $var['issue'] = $this->db->get();
     
         if($role == 2){
             $iduser = $this->session('iduser');
             $var['project'] = $this->M_Project->get_byId($idproject);
             $var['task'] = $this->M_Project->get_taskByIdProject($idproject, $iduser);
-            $var['report'] = $this->db->get_where('report', ['idproject' => $idproject ]);
-
-            $this->db->select('task.name, issue.*');
-            $this->db->from('issue');
-            $this->db->join('task', 'issue.idtask = task.id', 'left');
-            $this->db->where([
-                'issue.idproject' => $idproject
-            ]);
-            $var['issue'] = $this->db->get();
-            
+        
             $project = $var['project'];
             $var['getUser'] = $this->M_User->get_allUserDiv($project->iddiv);
             
@@ -50,15 +50,6 @@ class Project extends CI_Controller{
             $var['project'] = $this->M_Project->get_byId($idproject);
             $var['getUser'] = $this->M_User->get_allUserDiv($iddiv);
             $var['task'] = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
-            $var['report'] = $this->db->get_where('report', ['idproject' => $idproject ]);
-
-            $this->db->select('task.name, issue.*');
-            $this->db->from('issue');
-            $this->db->join('task', 'issue.idtask = task.id', 'left');
-            $this->db->where([
-                'issue.idproject' => $idproject
-            ]);
-            $var['issue'] = $this->db->get();
  
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/project', $var);
