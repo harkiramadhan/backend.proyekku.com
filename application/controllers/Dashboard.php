@@ -41,6 +41,8 @@ class Dashboard extends CI_Controller{
             $iddiv = $this->session('iddiv');
             $var['user'] = $this->M_User->get_allUserDiv($iddiv)->num_rows();
             $var['userPending'] = $this->M_User->get_userDivPending($iddiv)->num_rows();
+            $var['totalProject'] = $this->db->get_where('project', ['iddiv' => $iddiv])->num_rows();
+            $var['totalTask'] = $this->db->get_where('task', ['iddiv' => $iddiv])->num_rows();
 
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/dashboard', $var);
