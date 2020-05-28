@@ -50,6 +50,15 @@ class Project extends CI_Controller{
             $var['project'] = $this->M_Project->get_byId($idproject);
             $var['getUser'] = $this->M_User->get_allUserDiv($iddiv);
             $var['task'] = $this->M_Project->get_taskByIdProjectDiv($idproject, $idpt, $iddiv);
+            $var['report'] = $this->db->get_where('report', ['idproject' => $idproject ]);
+
+            $this->db->select('task.name, issue.*');
+            $this->db->from('issue');
+            $this->db->join('task', 'issue.idtask = task.id', 'left');
+            $this->db->where([
+                'issue.idproject' => $idproject
+            ]);
+            $var['issue'] = $this->db->get();
  
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/project', $var);
