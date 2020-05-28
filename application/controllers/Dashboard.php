@@ -33,6 +33,9 @@ class Dashboard extends CI_Controller{
             $iduser = $this->session('iduser');
             $var['user'] = $this->M_User->get_allUserPT($iduser)->num_rows();
 
+            $var['totalProject'] = $this->db->get_where('project', ['idpt' => $iduser])->num_rows();
+            $var['totalTask'] = $this->db->get_where('task', ['idpt' => $iduser])->num_rows();
+
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/dashboard', $var);
             $this->load->view('admin_pt/layout/footer', $var);   
@@ -50,6 +53,9 @@ class Dashboard extends CI_Controller{
         }elseif($role == 4){
             $iduser = $this->session('iduser');
             $iddiv = $this->session('iddiv');
+
+            $var['totalProject'] = $this->db->get_where('project', ['iddiv' => $iddiv])->num_rows();
+            $var['totalTask'] = $this->db->get_where('task', ['iddiv' => $iddiv])->num_rows();
 
             $this->load->view('user/layout/header', $var);
             $this->load->view('user/dashboard', $var);
