@@ -1987,7 +1987,10 @@ class Project extends CI_Controller{
                     ];
                 }
 
-                $this->db->where('id', $this->input->post('id', TRUE));
+                $this->db->where([
+                    'id' => $this->input->post('id', TRUE),
+                    'pic' => $iduser
+                ]);
                 $this->db->update('task', $data);
 
                 if($this->db->affected_rows() > 0){
