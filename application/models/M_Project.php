@@ -52,7 +52,6 @@ class M_Project extends CI_Model{
         $this->db->where([
             'task.idproject' => $idproject,
             'task.idpt' => $idpt,
-            'task.pic' => $iduser
         ]);
         $this->db->order_by('task.actualStart', "ASC");
         return $this->db->get();

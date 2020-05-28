@@ -1023,6 +1023,7 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                         </div>
+                        <?php if($task->pic == $iduser): ?>
                         <div class="card-footer text-left">
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp; Save</button>
@@ -1037,6 +1038,7 @@ class Project extends CI_Controller{
                                 </form>
                             </div>
                         </div>
+                        <?php endif; ?>
                         <script type="text/javascript">
                             $('.mark').click(function(){
                                 var type = "mark";
