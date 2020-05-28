@@ -1003,6 +1003,10 @@ class Project extends CI_Controller{
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="">Description </label>
+                                <textarea class="form-control form-control-alternative form-control-sm" name="desc" cols="30" rows="10" placeholder="Type Description Here ..."><?= $task->desc ?></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Progress <small class="text-warning"><strong>*</strong></small></label>
                                 <select name="progressValue" class="form-control form-control-alternative form-control-sm">
                                     <option value="0%" <?php if($task->progressValue == "0%"){echo "selected";} ?>>0%</option>
@@ -1140,6 +1144,10 @@ class Project extends CI_Controller{
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="">Description </label>
+                                <textarea class="form-control form-control-alternative form-control-sm" name="desc" cols="30" rows="10" placeholder="Type Description Here ..."></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Progress <small class="text-warning"><strong>*</strong></small></label>
                                 <select name="progressValue" class="form-control form-control-alternative form-control-sm">
                                     <option value="0%">0%</option>
@@ -1192,8 +1200,8 @@ class Project extends CI_Controller{
                                     clear: 'fa fa-trash',
                                     close: 'fa fa-remove'
                                     },
-                                    minDate: '<?= date('m-d-Y', strtotime($task->project_start)) ?>',
-                                    maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->project_end)) ) ?>'
+                                    minDate: '<?= date('m-d-Y', strtotime($task->actualStart)) ?>',
+                                    maxDate: '<?= date('m-d-Y', strtotime("1 day", strtotime($task->actualEnd)) ) ?>'
                                 });
                                 $(".startDatetimepicker").on("dp.change", function (e) {
                                     $('.endDatetimepicker').data("DateTimePicker").minDate(e.date);
