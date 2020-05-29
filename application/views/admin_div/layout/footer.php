@@ -182,13 +182,17 @@
       var chartData = {
       labels: <?= $project ?>,
       datasets: [{
+          label: "Total Task",
+          backgroundColor: "magenta",
+          data: <?= $tot ?>
+      },{
           label: "Task Complete",
           backgroundColor: "green",
-          data: [7, 8, 3]
+          data: <?= $compl ?>
       }, {
           label: "Delayed Task",
           backgroundColor: "orange",
-          data: [0, 9, 7]
+          data: <?= $del ?>
       }, {
           label: "Missed Deadlines",
           backgroundColor: "red",
