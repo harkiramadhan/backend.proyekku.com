@@ -248,12 +248,28 @@
               }
             }
           }]
+        },
+        tooltips: {
+          callbacks: {
+            label: function(item, data) {
+              var label = data.datasets[item.datasetIndex].label || '';
+              var yLabel = item.yLabel;
+              var content = '';
+
+              if (data.datasets.length > 1) {
+                content += ' ' + label + '%';
+              }
+
+              content +=  ' ' + yLabel + '%';
+              return content;
+            }
+          }
         }
       },
       data: {
         labels: <?= $project ?>,
         datasets: [{
-          label: 'Progress',
+          label: 'Performance',
           data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
         }]
       }
