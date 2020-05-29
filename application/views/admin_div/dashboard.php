@@ -126,15 +126,22 @@
     <div class="card-header border-0 bg-default">
       <h3 class="mb-0 text-white"><strong>Work Overview</strong></h3>
     </div>
-    <div class="card-body">
+    <div class="card-body bg-secondary">
       <div class="row">
-        <?php foreach($totalProject->result() as $p){ ?>
+        <?php foreach($totalProject->result() as $p){
+          $tasks = $this->db->get_where('task', ['idproject' => $p->id]);  
+          $jumtas = $tasks->num_rows();
+          $this->db->select_sum('progressValue');
+          $this->db->where('idproject', $p->id);
+          $sum = $this->db->get('task');
+          $perc = substr($sum->row()->progressValue / $jumtas, 0, 4);
+        ?>
         <div class="col-xl-6">
-          <div class="card p-0 mb-2 shadow">
+          <div class="card p-0 mb-3">
             <div class="card-header bg-default border-0">
               <h5 class="h3 mb-0 text-white"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
             </div>
-            <div class="card-body bg-secondary">
+            <div class="card-body pb-0 bg-secondary">
               <div class="row">
                 <div class="col-4">
                   <div class="card card-stats">
@@ -143,11 +150,11 @@
                           <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0">Complete</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $user ?> %</span>
+                              <span class="h2 font-weight-bold mb-0"><?= $perc ?> %</span>
                           </div>
                           <div class="col-auto">
                               <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
-                              <i class="fas fa-check-double"></i>
+                              <i class="fas fa-check"></i>
                               </div>
                           </div>
                           </div>
