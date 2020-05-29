@@ -122,11 +122,11 @@
     </div>
   </div>
   <hr class="mt-2">
-  <div class="card mb-3">
+  <div class="card mb-3" style="box-shadow: none">
     <div class="card-header border-0 bg-default">
       <h3 class="mb-0 text-white"><strong>Work Overview</strong></h3>
     </div>
-    <div class="card-body bg-secondary">
+    <div class="card-body" style="background-color: #f8f9fe">
       <div class="row">
         <?php foreach($totalProject->result() as $p){
           $tasks = $this->db->get_where('task', ['idproject' => $p->id]);  
@@ -140,7 +140,7 @@
           $end = strtotime($p->end);
           $datediff = $end - $start;
           $planed = round($datediff / (60 * 60 * 24));
-          
+
         ?>
         <div class="col-xl-6">
           <div class="card p-0 mb-3">
@@ -151,7 +151,7 @@
               <div class="row">
                 <div class="col-4">
                   <div class="card card-stats">
-                    <div class="card-body">
+                    <div class="card-body p-2">
                         <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0">Complete</h5>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="col-4">
                   <div class="card card-stats">
-                    <div class="card-body">
+                    <div class="card-body p-2">
                         <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0">Planed</h5>
@@ -185,11 +185,11 @@
                 </div>
                 <div class="col-4">
                   <div class="card card-stats">
-                    <div class="card-body">
+                    <div class="card-body p-2">
                         <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0">Actual</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $perc ?> %</span>
+                              <span class="h2 font-weight-bold mb-0"><?= $perc ?> Days</span>
                           </div>
                           <div class="col-auto">
                               <div class="icon icon-shape bg-info text-white rounded-circle shadow">
