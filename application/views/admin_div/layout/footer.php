@@ -178,8 +178,8 @@
       });
     </script>
   <?php elseif($this->uri->segment(1) == "dashboard"): ?>
-    <script>
-      var chartData = {
+  <script>
+    var chartData = {
       labels: <?= $project ?>,
       datasets: [{
           label: "Total Task",
@@ -197,10 +197,6 @@
           label: "Missed Deadlines",
           backgroundColor: "rgba(75, 192, 192, 1)",
           data: <?= $miss ?>
-      }, {
-          label: "Critical Task",
-          backgroundColor: "rgba(153, 102, 255, 1)",
-          data: [0, 10, 12]
       }],
       
     };
@@ -222,6 +218,61 @@
           }
       }
     });
+
+    var SalesChart = (function() {
+
+  // Variables
+
+  var $chart = $('#chart-3');
+
+
+  // Methods
+
+  function init($chart) {
+
+    var salesChart = new Chart($chart, {
+      type: 'line',
+      options: {
+        scales: {
+          yAxes: [{
+            gridLines: {
+              lineWidth: 1,
+              color: Charts.colors.gray[900],
+              zeroLineColor: Charts.colors.gray[900]
+            },
+            ticks: {
+              callback: function(value) {
+                if (!(value % 10)) {
+                  return value + '%';
+                }
+              }
+            }
+          }]
+        }
+      },
+      data: {
+        labels: <?= $project ?>,
+        datasets: [{
+          label: 'Progress',
+          data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+        }]
+      }
+    });
+
+    // Save to jQuery object
+
+    $chart.data('chart', salesChart);
+
+  };
+
+
+  // Events
+
+  if ($chart.length) {
+    init($chart);
+  }
+
+})();
   </script>
   <?php endif; ?>
 </body>
