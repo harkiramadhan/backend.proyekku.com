@@ -99,7 +99,6 @@
       </div>
     </div>
 
-
     <div class="col-xl-12">
       <div class="card bg-default">
 
@@ -122,3 +121,16 @@
       </div>
     </div>
   </div>
+  <hr class="mt-2">
+  <div class="card mb-3">
+    <div class="card-header border-0 bg-default">
+      <h3 class="mb-0 text-white"><strong>Work Overview</strong></h3>
+    </div>
+  </div>
+  <?php foreach($totalProject->result() as $p){ ?>
+  <div class="card p-0 mb-2 shadow">
+    <div class="card-header border-0">
+      <h5 class="h3 mb-0"><?= $p->project_name ?></h5>
+    </div>
+  </div>
+  <?php } ?>
