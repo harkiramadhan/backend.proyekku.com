@@ -139,8 +139,8 @@
           $start = strtotime($p->start);
           $end = strtotime($p->end);
           $datediff = $end - $start;
-
           $planed = round($datediff / (60 * 60 * 24));
+          
         ?>
         <div class="col-xl-6">
           <div class="card p-0 mb-3">
