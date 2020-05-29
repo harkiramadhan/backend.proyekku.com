@@ -183,27 +183,26 @@
       labels: <?= $project ?>,
       datasets: [{
           label: "Total Task",
-          backgroundColor: "magenta",
+          backgroundColor: 'rgba(255, 99, 132, 1)',
           data: <?= $tot ?>
       },{
           label: "Task Complete",
-          backgroundColor: "green",
+          backgroundColor: "rgba(54, 162, 235, 1)",
           data: <?= $compl ?>
       }, {
           label: "Delayed Task",
-          backgroundColor: "orange",
+          backgroundColor: "rgba(255, 206, 86, 1)",
           data: <?= $del ?>
       }, {
           label: "Missed Deadlines",
-          backgroundColor: "red",
+          backgroundColor: "rgba(75, 192, 192, 1)",
           data: [0, 10, 12]
       }, {
           label: "Critical Task",
-          backgroundColor: "blue",
+          backgroundColor: "rgba(153, 102, 255, 1)",
           data: [0, 10, 12]
-      }
-    
-      ]
+      }],
+      
     };
 
     var canvas = document.getElementById('chart-2');
@@ -211,14 +210,15 @@
       type: "bar",
       data: chartData,
       options: {
+          legend: {display: true, position:'bottom', labels:{fontSize:13, padding:15,boxWidth:12},},
+          title: {display: false},
           scales: {
-            yAxes: [{
-                display: true,
-                ticks: {
-                  min: 0,
-                  max: 20
-                }
-            }]
+              xAxes: [{
+                  display: true,
+                  ticks: {
+                      suggestedMin: 0
+                  }
+              }]
           }
       }
     });
