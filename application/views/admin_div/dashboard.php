@@ -127,25 +127,44 @@
       <h3 class="mb-0 text-white"><strong>Work Overview</strong></h3>
     </div>
     <div class="card-body">
-    <?php foreach($totalProject->result() as $p){ ?>
-    <div class="card p-0 mb-2 shadow">
-      <div class="card-header border-0">
-        <h5 class="h3 mb-0"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
-      </div>
-      <div class="card-body bg-secondary">
-        <div class="row">
-          <div class="col-4">
-          
-          </div>
-          <div class="col-4">
-          
-          </div>
-          <div class="col-4">
-          
+      <div class="row">
+        <?php foreach($totalProject->result() as $p){ ?>
+        <div class="col-xl-6">
+          <div class="card p-0 mb-2 shadow">
+            <div class="card-header bg-default border-0">
+              <h5 class="h3 mb-0 text-white"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
+            </div>
+            <div class="card-body bg-secondary">
+              <div class="row">
+                <div class="col-4">
+                  <div class="card card-stats">
+                      <!-- Card body -->
+                      <div class="card-body">
+                          <div class="row">
+                          <div class="col">
+                              <h5 class="card-title text-uppercase text-muted mb-0">Complete</h5>
+                              <span class="h2 font-weight-bold mb-0"><?= $user ?> %</span>
+                          </div>
+                          <div class="col-auto">
+                              <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                              <i class="fas fa-check-double"></i>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                
+                </div>
+                <div class="col-4">
+                
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <?php } ?>
       </div>
-    </div>
-    <?php } ?>
     </div>
   </div>
