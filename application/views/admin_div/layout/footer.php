@@ -196,7 +196,7 @@
       }, {
           label: "Missed Deadlines",
           backgroundColor: "rgba(75, 192, 192, 1)",
-          data: [0, 10, 12]
+          data: <?= $miss ?>
       }, {
           label: "Critical Task",
           backgroundColor: "rgba(153, 102, 255, 1)",

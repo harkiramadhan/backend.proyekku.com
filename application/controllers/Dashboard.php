@@ -21,6 +21,12 @@ class Dashboard extends CI_Controller{
         $var['title'] = "Dashboard";
         $var['username'] = $this->session('username');
         $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
+
+        $data = [];
+        $com = [];
+        $del = [];
+        $tot = [];
+        $miss = [];
         
         if($role == 1){
             $var['user'] = $this->M_User->get_allUser()->num_rows();
@@ -47,21 +53,19 @@ class Dashboard extends CI_Controller{
             $var['userPending'] = $this->M_User->get_userDivPending($iddiv)->num_rows();
             $var['totalProject'] = $this->db->order_by('id', "ASC")->get_where('project', ['iddiv' => $iddiv]);
             
-            $data = [];
-            $com = [];
-            $del = [];
-            $tot = [];
             foreach($var['totalProject']->result() as $p){
                 $data[] = $p->project_name;
                 $comp[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue' => "100%"])->num_rows();
                 $del[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows();
                 $tot[] = $this->db->get_where('task', ['idproject' => $p->id])->num_rows();
+                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <=' => date('Y-m-d')])->num_rows();
             }
+
             $var['project'] = json_encode($data);
             $var['compl'] = json_encode($comp);
             $var['del'] = json_encode($del);
             $var['tot'] = json_encode($tot);
-
+            $var['miss'] = json_encode($miss);
 
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/dashboard', $var);
