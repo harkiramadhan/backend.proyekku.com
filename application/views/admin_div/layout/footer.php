@@ -180,20 +180,26 @@
   <?php elseif($this->uri->segment(1) == "dashboard"): ?>
     <script>
       var chartData = {
-      labels: ['2017-05-25', '2017-05-30', '2017-05-31'],
+      labels: <?= $project ?>,
       datasets: [{
-          label: "Reps",
-          backgroundColor: "blue",
+          label: "Task Complete",
+          backgroundColor: "green",
           data: [7, 8, 3]
       }, {
-          label: "Reps",
-          backgroundColor: "red",
+          label: "Delayed Task",
+          backgroundColor: "orange",
           data: [0, 9, 7]
       }, {
-          label: "Reps",
-          backgroundColor: "green",
+          label: "Missed Deadlines",
+          backgroundColor: "red",
           data: [0, 10, 12]
-      }]
+      }, {
+          label: "Critical Task",
+          backgroundColor: "blue",
+          data: [0, 10, 12]
+      }
+    
+      ]
     };
 
     var canvas = document.getElementById('chart-2');

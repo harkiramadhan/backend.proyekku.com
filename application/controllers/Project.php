@@ -1440,7 +1440,11 @@ class Project extends CI_Controller{
             }elseif($type == "updateTask"){
                 if($this->input->post('field', TRUE) == "progressValue"){
                     $val = $this->input->post('value', TRUE);
-                    $hasil = str_replace("0.", "",$val);
+                    if($val == 1){
+                        $hasil = 100;
+                    }else{
+                        $hasil = str_replace("0.", "",$val);
+                    }
                     $data = [
                         'progressValue' => $hasil."%"
                     ];
@@ -1713,7 +1717,11 @@ class Project extends CI_Controller{
             }elseif($type == "updateTask"){
                 if($this->input->post('field', TRUE) == "progressValue"){
                     $val = $this->input->post('value', TRUE);
-                    $hasil = str_replace("0.", "",$val);
+                    if($val == 1){
+                        $hasil = 100;
+                    }else{
+                        $hasil = str_replace("0.", "",$val);
+                    }
                     $data = [
                         'progressValue' => $hasil."%"
                     ];
@@ -1733,7 +1741,7 @@ class Project extends CI_Controller{
 
                 $this->db->where('id', $this->input->post('id', TRUE));
                 $this->db->update('task', $data);
-
+                
                 if($this->db->affected_rows() > 0){
                     echo "Success";
                 }else{
@@ -1971,7 +1979,11 @@ class Project extends CI_Controller{
             }elseif($type == "updateTask"){
                 if($this->input->post('field', TRUE) == "progressValue"){
                     $val = $this->input->post('value', TRUE);
-                    $hasil = str_replace("0.", "",$val);
+                    if($val == 1){
+                        $hasil = 100;
+                    }else{
+                        $hasil = str_replace("0.", "",$val);
+                    }
                     $data = [
                         'progressValue' => $hasil."%"
                     ];

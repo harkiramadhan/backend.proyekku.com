@@ -45,12 +45,18 @@ class Dashboard extends CI_Controller{
             $iddiv = $this->session('iddiv');
             $var['user'] = $this->M_User->get_allUserDiv($iddiv)->num_rows();
             $var['userPending'] = $this->M_User->get_userDivPending($iddiv)->num_rows();
-            $var['totalProject'] = $this->db->get_where('project', ['iddiv' => $iddiv])->num_rows();
+            $var['totalProject'] = $this->db->get_where('project', ['iddiv' => $iddiv]);
             $var['totalTask'] = $this->db->get_where('task', ['iddiv' => $iddiv])->num_rows();
             $var['taskComplete'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'status' => "Done"])->num_rows();
             $var['delayedTask'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'status' => "Pending"])->num_rows();
             $var['delayedTask'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'status' => "Pending"])->num_rows();
-            $var['deadlineTask'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'actualEnd >=' => date('Y-m-d'), 'status !=' => "Done"])->num_rows();
+            // $var['deadlineTask'] = $this->db->get_where('project', ['iddiv' => $iddiv, 'end >=' => date('Y-m-d'), 'status !=' => "Done"])->num_rows();
+            
+            $data = [];
+            foreach($var['totalProject']->result() as $p){
+                $data[] = $p->project_name;
+            }
+            $var['project'] = json_encode($data);
 
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/dashboard', $var);
