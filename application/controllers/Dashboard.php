@@ -27,7 +27,8 @@ class Dashboard extends CI_Controller{
         $del = [];
         $tot = [];
         $miss = [];
-        
+        $perc = [];
+
         if($role == 1){
             $var['user'] = $this->M_User->get_allUser()->num_rows();
             $var['userPending'] = $this->M_User->get_userPending()->num_rows();
@@ -55,10 +56,17 @@ class Dashboard extends CI_Controller{
             
             foreach($var['totalProject']->result() as $p){
                 $data[] = $p->project_name;
+                $tasks = $this->db->get_where('task', ['idproject' => $p->id]);
                 $comp[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue' => "100%"])->num_rows();
                 $del[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows();
-                $tot[] = $this->db->get_where('task', ['idproject' => $p->id])->num_rows();
+                $tot[] = $tasks->num_rows();
                 $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <=' => date('Y-m-d')])->num_rows();
+
+                $jumtas = $tasks->num_rows();
+                $this->db->select_sum('progressValue');
+                $this->db->where('idproject', $p->id);
+                $sum = $this->db->get('task');
+                $perc[] = substr($sum->row()->progressValue / $jumtas, 0, 4); 
             }
 
             $var['project'] = json_encode($data);
@@ -66,6 +74,7 @@ class Dashboard extends CI_Controller{
             $var['del'] = json_encode($del);
             $var['tot'] = json_encode($tot);
             $var['miss'] = json_encode($miss);
+            $var['perc'] = json_encode($perc);
 
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/dashboard', $var);
