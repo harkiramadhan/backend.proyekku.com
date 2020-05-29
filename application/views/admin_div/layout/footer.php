@@ -218,7 +218,8 @@
           }
       }
     });
-
+  </script>
+  <script>
     var SalesChart = (function() {
       var $chart = $('#chart-3');
       function init($chart) {
@@ -250,10 +251,10 @@
                   var content = '';
 
                   if (data.datasets.length > 1) {
-                    content += ' ' + label + '%';
+                    content += 'Progress ' + label + '%';
                   }
 
-                  content +=  ' ' + yLabel + '%';
+                  content +=  'Progress ' + yLabel + '%';
                   return content;
                 }
               }
@@ -273,6 +274,9 @@
         init($chart);
       }
     })();
+  </script>
+  <script>
+  
   </script>
   <?php endif; ?>
 </body>
