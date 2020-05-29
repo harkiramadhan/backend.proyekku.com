@@ -135,6 +135,12 @@
           $this->db->where('idproject', $p->id);
           $sum = $this->db->get('task');
           $perc = substr($sum->row()->progressValue / $jumtas, 0, 4);
+
+          $start = strtotime($p->start);
+          $end = strtotime($p->end);
+          $datediff = $end - $start;
+
+          $planed = round($datediff / (60 * 60 * 24));
         ?>
         <div class="col-xl-6">
           <div class="card p-0 mb-3">
@@ -166,7 +172,7 @@
                         <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0">Planed</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $perc ?> %</span>
+                              <span class="h2 font-weight-bold mb-0"><?= $planed ?> Days</span>
                           </div>
                           <div class="col-auto">
                               <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
