@@ -35,6 +35,7 @@ class Dashboard extends CI_Controller{
 
             $var['totalProject'] = $this->db->get_where('project', ['idpt' => $iduser])->num_rows();
             $var['totalTask'] = $this->db->get_where('task', ['idpt' => $iduser])->num_rows();
+            $var['taskComplete'] = $this->db->get_where('task', ['idpt' => $iduser, 'status' => "Done"])->num_rows();
 
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/dashboard', $var);
@@ -46,6 +47,7 @@ class Dashboard extends CI_Controller{
             $var['userPending'] = $this->M_User->get_userDivPending($iddiv)->num_rows();
             $var['totalProject'] = $this->db->get_where('project', ['iddiv' => $iddiv])->num_rows();
             $var['totalTask'] = $this->db->get_where('task', ['iddiv' => $iddiv])->num_rows();
+            $var['taskComplete'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'status' => "Done"])->num_rows();
 
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/dashboard', $var);
