@@ -126,11 +126,26 @@
     <div class="card-header border-0 bg-default">
       <h3 class="mb-0 text-white"><strong>Work Overview</strong></h3>
     </div>
-  </div>
-  <?php foreach($totalProject->result() as $p){ ?>
-  <div class="card p-0 mb-2 shadow">
-    <div class="card-header border-0">
-      <h5 class="h3 mb-0"><?= $p->project_name ?></h5>
+    <div class="card-body">
+    <?php foreach($totalProject->result() as $p){ ?>
+    <div class="card p-0 mb-2 shadow">
+      <div class="card-header border-0">
+        <h5 class="h3 mb-0"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
+      </div>
+      <div class="card-body bg-secondary">
+        <div class="row">
+          <div class="col-4">
+          
+          </div>
+          <div class="col-4">
+          
+          </div>
+          <div class="col-4">
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
     </div>
   </div>
-  <?php } ?>
