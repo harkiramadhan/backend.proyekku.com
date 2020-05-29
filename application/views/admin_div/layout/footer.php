@@ -177,6 +177,42 @@
         });
       });
     </script>
+  <?php elseif($this->uri->segment(1) == "dashboard"): ?>
+    <script>
+      var chartData = {
+      labels: ['2017-05-25', '2017-05-30', '2017-05-31'],
+      datasets: [{
+          label: "Reps",
+          backgroundColor: "blue",
+          data: [7, 8, 3]
+      }, {
+          label: "Reps",
+          backgroundColor: "red",
+          data: [0, 9, 7]
+      }, {
+          label: "Reps",
+          backgroundColor: "green",
+          data: [0, 10, 12]
+      }]
+    };
+
+    var canvas = document.getElementById('chart-2');
+    var myBarChart = new Chart(canvas, {
+      type: "bar",
+      data: chartData,
+      options: {
+          scales: {
+            yAxes: [{
+                display: true,
+                ticks: {
+                  min: 0,
+                  max: 20
+                }
+            }]
+          }
+      }
+    });
+  </script>
   <?php endif; ?>
 </body>
 
