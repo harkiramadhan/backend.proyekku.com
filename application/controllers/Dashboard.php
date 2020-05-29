@@ -48,6 +48,7 @@ class Dashboard extends CI_Controller{
             $var['totalProject'] = $this->db->get_where('project', ['iddiv' => $iddiv])->num_rows();
             $var['totalTask'] = $this->db->get_where('task', ['iddiv' => $iddiv])->num_rows();
             $var['taskComplete'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'status' => "Done"])->num_rows();
+            $var['delayedTask'] = $this->db->get_where('task', ['iddiv' => $iddiv, 'status' => "Pending"])->num_rows();
 
             $this->load->view('admin_div/layout/header', $var);
             $this->load->view('admin_div/dashboard', $var);
