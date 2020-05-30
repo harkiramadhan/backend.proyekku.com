@@ -129,7 +129,8 @@
     <div class="card-body" style="background-color: #f8f9fe">
       <div class="row">
         <?php foreach($totalProject->result() as $p){
-          $tasks = $this->db->order_by('timestamp', "DESC")->get_where('task', ['idproject' => $p->id]);  
+          $tasks = $this->db->order_by('timestamp', "DESC")->get_where('task', ['idproject' => $p->id]); 
+          $delay = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows(); 
           $jumtas = $tasks->num_rows();
           
           $start = strtotime($p->start);
@@ -152,7 +153,7 @@
           }
 
         ?>
-        <div class="col-xl-6">
+        <div class="col-xl-12">
           <div class="card p-0 mb-3">
             <div class="card-header bg-default border-0">
               <div class="row">
@@ -166,7 +167,7 @@
             </div>
             <div class="card-body pb-0 bg-secondary">
               <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                   <div class="card card-stats">
                     <div class="card-body p-2 bg-success">
                         <div class="row">
@@ -183,7 +184,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                   <div class="card card-stats">
                     <div class="card-body p-2 bg-primary">
                         <div class="row">
@@ -200,7 +201,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                   <div class="card card-stats">
                     <?php if($actual > $planed): ?>
                     <div class="card-body p-2 bg-danger">
@@ -211,6 +212,23 @@
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0 text-white">Actual</h5>
                               <span class="h2 font-weight-bold mb-0 text-white"><?= $actual ?> Days</span>
+                          </div>
+                          <div class="col-auto">
+                              <div class="icon icon-shape text-white rounded-circle shadow">
+                              <i class="fas fa-clock"></i>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="card card-stats">
+                    <div class="card-body p-2 bg-warning">
+                        <div class="row">
+                          <div class="col">
+                              <h5 class="card-title text-uppercase text-muted mb-0 text-white">Delayed Task</h5>
+                              <span class="h2 font-weight-bold mb-0 text-white"><?= $delay ?></span>
                           </div>
                           <div class="col-auto">
                               <div class="icon icon-shape text-white rounded-circle shadow">
