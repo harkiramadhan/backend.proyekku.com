@@ -160,7 +160,7 @@
                   <h5 class="h3 mb-0 text-white"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
                 </div>
                 <div class="col-6 text-right">
-                  <h5 class="h3 mb-0 text-white"><?= date('Y-m-d', strtotime($p->start))." - ".date('Y-m-d', strtotime($p->end)) ?></h5>
+                  <h5 class="h3 mb-0 text-white"><?= date('d-m-Y', strtotime($p->start))." - ".date('d-m-Y', strtotime($p->end)) ?></h5>
                 </div>
               </div>
             </div>
