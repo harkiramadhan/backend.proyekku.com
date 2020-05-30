@@ -177,6 +177,104 @@
         });
       });
     </script>
+  <?php elseif($this->uri->segment(1) == "dashboard"): ?>
+  <script>
+    var chartData = {
+      labels: <?= $project ?>,
+      datasets: [{
+          label: "Total Task",
+          backgroundColor: 'rgba(255, 99, 132, 1)',
+          data: <?= $tot ?>
+      },{
+          label: "Task Complete",
+          backgroundColor: "rgba(54, 162, 235, 1)",
+          data: <?= $compl ?>
+      }, {
+          label: "Delayed Task",
+          backgroundColor: "rgba(255, 206, 86, 1)",
+          data: <?= $del ?>
+      }, {
+          label: "Missed Deadlines",
+          backgroundColor: "rgba(75, 192, 192, 1)",
+          data: <?= $miss ?>
+      }],
+      
+    };
+
+    var canvas = document.getElementById('chart-2');
+    var myBarChart = new Chart(canvas, {
+      type: "bar",
+      data: chartData,
+      options: {
+          legend: {display: true, position:'bottom', labels:{fontSize:13, padding:15,boxWidth:12},},
+          title: {display: false},
+          scales: {
+              xAxes: [{
+                  display: true,
+                  ticks: {
+                      suggestedMin: 0
+                  }
+              }]
+          }
+      }
+    });
+  </script>
+  <script>
+    var SalesChart = (function() {
+      var $chart = $('#chart-3');
+      function init($chart) {
+
+        var salesChart = new Chart($chart, {
+          type: 'line',
+          options: {
+            scales: {
+              yAxes: [{
+                gridLines: {
+                  lineWidth: 1,
+                  color: Charts.colors.gray[900],
+                  zeroLineColor: Charts.colors.gray[900]
+                },
+                ticks: {
+                  callback: function(value) {
+                    if (!(value % 10)) {
+                      return value + '%';
+                    }
+                  }
+                }
+              }]
+            },
+            tooltips: {
+              callbacks: {
+                label: function(item, data) {
+                  var label = data.datasets[item.datasetIndex].label || '';
+                  var yLabel = item.yLabel;
+                  var content = '';
+
+                  if (data.datasets.length > 1) {
+                    content += 'Progress ' + label + '%';
+                  }
+
+                  content +=  'Progress ' + yLabel + '%';
+                  return content;
+                }
+              }
+            }
+          },
+          data: {
+            labels: <?= $project ?>,
+            datasets: [{
+              label: 'Performance',
+              data: <?= $perc ?>
+            }]
+          }
+        });
+        $chart.data('chart', salesChart);
+      };
+      if ($chart.length) {
+        init($chart);
+      }
+    })();
+  </script>
   <?php endif; ?>
 </body>
 
