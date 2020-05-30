@@ -202,7 +202,11 @@
                 </div>
                 <div class="col-4">
                   <div class="card card-stats">
+                    <?php if($actual > $planed): ?>
+                    <div class="card-body p-2 bg-danger">
+                    <?php else: ?>
                     <div class="card-body p-2 bg-info">
+                    <?php endif; ?>
                         <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0 text-white">Actual</h5>
