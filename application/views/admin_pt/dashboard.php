@@ -232,12 +232,21 @@
                           </div>
                           <div class="col-auto">
                               <div class="icon icon-shape text-white rounded-circle shadow">
-                              <i class="fas fa-clock"></i>
+                              <i class="fas fa-stopwatch"></i>
                               </div>
                           </div>
                         </div>
                     </div>
                   </div>
+                </div>
+                <div class="col-xl-12 text-center mb-3">
+                  <h4>
+                    <i class="fas fa-circle text-success"></i> <small class="text-default">Task Complete</small>
+                    <i class="fas fa-circle text-primary ml-2"></i> <small class="text-default">Planed</small>
+                    <i class="fas fa-circle text-info ml-2"></i> <small class="text-default">Actual</small>
+                    <i class="fas fa-circle text-danger ml-2"></i> <small class="text-default">Actual</small>
+                    <i class="fas fa-circle text-warning ml-2"></i> <small class="text-default">Delayed Task</small>
+                  </h4>
                 </div>
               </div>
             </div>
