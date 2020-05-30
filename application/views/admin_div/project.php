@@ -85,10 +85,10 @@
                                         </td>
                                         <td>
                                             <span class="badge badge-dot mr-4">
-                                            <?php if($row->status == "pending"): ?>
+                                            <?php if($row->status == "Pending"): ?>
                                                 <i class="bg-warning"></i>
                                                 <span class="status">pending</span>
-                                            <?php elseif($row->status == "done"): ?>
+                                            <?php elseif($row->status == "Done"): ?>
                                                 <i class="bg-success"></i>
                                                 <span class="status">completed</span>
                                             <?php else: ?>
