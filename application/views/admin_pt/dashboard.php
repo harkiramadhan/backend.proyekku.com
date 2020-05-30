@@ -151,7 +151,6 @@
             $perc = 0;
             $actual = 0;
           }
-
         ?>
         <div class="col-xl-12">
           <div class="card p-0 mb-3">
