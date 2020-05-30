@@ -43,6 +43,32 @@ class Dashboard extends CI_Controller{
             $var['totalProject'] = $this->db->get_where('project', ['idpt' => $iduser])->num_rows();
             $var['totalTask'] = $this->db->get_where('task', ['idpt' => $iduser])->num_rows();
             $var['taskComplete'] = $this->db->get_where('task', ['idpt' => $iduser, 'status' => "Done"])->num_rows();
+            $var['totalProject'] = $this->db->order_by('id', "ASC")->get_where('project', ['idpt' => $iduser]);
+
+            foreach($var['totalProject']->result() as $p){
+                $data[] = $p->project_name;
+                $tasks = $this->db->get_where('task', ['idproject' => $p->id]);
+                $comp[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue' => "100%"])->num_rows();
+                $del[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows();
+                $tot[] = $tasks->num_rows();
+                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <=' => date('Y-m-d')])->num_rows();
+
+                $jumtas = $tasks->num_rows();
+
+                if($jumtas > 0){
+                    $this->db->select_sum('progressValue');
+                    $this->db->where('idproject', $p->id);
+                    $sum = $this->db->get('task');
+                    $perc[] = substr($sum->row()->progressValue / $jumtas, 0, 4); 
+                }
+            }
+
+            $var['project'] = json_encode($data);
+            $var['compl'] = json_encode($comp);
+            $var['del'] = json_encode($del);
+            $var['tot'] = json_encode($tot);
+            $var['miss'] = json_encode($miss);
+            $var['perc'] = json_encode($perc);
 
             $this->load->view('admin_pt/layout/header', $var);
             $this->load->view('admin_pt/dashboard', $var);
