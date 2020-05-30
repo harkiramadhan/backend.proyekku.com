@@ -129,23 +129,40 @@
     <div class="card-body" style="background-color: #f8f9fe">
       <div class="row">
         <?php foreach($totalProject->result() as $p){
-          $tasks = $this->db->get_where('task', ['idproject' => $p->id]);  
+          $tasks = $this->db->order_by('timestamp', "DESC")->get_where('task', ['idproject' => $p->id]);  
           $jumtas = $tasks->num_rows();
-          $this->db->select_sum('progressValue');
-          $this->db->where('idproject', $p->id);
-          $sum = $this->db->get('task');
-          $perc = substr($sum->row()->progressValue / $jumtas, 0, 4);
-
+          
           $start = strtotime($p->start);
           $end = strtotime($p->end);
           $datediff = $end - $start;
           $planed = round($datediff / (60 * 60 * 24));
 
+          if($jumtas > 0){
+            $this->db->select_sum('progressValue');
+            $this->db->where('idproject', $p->id);
+            $sum = $this->db->get('task');
+            $perc = substr($sum->row()->progressValue / $jumtas, 0, 4);
+            
+            $tot = strtotime($tasks->row()->timestamp);
+            $difftot = $tot - $start;
+            $actual = round($difftot / (60 * 60 * 24));
+          }else{
+            $perc = 0;
+            $actual = 0;
+          }
+
         ?>
         <div class="col-xl-6">
           <div class="card p-0 mb-3">
             <div class="card-header bg-default border-0">
-              <h5 class="h3 mb-0 text-white"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
+              <div class="row">
+                <div class="col-6">
+                  <h5 class="h3 mb-0 text-white"><i class="fas fa-angle-double-right"></i> &nbsp;<?= $p->project_name ?></h5>
+                </div>
+                <div class="col-6 text-right">
+                  <h5 class="h3 mb-0 text-white"><?= date('Y-m-d', strtotime($p->start))." - ".date('Y-m-d', strtotime($p->end)) ?></h5>
+                </div>
+              </div>
             </div>
             <div class="card-body pb-0 bg-secondary">
               <div class="row">
@@ -189,7 +206,7 @@
                         <div class="row">
                           <div class="col">
                               <h5 class="card-title text-uppercase text-muted mb-0">Actual</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $perc ?> Days</span>
+                              <span class="h2 font-weight-bold mb-0"><?= $actual ?> Days</span>
                           </div>
                           <div class="col-auto">
                               <div class="icon icon-shape bg-info text-white rounded-circle shadow">

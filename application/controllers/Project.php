@@ -1661,8 +1661,7 @@ class Project extends CI_Controller{
                     'iddiv' => $iddiv,
                     'project_name' => $this->input->post('project_name', TRUE),
                     'start' => $this->input->post('start', TRUE),
-                    'end' => $this->input->post('end', TRUE),
-                    'desc' => $this->input->post('desc', TRUE)
+                    'end' => $this->input->post('end', TRUE)
                 ];
                 $this->db->insert('project', $data);
     

@@ -63,10 +63,13 @@ class Dashboard extends CI_Controller{
                 $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <=' => date('Y-m-d')])->num_rows();
 
                 $jumtas = $tasks->num_rows();
-                $this->db->select_sum('progressValue');
-                $this->db->where('idproject', $p->id);
-                $sum = $this->db->get('task');
-                $perc[] = substr($sum->row()->progressValue / $jumtas, 0, 4); 
+
+                if($jumtas > 0){
+                    $this->db->select_sum('progressValue');
+                    $this->db->where('idproject', $p->id);
+                    $sum = $this->db->get('task');
+                    $perc[] = substr($sum->row()->progressValue / $jumtas, 0, 4); 
+                }
             }
 
             $var['project'] = json_encode($data);
