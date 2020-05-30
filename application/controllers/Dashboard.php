@@ -43,6 +43,7 @@ class Dashboard extends CI_Controller{
             $var['totalProject'] = $this->db->get_where('project', ['idpt' => $iduser])->num_rows();
             $var['totalTask'] = $this->db->get_where('task', ['idpt' => $iduser])->num_rows();
             $var['taskComplete'] = $this->db->get_where('task', ['idpt' => $iduser, 'status' => "Done"])->num_rows();
+            $var['userPending'] = $this->M_User->get_userPtPending($iduser)->num_rows();
             $var['totalProject'] = $this->db->order_by('id', "ASC")->get_where('project', ['idpt' => $iduser]);
 
             foreach($var['totalProject']->result() as $p){
