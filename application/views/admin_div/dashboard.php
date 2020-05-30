@@ -168,14 +168,14 @@
               <div class="row">
                 <div class="col-4">
                   <div class="card card-stats">
-                    <div class="card-body p-2">
+                    <div class="card-body p-2 bg-success">
                         <div class="row">
                           <div class="col">
-                              <h5 class="card-title text-uppercase text-muted mb-0">Complete</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $perc ?> %</span>
+                              <h5 class="card-title text-uppercase text-muted mb-0 text-white">Complete</h5>
+                              <span class="h2 font-weight-bold mb-0 text-white"><?= $perc ?> %</span>
                           </div>
                           <div class="col-auto">
-                              <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                              <div class="icon icon-shape text-white rounded-circle shadow">
                               <i class="fas fa-check"></i>
                               </div>
                           </div>
@@ -185,14 +185,14 @@
                 </div>
                 <div class="col-4">
                   <div class="card card-stats">
-                    <div class="card-body p-2">
+                    <div class="card-body p-2 bg-primary">
                         <div class="row">
                           <div class="col">
-                              <h5 class="card-title text-uppercase text-muted mb-0">Planed</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $planed ?> Days</span>
+                              <h5 class="card-title text-uppercase text-muted text-white mb-0">Planed</h5>
+                              <span class="h2 font-weight-bold mb-0 text-white"><?= $planed ?> Days</span>
                           </div>
                           <div class="col-auto">
-                              <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                              <div class="icon icon-shape text-white rounded-circle shadow">
                               <i class="fas fa-calendar-alt"></i>
                               </div>
                           </div>
@@ -202,14 +202,14 @@
                 </div>
                 <div class="col-4">
                   <div class="card card-stats">
-                    <div class="card-body p-2">
+                    <div class="card-body p-2 bg-info">
                         <div class="row">
                           <div class="col">
-                              <h5 class="card-title text-uppercase text-muted mb-0">Actual</h5>
-                              <span class="h2 font-weight-bold mb-0"><?= $actual ?> Days</span>
+                              <h5 class="card-title text-uppercase text-muted mb-0 text-white">Actual</h5>
+                              <span class="h2 font-weight-bold mb-0 text-white"><?= $actual ?> Days</span>
                           </div>
                           <div class="col-auto">
-                              <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                              <div class="icon icon-shape text-white rounded-circle shadow">
                               <i class="fas fa-clock"></i>
                               </div>
                           </div>
