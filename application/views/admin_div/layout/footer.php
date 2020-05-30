@@ -275,9 +275,6 @@
       }
     })();
   </script>
-  <script>
-  
-  </script>
   <?php endif; ?>
 </body>
 
