@@ -34,7 +34,7 @@
                         <td class="text-center">
                             <form action="<?= site_url('division/action') ?>" method="post">
                             <div class="btn-group">
-                                <button class="btn btn-sm btn-info mr-1" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-sm btn-info mr-1" data-toggle="modal" data-target="#edit_<?= $row->id ?>"><i class="fas fa-pencil-alt"></i></button>
                                 <input type="hidden" name="id" value="<?= $row->id ?>">
                                 <input type="hidden" name="type" value="delete">
                                 <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
