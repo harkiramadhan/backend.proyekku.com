@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller{
         $var['role'] = $this->db->get_where('role', ['id' => $role])->row()->role;
 
         $data = [];
-        $com = [];
+        $comp = [];
         $del = [];
         $tot = [];
         $miss = [];
