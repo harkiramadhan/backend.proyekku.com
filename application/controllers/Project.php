@@ -1030,14 +1030,6 @@ class Project extends CI_Controller{
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> &nbsp; Save</button>
                                 </form>
-                                <button type="button" class="btn btn-sm btn-primary mx-1 addSubTask"><i class="fas fa-plus-circle"></i> &nbsp; Add Sub Task</button>
-                            </div>
-                            <div class="btn-group">
-                                <form action="<?= site_url('project/action') ?>" method="post">
-                                    <input type="hidden" name="type" value="delTask">
-                                    <input type="hidden" name="idtask" value="<?= $task->id ?>">
-                                    <button type="submit" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i> Remove</button>
-                                </form>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -1061,21 +1053,6 @@ class Project extends CI_Controller{
                                                 $('.isiDetailTask').html(data);   
                                             }
                                         });
-                                    }
-                                });
-                            });
-                            $('.addSubTask').click(function(){
-                                var type = "addSubTask";
-                                var selectedTaskId = <?= $task->id ?>;
-                                $.ajax({
-                                    url: '<?= site_url('project/modal') ?>',
-                                    type: 'get',
-                                    data: {type : type, selectedTaskId : selectedTaskId},
-                                    beforeSend: function(){
-
-                                    },
-                                    success: function(data){
-                                        $('.isiDetailTask').html(data);
                                     }
                                 });
                             });

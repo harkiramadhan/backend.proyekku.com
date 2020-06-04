@@ -28,11 +28,6 @@
         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
             <!-- Dark table -->
             <div class="row">
-                <div class="col-12 text-right mb-3">
-                    <div class="btn-group">
-                        <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#addTask"><i class="fas fa-plus-circle"></i> &nbsp;Add Task</button>
-                    </div>
-                </div>
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header bg-transparent border-0">
@@ -101,14 +96,6 @@
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <table class="table align-items-center table-flush table-sm bg-secondary">
-                                <tbody>
-                                    <tr>
-                                        <td width="5px"><i class="fas fa-plus-circle"></i></td>
-                                        <td><input type="text" id="nameTaskAdd" name="task" class="form-control form-control-sm" placeholder="Create A New Task " required></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -125,68 +112,6 @@
                         <div class="card-body bg-secondary">
                             <button type="button" class="btn btn-block btn-sm btn-default" style="cursor: default">Click The Task For Detail</button>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="<?= site_url('project/action') ?>" method="post">
-                        <input type="hidden" name="type" value="addTask">
-                        <input type="hidden" name="idproject" value="<?= $project->id ?>">
-                        <input type="hidden" name="iddiv" value="<?= $project->iddiv ?>">
-                        <input type="hidden" name="idpt" value="<?= $project->idpt ?>">
-                        
-                        <div class="modal-body bg-secondary">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Task Name <small class="text-warning"><strong>*</strong></small></label>
-                                        <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
-                                        <div class='input-group date datetimepicker' id="startDatetimepicker">
-                                            <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" onkeydown="return false" required>
-                                            <span class="input-group-addon input-group-append">
-                                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
-                                        <div class='input-group date datetimepicker' id="endDatetimepicker">
-                                            <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" onkeydown="return false" required>
-                                            <span class="input-group-addon input-group-append">
-                                                <button class="btn btn-sm btn-primary ml-1" type="button" id="button-addon2">  <span class="fa fa-calendar"></span></button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="">Description</label>
-                                    <textarea class="form-control form-control-alternative form-control-sm" name="desc" cols="30" rows="10" placeholder="Type Description Here ..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="parent" value="0">
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -248,7 +173,6 @@
                                         <th>Description</th>
                                         <th width="5px" class="text-center">Date</th>
                                         <th width="5px" class="text-center">Document</th>
-                                        <th width="5px" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="myTable3">
@@ -264,12 +188,6 @@
                                     <?php if($r->doc == TRUE){
                                         echo "<a href=".base_url('./uploads/reports/' . $r->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$r->doc."</a>";
                                     } ?>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button class="btn btn-sm btn-primary editReport" data-id="<?= $r->id ?>"><i class="fas fa-pencil-alt"></i></button>
-                                            <a href="<?= site_url('project/deleteReport/'. $r->id) ?>" class="btn btn-sm btn-danger ml-1"><i class="fas fa-trash"></i></a>
-                                        </div>
                                     </td>
                                 </tr>
                                 <?php } ?>
