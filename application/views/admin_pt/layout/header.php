@@ -84,7 +84,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pt_diskusi.html">
+              <a class="nav-link" href="<?= site_url('Discussion') ?>">
                 <i class="ni ni-chat-round text-blue"></i>
                 <span class="nav-link-text">Diskusi</span>
               </a>
