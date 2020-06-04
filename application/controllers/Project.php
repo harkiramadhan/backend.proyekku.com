@@ -1548,6 +1548,8 @@ class Project extends CI_Controller{
                         redirect($_SERVER['HTTP_REFERER']);
                     }
                 }
+            }else{
+                redirect($_SERVER['HTTP_REFERER']);
             }
         }elseif($role == 3){
             $idpt = $this->session('idpt');
@@ -1824,6 +1826,8 @@ class Project extends CI_Controller{
                         redirect($_SERVER['HTTP_REFERER']);
                     }
                 }
+            }else{
+                redirect($_SERVER['HTTP_REFERER']);
             }
         }elseif($role == 4){
             $idpt = $this->session('idpt');
@@ -2089,6 +2093,8 @@ class Project extends CI_Controller{
                         redirect($_SERVER['HTTP_REFERER']);
                     }
                 }
+            }else{
+                redirect($_SERVER['HTTP_REFERER']);
             }
         }
     }
