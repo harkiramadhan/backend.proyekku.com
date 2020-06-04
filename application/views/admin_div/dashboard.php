@@ -131,6 +131,7 @@
         <?php foreach($totalProject->result() as $p){
           $tasks = $this->db->order_by('timestamp', "DESC")->get_where('task', ['idproject' => $p->id]); 
           $delay = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows(); 
+          $issue = $this->db->get_where('issue', ['idproject' => $p->id])->num_rows();
           $jumtas = $tasks->num_rows();
           
           $start = strtotime($p->start);
@@ -166,7 +167,7 @@
             </div>
             <div class="card-body pb-0 bg-secondary">
               <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                   <div class="card card-stats">
                     <div class="card-body p-2 bg-success">
                         <div class="row">
@@ -221,7 +222,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                   <div class="card card-stats">
                     <div class="card-body p-2 bg-warning">
                         <div class="row">
@@ -238,6 +239,23 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-2">
+                  <div class="card card-stats">
+                    <div class="card-body p-2 bg-default">
+                        <div class="row">
+                          <div class="col">
+                              <h5 class="card-title text-uppercase text-muted mb-0 text-white">Issue </h5>
+                              <span class="h2 font-weight-bold mb-0 text-white"><?= $issue ?></span>
+                          </div>
+                          <div class="col-auto">
+                              <div class="icon icon-shape text-white rounded-circle shadow">
+                              <i class="fas fa-exclamation-triangle"></i>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="col-xl-12 text-center mb-3">
                   <h4>
                     <i class="fas fa-circle text-success"></i> <small class="text-default">Task Complete</small>
@@ -245,6 +263,7 @@
                     <i class="fas fa-circle text-info ml-2"></i> <small class="text-default"> < Planed</small>
                     <i class="fas fa-circle text-danger ml-2"></i> <small class="text-default"> > Planed</small>
                     <i class="fas fa-circle text-warning ml-2"></i> <small class="text-default">Delayed Task</small>
+                    <i class="fas fa-circle text-default ml-2"></i> <small class="text-default">Issue</small>
                   </h4>
                 </div>
               </div>
