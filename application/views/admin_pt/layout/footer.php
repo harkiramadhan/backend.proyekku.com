@@ -73,9 +73,6 @@
           $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
           $('#endDatetimepicker').data("DateTimePicker").maxDate(maxDate);
         });
-        // $("#endDatetimepicker").on("dp.change", function (e) {
-            // $('#startDatetimepicker').data("DateTimePicker").maxDate(e.date);
-        // });
       });
 
       $('.taskList').click(function(){
