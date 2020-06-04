@@ -2276,6 +2276,7 @@ class Project extends CI_Controller{
                         'actualEnd' => $element['actualEnd'],
                         'connectTo' => $element['connectTo'],
                         'connectorType' => $element['connectorType'],
+                        'progressValue' => $element['progressValue'],
                         'children'=> $children
                     ];
                 }elseif($children != NULL){
@@ -2286,6 +2287,7 @@ class Project extends CI_Controller{
                         'actualEnd' => $element['actualEnd'],
                         'connectTo' => $element['connectTo'],
                         'connectorType' => $element['connectorType'],
+                        'progressValue' => $element['progressValue'],
                         'children'=> $children
                     ];
                 }else{
