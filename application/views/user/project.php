@@ -54,6 +54,7 @@
                                         <th>PIC</th>
                                         <th width="5px" class="text-center">Start <br> (d-m-Y)</th>
                                         <th width="5px" class="text-center">Due <br> (d-m-Y)</th>
+                                        <th width="5px" class="text-center">Last Update <br> (d-m-Y H:i:s)</th>
                                         <th width="5px">Progress</th>
                                         <th width="5px">Status</th>
                                     </tr>
@@ -62,12 +63,17 @@
                                     <?php 
                                     $no = 1;
                                     foreach($task->result() as $row){ ?>
+                                    <?php if($row->progressValue != "100%" && $row->actualEnd > $project->end): ?>
+                                    <tr class="taskList bg-danger text-white" id="<?= $row->id ?>" style="cursor: pointer">
+                                    <?php else: ?>
                                     <tr class="taskList" id="<?= $row->id ?>" style="cursor: pointer">
+                                    <?php endif; ?>
                                         <td><?= $no++ ?></td>
                                         <td><?= $row->name ?></td>
                                         <td><?= $row->name_user?></td>
                                         <td class="text-center"><?= date('d-m-Y', strtotime($row->actualStart)) ?></td>
                                         <td class="text-center"><?= date('d-m-Y', strtotime($row->actualEnd)) ?></td>
+                                        <td class="text-center"><?= date('d-m-Y H:i:s', strtotime($row->timestamp)) ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <span class="completion mr-2"><strong><?= $row->progressValue ?></strong></span>
