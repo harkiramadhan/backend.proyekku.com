@@ -31,6 +31,8 @@
                 <div class="col-12 text-right mb-3">
                     <div class="btn-group">
                         <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#addTask"><i class="fas fa-plus-circle"></i> &nbsp;Add Task</button>
+                        <button class="btn btn-sm btn-secondary mx-1" data-toggle="modal" data-target="#detailProject"><i class="fas fa-eye"></i> &nbsp;Detail Project</button>
+                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteProject"><i class="fas fa-trash"></i> &nbsp;Remove Project</button>
                     </div>
                 </div>
                 <div class="col">
@@ -59,6 +61,7 @@
                                         <th>PIC</th>
                                         <th width="5px" class="text-center">Start <br> (d-m-Y)</th>
                                         <th width="5px" class="text-center">Due <br> (d-m-Y)</th>
+                                        <th width="5px" class="text-center">Last Update <br> (d-m-Y H:i:s)</th>
                                         <th width="5px">Progress</th>
                                         <th width="5px">Status</th>
                                     </tr>
@@ -67,12 +70,17 @@
                                     <?php 
                                     $no = 1;
                                     foreach($task->result() as $row){ ?>
+                                    <?php if($row->progressValue != "100%" && $row->actualEnd > $project->end): ?>
+                                    <tr class="taskList bg-danger text-white" id="<?= $row->id ?>" style="cursor: pointer">
+                                    <?php else: ?>
                                     <tr class="taskList" id="<?= $row->id ?>" style="cursor: pointer">
+                                    <?php endif; ?>
                                         <td><?= $no++ ?></td>
                                         <td><?= $row->name ?></td>
                                         <td><?= $row->name_user?></td>
                                         <td class="text-center"><?= date('d-m-Y', strtotime($row->actualStart)) ?></td>
                                         <td class="text-center"><?= date('d-m-Y', strtotime($row->actualEnd)) ?></td>
+                                        <td class="text-center"><?= date('d-m-Y H:i:s', strtotime($row->timestamp)) ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <span class="completion mr-2"><strong><?= $row->progressValue ?></strong></span>
@@ -166,7 +174,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                        <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <div class='input-group date datetimepicker' id="startDatetimepicker">
                                             <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" onkeydown="return false" required>
                                             <span class="input-group-addon input-group-append">
@@ -175,7 +183,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                        <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <div class='input-group date datetimepicker' id="endDatetimepicker">
                                             <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" onkeydown="return false" required>
                                             <span class="input-group-addon input-group-append">
@@ -194,6 +202,91 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="detailProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Project <?= $project->project_name ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="<?= site_url('project/action') ?>" method="post">
+                    <input type="hidden" name="type" value="editProject">
+                    <input type="hidden" name="idproject" value="<?= $project->id ?>">
+                    <div class="modal-body bg-secondary">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Project Name <small class="text-warning"><strong>*</strong></small></label>
+                                    <input type="text" value="<?= $project->project_name ?>" name="project_name" class="form-control form-control-alternative form-control-sm" placeholder="Project Name " required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Division <small class="text-warning"><strong>*</strong></small></label>
+                                    <select name="iddiv" class="form-control form-control-alternative form-control-sm" required>
+                                        <option value="">- Select Division -</option>
+                                        <?php
+                                        $idpt = $this->session->userdata('iduser');
+                                        $getdiv = $this->db->get_where('division', ['idpt' => $idpt])->result();
+                                        foreach($getdiv as $dd){
+                                        ?>
+                                        <option value="<?= $dd->id ?>" <?php if($project->iddiv == $dd->id){echo "selected";} ?>><?= $dd->division ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Start Date <small class="text-danger"><strong>*) ( 'm-d-Y' )</strong></small></label>
+                                    <input type="date" class="form-control form-control-alternative form-control-sm" name="start" value="<?= $project->start ?>" required > 
+                                </div>
+                                <div class="form-group">
+                                    <label for="">End Date <small class="text-danger"><strong>*) ( 'm-d-Y' )</strong></small></label>
+                                    <input type="date" class="form-control form-control-alternative form-control-sm" name="end" value="<?= $project->end ?>" required > 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                    <div class="modal-content bg-gradient-danger">
+                        <div class="modal-header">
+                            <h6 class="modal-title" id="modal-title-notification">Delete Project <?= $project->project_name ?></h6>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="py-3 text-center">
+                                <i class="ni ni-bell-55 ni-3x"></i>
+                                <h4 class="heading mt-4">Are You Sure To Delete <br> Project <strong><u><?= $project->project_name ?></u></strong> With The Tasks ? </h4>
+                                <p>You Won't Be Able To Revert This!</p>
+                            </div>
+                        </div>
+                        <form action="<?= site_url('project/action') ?>" method="post">
+                        <input type="hidden" name="type" value="deleteProject">
+                        <input type="hidden" name="project_name" value="<?= $project->project_name ?>">
+                        <input type="hidden" name="idproject" value="<?= $project->id ?>">
+                        <div class="modal-footer">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-link text-white" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-sm btn-white ml-auto">Yes, Delete It!</button>
+                            </div>
                         </div>
                         </form>
                     </div>
@@ -255,7 +348,7 @@
                                     <tr>
                                         <th width="5px">No</th>
                                         <th>Description</th>
-                                        <th width="5px" class="text-center">Date</th>
+                                        <th width="5px" class="text-center">Date<br> (d-m-y)</th>
                                         <th width="5px" class="text-center">Document</th>
                                         <th width="5px" class="text-center">Action</th>
                                     </tr>
@@ -268,7 +361,7 @@
                                 <tr>
                                     <td width="5px"><?= $nor++ ?></td>
                                     <td><?= $r->desc ?></td>
-                                    <td width="5px"><?= $r->date ?></td>
+                                    <td width="5px"><?= date('d-m-Y', strtotime($r->date)) ?></td>
                                     <td class="text-center">
                                     <?php if($r->doc == TRUE){
                                         echo "<a href=".base_url('./uploads/reports/' . $r->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$r->doc."</a>";
@@ -317,7 +410,7 @@
                                         <textarea name="desc" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Description" required></textarea>
                                     </div>
                                     <div class="col-lg-12 mt-2">
-                                        <label for="">Date <small class="text-warning">*</small></label>
+                                        <label for="">Date <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <input type="date" name="date" placeholder="Date" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-12 mt-2">
@@ -364,8 +457,8 @@
                                         <th width="5px">Task</th>
                                         <th>Problem Description</th>
                                         <th>Request</th>
-                                        <th width="5px">Time</th>
-                                        <th width="5px">Deadline</th>
+                                        <th width="5px" class="text-center">Time<br> (d-m-y)</th>
+                                        <th width="5px" class="text-center">Deadline<br> (d-m-y)</th>
                                         <th width="5px">Status</th>
                                         <th width="5px" class="text-center">Document</th>
                                         <th width="5px" class="text-center">Action</th>
@@ -393,8 +486,8 @@
                                         <td><?= $i->name ?></td>
                                         <td><?= $i->desc ?></td>
                                         <td><?= $i->request ?></td>
-                                        <td><?= $i->time ?></td>
-                                        <td><?= $i->deadline ?></td>
+                                        <td><?= date('d-m-Y', strtotime($i->time)) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($i->deadline)) ?></td>
                                         <td>
                                         <span class="badge badge-dot mr-4">
                                             <?php if($i->status == "Delay"): ?>
@@ -479,11 +572,11 @@
                                         <textarea name="request" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request" required></textarea>
                                     </div>
                                     <div class="col-lg-6 mt-2">
-                                        <label for="">Time <small class="text-warning">*</small></label>
+                                        <label for="">Time <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <input type="date" name="time" placeholder="Time" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-6 mt-2">
-                                        <label for="">Deadline <small class="text-warning">*</small></label>
+                                        <label for="">Deadline <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <input type="date" name="deadline" placeholder="Deadline" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-2 mt-2">
