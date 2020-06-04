@@ -1236,8 +1236,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Hapus");
-                    redirect('dashboard', "refresh");
                 }
+                redirect('dashboard', "refresh");
             }elseif($type == "addTask"){
                 $data = [
                     'idpt' => $iduser,
@@ -1255,8 +1255,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "editTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $data = [
@@ -1272,8 +1272,9 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Simpan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "delTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $this->db->where('id', $iidtask);
@@ -1281,8 +1282,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Hapus");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "updateTask"){
                 if($this->input->post('field', TRUE) == "progressValue"){
                     $val = $this->input->post('value', TRUE);
@@ -1313,8 +1314,10 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Success";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo "Error";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
             }elseif($type == "mark"){
                 $mark = $this->input->post('dataType', TRUE);
@@ -1337,6 +1340,7 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Sukses";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo $this->db->error(); 
                 }
@@ -1379,8 +1383,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0 ){
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "editIssue"){
                 $idissue = $this->input->post('idissue', TRUE);
                 $cek = $this->db->get_where('issue', ['id' => $idissue]);
@@ -1428,8 +1432,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0 ){
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "addReport"){
                 $config['upload_path']      = './uploads/reports/';
                 $config['allowed_types']    = '*';
@@ -1449,8 +1453,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Tambahkan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
 
             }elseif($type == "editReport"){
@@ -1481,8 +1485,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     $data = [
                         'desc' => $this->input->post('desc', TRUE),
@@ -1494,8 +1498,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
             }else{
                 redirect($_SERVER['HTTP_REFERER']);
@@ -1515,8 +1519,8 @@ class Project extends CI_Controller{
     
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Project ".$this->input->post('project_name', TRUE)." Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "addTask"){
                 $data = [
                     'idpt' => $idpt,
@@ -1533,8 +1537,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "editTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $data = [
@@ -1550,8 +1554,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Simpan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "delTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $this->db->where('id', $iidtask);
@@ -1559,8 +1563,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Hapus");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "updateTask"){
                 if($this->input->post('field', TRUE) == "progressValue"){
                     $val = $this->input->post('value', TRUE);
@@ -1591,6 +1595,7 @@ class Project extends CI_Controller{
                 
                 if($this->db->affected_rows() > 0){
                     echo "Success";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo "Error";
                 }
@@ -1615,6 +1620,7 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Sukses";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo $this->db->error(); 
                 }
@@ -1657,8 +1663,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0 ){
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "editIssue"){
                 $idissue = $this->input->post('idissue', TRUE);
                 $cek = $this->db->get_where('issue', ['id' => $idissue]);
@@ -1706,8 +1712,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0 ){
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "addReport"){
                 $config['upload_path']      = './uploads/reports/';
                 $config['allowed_types']    = '*';
@@ -1727,8 +1733,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Tambahkan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
 
             }elseif($type == "editReport"){
@@ -1772,8 +1778,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
             }else{
                 redirect($_SERVER['HTTP_REFERER']);
@@ -1798,8 +1804,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "editTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $data = [
@@ -1814,8 +1820,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Simpan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "delTask"){
                 $iidtask = $this->input->post('idtask', TRUE);
                 $this->db->where('id', $iidtask);
@@ -1823,8 +1829,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "Task ".$this->input->post('task', TRUE)." Berhasil Di Hapus");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "updateTask"){
                 if($this->input->post('field', TRUE) == "progressValue"){
                     $val = $this->input->post('value', TRUE);
@@ -1858,6 +1864,7 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Success";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo "Error";
                 }
@@ -1882,6 +1889,7 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Sukses";
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo $this->db->error(); 
                 }
@@ -1924,8 +1932,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0 ){
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "editIssue"){
                 $idissue = $this->input->post('idissue', TRUE);
                 $cek = $this->db->get_where('issue', ['id' => $idissue]);
@@ -1973,8 +1981,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0 ){
                     $this->session->set_flashdata('sukses', "Issue Berhasil Di Tambahkan");
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
+                redirect($_SERVER['HTTP_REFERER']);
             }elseif($type == "addReport"){
                 $config['upload_path']      = './uploads/reports/';
                 $config['allowed_types']    = '*';
@@ -1994,8 +2002,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Tambahkan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
 
             }elseif($type == "editReport"){
@@ -2026,8 +2034,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     $data = [
                         'desc' => $this->input->post('desc', TRUE),
@@ -2039,8 +2047,8 @@ class Project extends CI_Controller{
                     
                     if($this->db->affected_rows() > 0 ){
                         $this->session->set_flashdata('sukses', "Report Berhasil Di Simpan");
-                        redirect($_SERVER['HTTP_REFERER']);
                     }
+                    redirect($_SERVER['HTTP_REFERER']);
                 }
             }else{
                 redirect($_SERVER['HTTP_REFERER']);

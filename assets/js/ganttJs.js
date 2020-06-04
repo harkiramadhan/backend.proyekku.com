@@ -132,7 +132,7 @@ function initChart(data) {
       data: data,
       success: function(data) {
         console.log(data);
-        location.reload();
+        window.location.reload();
       },
       dataType: 'json'
     });
@@ -156,7 +156,7 @@ function initChart(data) {
       data: data,
       success: function(data) {
         console.log(data);
-        location.reload();
+        window.location.reload();
       },
       dataType: 'json'
     });
