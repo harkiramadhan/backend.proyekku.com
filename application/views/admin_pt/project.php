@@ -342,7 +342,7 @@
                                     <tr>
                                         <th width="5px">No</th>
                                         <th>Description</th>
-                                        <th width="5px" class="text-center">Date</th>
+                                        <th width="5px" class="text-center">Date<br> (d-m-y)</th>
                                         <th width="5px" class="text-center">Document</th>
                                         <th width="5px" class="text-center">Action</th>
                                     </tr>
@@ -355,7 +355,7 @@
                                 <tr>
                                     <td width="5px"><?= $nor++ ?></td>
                                     <td><?= $r->desc ?></td>
-                                    <td width="5px"><?= $r->date ?></td>
+                                    <td width="5px"><?= date('d-m-Y', strtotime($r->date)) ?></td>
                                     <td class="text-center">
                                     <?php if($r->doc == TRUE){
                                         echo "<a href=".base_url('./uploads/reports/' . $r->doc)." target='__blank' class='btn btn-block btn-sm btn-default'><i class='fas fa-download'></i> ".$r->doc."</a>";
@@ -451,8 +451,8 @@
                                         <th width="5px">Task</th>
                                         <th>Problem Description</th>
                                         <th>Request</th>
-                                        <th width="5px">Time</th>
-                                        <th width="5px">Deadline</th>
+                                        <th width="5px" class="text-center">Time<br> (d-m-y)</th>
+                                        <th width="5px" class="text-center">Deadline<br> (d-m-y)</th>
                                         <th width="5px">Status</th>
                                         <th width="5px" class="text-center">Document</th>
                                         <th width="5px" class="text-center">Action</th>
@@ -480,8 +480,8 @@
                                         <td><?= $i->name ?></td>
                                         <td><?= $i->desc ?></td>
                                         <td><?= $i->request ?></td>
-                                        <td><?= $i->time ?></td>
-                                        <td><?= $i->deadline ?></td>
+                                        <td><?= date('d-m-Y', strtotime($i->time)) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($i->deadline)) ?></td>
                                         <td>
                                         <span class="badge badge-dot mr-4">
                                             <?php if($i->status == "Delay"): ?>
