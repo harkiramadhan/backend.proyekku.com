@@ -59,8 +59,8 @@
                                         <th width="5px">No</th>
                                         <th width="5px">Task Name</th>
                                         <th>PIC</th>
-                                        <th width="5px">Start</th>
-                                        <th width="5px">Due</th>
+                                        <th width="5px" class="text-center">Start <br> (d-m-Y)</th>
+                                        <th width="5px" class="text-center">Due <br> (d-m-Y)</th>
                                         <th width="5px">Progress</th>
                                         <th width="5px">Status</th>
                                     </tr>
@@ -73,8 +73,8 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $row->name ?></td>
                                         <td><?= $row->name_user?></td>
-                                        <td><?= $row->actualStart ?></td>
-                                        <td><?= $row->actualEnd ?></td>
+                                        <td class="text-center"><?= date('d-m-Y', strtotime($row->actualStart)) ?></td>
+                                        <td class="text-center"><?= date('d-m-Y', strtotime($row->actualEnd)) ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <span class="completion mr-2"><strong><?= $row->progressValue ?></strong></span>

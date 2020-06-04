@@ -139,11 +139,11 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="start" type="date" class="form-control form-control-alternative startDate form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" min="<?= $task->project_start ?>" max="<?= $task->project_end ?>" onkeydown="return false" required>
                             </div>
                             <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="end" type="date" class="form-control form-control-alternative endDate form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" max="<?= $task->project_end ?>" required>
                             </div>
                             <div class="form-group">
@@ -265,11 +265,11 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="start" type="date" class="form-control form-control-alternative startDate form-control-sm" placeholder="Actual Start"  min="<?= $task->actualStart ?>" max="<?= $task->actualEnd ?>" onkeydown="return false" required>
                             </div>
                             <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="end" type="date" class="form-control form-control-alternative endDate form-control-sm" placeholder="Actual End" onkeydown="return false" max="<?= $task->actualEnd ?>" required>
                             </div>
                             <div class="form-group">
@@ -517,11 +517,11 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="start" type="date" class="form-control form-control-alternative startDate form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" min="<?= $task->project_start ?>" max="<?= $task->project_end ?>" onkeydown="return false" required>
                             </div>
                             <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="end" type="date" class="form-control form-control-alternative endDate form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" max="<?= $task->project_end ?>" required>
                             </div>
                             <div class="form-group">
@@ -643,11 +643,11 @@ class Project extends CI_Controller{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="start" type="date" class="form-control form-control-alternative startDate form-control-sm" placeholder="Actual Start"  min="<?= $task->actualStart ?>" max="<?= $task->actualEnd ?>" onkeydown="return false" required>
                             </div>
                             <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="end" type="date" class="form-control form-control-alternative endDate form-control-sm" placeholder="Actual End" onkeydown="return false" max="<?= $task->actualEnd ?>" required>
                             </div>
                             <div class="form-group">
@@ -883,11 +883,11 @@ class Project extends CI_Controller{
                                 <input type="text" name="task" class="form-control form-control-alternative form-control-sm" value="<?= $task->name ?>" placeholder="Task Name " required>
                             </div>
                             <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="start" type="date" class="form-control form-control-alternative startDate form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" min="<?= $task->project_start ?>" max="<?= $task->project_end ?>" onkeydown="return false" required>
                             </div>
                             <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <input name="end" type="date" class="form-control form-control-alternative endDate form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" max="<?= $task->project_end ?>" required>
                             </div>
                             <div class="form-group">
@@ -976,7 +976,7 @@ class Project extends CI_Controller{
                                 <input type="text" name="task" class="form-control form-control-alternative form-control-sm" placeholder="Task Name " required>
                             </div>
                             <div class="form-group">
-                                <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <div class='input-group date datetimepicker startDatetimepicker'>
                                     <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" value="<?= $task->actualStart ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
@@ -985,7 +985,7 @@ class Project extends CI_Controller{
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                 <div class='input-group date datetimepicker endDatetimepicker'>
                                     <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" value="<?= $task->actualEnd ?>" onkeydown="return false" required>
                                     <span class="input-group-addon input-group-append">
