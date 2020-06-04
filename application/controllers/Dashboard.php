@@ -52,7 +52,7 @@ class Dashboard extends CI_Controller{
                 $comp[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue' => "100%"])->num_rows();
                 $del[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows();
                 $tot[] = $tasks->num_rows();
-                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <' => date('Y-m-d')])->num_rows();
+                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd >' => $p->end])->num_rows();
 
                 $jumtas = $tasks->num_rows();
 
@@ -87,7 +87,7 @@ class Dashboard extends CI_Controller{
                 $comp[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue' => "100%"])->num_rows();
                 $del[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows();
                 $tot[] = $tasks->num_rows();
-                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <' => date('Y-m-d')])->num_rows();
+                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd >' => $p->end])->num_rows();
 
                 $jumtas = $tasks->num_rows();
 
@@ -123,7 +123,7 @@ class Dashboard extends CI_Controller{
                 $comp[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue' => "100%"])->num_rows();
                 $del[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'status' => 'Pending'])->num_rows();
                 $tot[] = $tasks->num_rows();
-                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd <' => date('Y-m-d')])->num_rows();
+                $miss[] = $this->db->get_where('task', ['idproject' => $p->id, 'progressValue !=' => "100%", 'actualEnd >' => $p->end])->num_rows();
 
                 $jumtas = $tasks->num_rows();
 

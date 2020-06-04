@@ -70,7 +70,11 @@
                                     <?php 
                                     $no = 1;
                                     foreach($task->result() as $row){ ?>
+                                    <?php if($row->progressValue != "100%" && $row->actualEnd > $project->end): ?>
+                                    <tr class="taskList bg-danger text-white" id="<?= $row->id ?>" style="cursor: pointer">
+                                    <?php else: ?>
                                     <tr class="taskList" id="<?= $row->id ?>" style="cursor: pointer">
+                                    <?php endif; ?>
                                         <td><?= $no++ ?></td>
                                         <td><?= $row->name ?></td>
                                         <td><?= $row->name_user?></td>
