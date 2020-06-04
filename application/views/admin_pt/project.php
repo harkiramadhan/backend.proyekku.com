@@ -237,11 +237,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Start Date <small class="text-danger">*</small></label>
+                                    <label for="">Start Date <small class="text-danger"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                     <input type="date" class="form-control form-control-alternative form-control-sm" name="start" value="<?= $project->start ?>" required > 
                                 </div>
                                 <div class="form-group">
-                                    <label for="">End Date <small class="text-danger">*</small></label>
+                                    <label for="">End Date <small class="text-danger"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                     <input type="date" class="form-control form-control-alternative form-control-sm" name="end" value="<?= $project->end ?>" required > 
                                 </div>
                             </div>
@@ -404,7 +404,7 @@
                                         <textarea name="desc" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Description" required></textarea>
                                     </div>
                                     <div class="col-lg-12 mt-2">
-                                        <label for="">Date <small class="text-warning">*</small></label>
+                                        <label for="">Date <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <input type="date" name="date" placeholder="Date" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-12 mt-2">
@@ -566,11 +566,11 @@
                                         <textarea name="request" cols="30" rows="5" class="form-control form-control-alternative form-control-sm" placeholder="Request" required></textarea>
                                     </div>
                                     <div class="col-lg-6 mt-2">
-                                        <label for="">Time <small class="text-warning">*</small></label>
+                                        <label for="">Time <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <input type="date" name="time" placeholder="Time" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-6 mt-2">
-                                        <label for="">Deadline <small class="text-warning">*</small></label>
+                                        <label for="">Deadline <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <input type="date" name="deadline" placeholder="Deadline" class="form-control form-control-sm form-control-alternative" required>
                                     </div>
                                     <div class="col-lg-2 mt-2">
