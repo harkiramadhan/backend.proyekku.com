@@ -83,11 +83,8 @@ class User extends CI_Controller{
                     redirect('user');
                 }
             }elseif($type == "del"){
-                $data = [
-                    'status' => "soft_delete"
-                ];
                 $this->db->where('id', $iduser);
-                $this->db->update('user', $data);
+                $this->db->update('user');
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Hapus");
@@ -163,11 +160,8 @@ class User extends CI_Controller{
                     redirect('user');
                 }
             }elseif($type == "del"){
-                $data = [
-                    'status' => "soft_delete"
-                ];
                 $this->db->where('id', $iduser);
-                $this->db->update('userpt', $data);
+                $this->db->delete('userpt');
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Hapus");
@@ -242,11 +236,8 @@ class User extends CI_Controller{
                     redirect('user');
                 }
             }elseif($type == "del"){
-                $data = [
-                    'status' => "soft_delete"
-                ];
                 $this->db->where('id', $iduser);
-                $this->db->update('userpt', $data);
+                $this->db->delete('userpt');
 
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', "User ".$username." Berhasil Di Hapus");
