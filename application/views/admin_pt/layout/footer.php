@@ -52,8 +52,8 @@
     <script type="text/javascript">
       $(function() {
         $('.datetimepicker').datetimepicker({
-          format: 'YYYY-MM-DD',
-          // format: 'MM-DD-YYYY',
+          // format: 'YYYY-MM-DD',
+          format: 'MM-DD-YYYY',
           icons: {
             time: "fa fa-clock",
             date: "fa fa-calendar-day",

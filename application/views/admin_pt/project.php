@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="">Start <small class="text-warning"><strong>*</strong></small></label>
+                                        <label for="">Start <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <div class='input-group date datetimepicker' id="startDatetimepicker">
                                             <input name="start" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual Start" onkeydown="return false" required>
                                             <span class="input-group-addon input-group-append">
@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">End <small class="text-warning"><strong>*</strong></small></label>
+                                        <label for="">End <small class="text-warning"><strong>*) ( 'm-d-Y' )</strong></small></label>
                                         <div class='input-group date datetimepicker' id="endDatetimepicker">
                                             <input name="end" type="text" class="form-control form-control-alternative form-control-sm" placeholder="Actual End" onkeydown="return false" required>
                                             <span class="input-group-addon input-group-append">
