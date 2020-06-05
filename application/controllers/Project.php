@@ -1312,11 +1312,13 @@ class Project extends CI_Controller{
                 $this->db->where('id', $this->input->post('id', TRUE));
                 $this->db->update('task', $data);
 
+                header('Content-Type: application/json');
                 if($this->db->affected_rows() > 0){
-                    echo "Success";
+                    $hasil = "Task Updated Successfully";
                 }else{
-                    echo "Error";
+                    $hasil = "Task Failed To Update";
                 }
+                echo json_encode($hasil);
             }elseif($type == "mark"){
                 $mark = $this->input->post('dataType', TRUE);
                 if($mark == "markPending"){
@@ -1590,11 +1592,13 @@ class Project extends CI_Controller{
                 $this->db->where('id', $this->input->post('id', TRUE));
                 $this->db->update('task', $data);
                 
+                header('Content-Type: application/json');
                 if($this->db->affected_rows() > 0){
-                    echo "Success";
+                    $hasil = "Task Updated Successfully";
                 }else{
-                    echo "Error";
+                    $hasil = "Task Failed To Update";
                 }
+                echo json_encode($hasil);
             }elseif($type == "mark"){
                 $mark = $this->input->post('dataType', TRUE);
                 if($mark == "markPending"){
@@ -1857,11 +1861,13 @@ class Project extends CI_Controller{
                 ]);
                 $this->db->update('task', $data);
 
+                header('Content-Type: application/json');
                 if($this->db->affected_rows() > 0){
-                    echo "Success";
+                    $hasil = "Task Updated Successfully";
                 }else{
-                    echo "Error";
+                    $hasil = "Task Failed To Update";
                 }
+                echo json_encode($hasil);
             }elseif($type == "mark"){
                 $mark = $this->input->post('dataType', TRUE);
                 if($mark == "markPending"){

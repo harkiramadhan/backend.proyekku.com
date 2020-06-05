@@ -132,10 +132,13 @@ function initChart(data) {
       data: data,
       success: function(data) {
         console.log(data);
+        alert(data);
+        if(data === "Task Failed To Update"){
+          window.location.reload();
+        }
       },
       dataType: 'json'
     });
-    window.location.reload();
   });
 
   //Tree item update listened.
@@ -156,10 +159,13 @@ function initChart(data) {
       data: data,
       success: function(data) {
         console.log(data);
+        alert(data);
+        if(data === "Task Failed To Update"){
+          window.location.reload();
+        }
       },
       dataType: 'json'
     });
-    window.location.reload();
   });
 
   $('#editButtonAdd').click(function() {
