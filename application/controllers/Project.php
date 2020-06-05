@@ -1316,7 +1316,7 @@ class Project extends CI_Controller{
                 if($this->db->affected_rows() > 0){
                     $hasil = "Task Updated Successfully";
                 }else{
-                    $hasil = "Task Failed To Update";
+                    $hasil = "Failed To Update Task";
                 }
                 echo json_encode($hasil);
             }elseif($type == "mark"){
@@ -1596,7 +1596,7 @@ class Project extends CI_Controller{
                 if($this->db->affected_rows() > 0){
                     $hasil = "Task Updated Successfully";
                 }else{
-                    $hasil = "Task Failed To Update";
+                    $hasil = "Failed To Update Task";
                 }
                 echo json_encode($hasil);
             }elseif($type == "mark"){
@@ -1865,7 +1865,7 @@ class Project extends CI_Controller{
                 if($this->db->affected_rows() > 0){
                     $hasil = "Task Updated Successfully";
                 }else{
-                    $hasil = "Task Failed To Update";
+                    $hasil = "Failed To Update Task";
                 }
                 echo json_encode($hasil);
             }elseif($type == "mark"){

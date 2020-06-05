@@ -133,7 +133,7 @@ function initChart(data) {
       success: function(data) {
         console.log(data);
         alert(data);
-        if(data === "Task Failed To Update"){
+        if(data === "Failed To Update Task"){
           window.location.reload();
         }
       },
@@ -160,7 +160,7 @@ function initChart(data) {
       success: function(data) {
         console.log(data);
         alert(data);
-        if(data === "Task Failed To Update"){
+        if(data === "Failed To Update Task"){
           window.location.reload();
         }
       },
