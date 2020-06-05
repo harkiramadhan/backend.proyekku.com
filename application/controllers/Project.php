@@ -1314,10 +1314,8 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Success";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo "Error";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }
             }elseif($type == "mark"){
                 $mark = $this->input->post('dataType', TRUE);
@@ -1340,7 +1338,6 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Sukses";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo $this->db->error(); 
                 }
@@ -1595,7 +1592,6 @@ class Project extends CI_Controller{
                 
                 if($this->db->affected_rows() > 0){
                     echo "Success";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo "Error";
                 }
@@ -1620,7 +1616,6 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Sukses";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo $this->db->error(); 
                 }
@@ -1864,7 +1859,6 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Success";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo "Error";
                 }
@@ -1889,7 +1883,6 @@ class Project extends CI_Controller{
 
                 if($this->db->affected_rows() > 0){
                     echo "Sukses";
-                    redirect($_SERVER['HTTP_REFERER']);
                 }else{
                     echo $this->db->error(); 
                 }
