@@ -164,11 +164,11 @@
       labels: <?= $project ?>,
       datasets: [{
           label: "Total Task",
-          backgroundColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(54, 162, 235, 1)',
           data: <?= $tot ?>
       },{
           label: "Task Complete",
-          backgroundColor: "rgba(54, 162, 235, 1)",
+          backgroundColor: "rgba(75, 192, 192, 1)",
           data: <?= $compl ?>
       }, {
           label: "Delayed Task",
@@ -176,7 +176,7 @@
           data: <?= $del ?>
       }, {
           label: "Missed Deadlines",
-          backgroundColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(255, 99, 132, 1)",
           data: <?= $miss ?>
       }],
       
