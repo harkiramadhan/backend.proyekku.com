@@ -51,29 +51,12 @@
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-bundle.min.js"></script>
     <script src="<?= base_url('assets/js/ganttJs.js') ?>"></script>
     <script type="text/javascript">
-      $(function() {
-        $('.datetimepicker').datetimepicker({
-          // format: 'YYYY-MM-DD',
-          format: 'MM-DD-YYYY',
-          icons: {
-            time: "fa fa-clock",
-            date: "fa fa-calendar-day",
-            up: "fa fa-chevron-up",
-            down: "fa fa-chevron-down",
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-screenshot',
-            clear: 'fa fa-trash',
-            close: 'fa fa-remove'
-          },
-          minDate: '<?= date('m-d-Y', strtotime($project->start)) ?>',
-          maxDate: '<?= date('m-d-Y', strtotime($project->end)) ?>'
-        });
+      var startDate = $('.startDate').val();
+      $('.endDate').attr('min', startDate);
 
-        $("#startDatetimepicker").on("dp.change", function (e) {
-          $('#endDatetimepicker').data("DateTimePicker").minDate(e.date);
-          $('#endDatetimepicker').data("DateTimePicker").maxDate(maxDate);
-        });
+      $('.startDate').change(function(){
+          var startDate = $(this).val();
+          $('.endDate').attr('min', startDate);
       });
 
       $('.taskList').click(function(){
