@@ -38,7 +38,7 @@ function initChart(data) {
   chart.editing(true);
   chart.data(dataTree);
   chart.container(stage).draw();
-  chart.zoomTo(951350400000, 954201600000);
+  // chart.zoomTo(951350400000, 954201600000);
 
   var buttons = chart.dataGrid().buttons();
 
